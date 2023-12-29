@@ -29,4 +29,15 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Manager\Invoice\" />
+    <Folder Include="Manager\Stock\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Interop.QBXMLRP2">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Common Files\Intuit\QuickBooks\Interop.QBXMLRP2.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
