@@ -11,30 +11,33 @@ namespace SArtIntegration.qb.Manager.Connect
     public class ConnectManager
     {
 
-        private static string appID = "SArt1";
-        private static string appName = "SalesArtIntegration";
+        private static readonly string appID = "SArt1";
+        private static readonly string appName = "SalesArtIntegration";
 
-        public ConnectModels connectToQB()
+        public static ConnectModels ConnectToQB()
         {
-            ConnectModels connectModels = new ConnectModels();
+            ConnectModels connectModels = new ConnectModels()
+            { 
+                
+                Rp = new RequestProcessor2() //new RequestProcessor2Class();
+            };
 
-            connectModels.rp = new RequestProcessor2(); //new RequestProcessor2Class();
-            connectModels.rp.OpenConnection(appID, appName);
-            connectModels.ticket = connectModels.rp.BeginSession("", connectModels.mode);
-            string[] versions = connectModels.rp.get_QBXMLVersionsForSession(connectModels.ticket);
-            connectModels.maxVersion = versions[versions.Length - 1];
+            connectModels.Rp.OpenConnection(appID, appName);
+            connectModels.Ticket = connectModels.Rp.BeginSession("", connectModels.Mode);
+            string[] versions = connectModels.Rp.get_QBXMLVersionsForSession(connectModels.Ticket);
+            connectModels.MaxVersion = versions[versions.Length - 1];
 
             return connectModels;
         }
-        public void disconnectFromQB(ConnectModels connect)
+        public static void DisconnectFromQB(ConnectModels connect)
         {
-            if (connect.ticket != null)
+            if (connect.Ticket != null)
             {
                 try
                 {
-                    connect.rp.EndSession(connect.ticket);
-                    connect.ticket = null;
-                    connect.rp.CloseConnection();
+                    connect.Rp.EndSession(connect.Ticket);
+                    connect.Ticket = null;
+                    connect.Rp.CloseConnection();
                 }
                 catch (Exception e)
                 {
@@ -42,11 +45,11 @@ namespace SArtIntegration.qb.Manager.Connect
                 }
             }
         }
-        public string processRequestFromQB(ConnectModels connect,string request)
+        public static string ProcessRequestFromQB(ConnectModels connect,string request)
         {
             try
             {
-                return connect.rp.ProcessRequest(connect.ticket, request);
+                return connect.Rp.ProcessRequest(connect.Ticket, request);
             }
             catch (Exception e)
             {

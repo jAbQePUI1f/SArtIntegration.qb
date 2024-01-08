@@ -9,10 +9,10 @@ namespace SArtIntegration.qb.Models
 {
     public class ConnectModels
     {
-        public string ticket { get; set; }
-        public RequestProcessor2 rp { get; set; }
-        public string maxVersion { get; set; }
-        public QBFileMode mode { get; set; }
+        public  string Ticket { get; set; }
+        public  RequestProcessor2 Rp { get; set; }
+        public  string MaxVersion { get; set; }
+        public QBFileMode Mode { get; set; }
 
 
 

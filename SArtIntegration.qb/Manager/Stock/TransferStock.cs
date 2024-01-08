@@ -1,21 +1,22 @@
 ﻿using SArtIntegration.qb.Manager.Connect;
 using SArtIntegration.qb.Manager.Helper;
 using SArtIntegration.qb.Models;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 
-namespace SArtIntegration.qb.Manager.Item
+namespace SArtIntegration.qb.Manager.Stock
 {
-    public class TransferItems
+    public  class TransferStock
     {
-
-
-
-        public static void LoadItems()
+      
+        public static void LoadStock()
         {
-
             var connectInfo = ConnectManager.ConnectToQB();
 
             string[] includeRetElements = typeof(ItemModels)
@@ -28,13 +29,12 @@ namespace SArtIntegration.qb.Manager.Item
             string response = ConnectManager.ProcessRequestFromQB(connectInfo, BuildItemQueryRqXML(includeRetElements, null, connectInfo.MaxVersion));
 
 
+            //DataTable itemDataTable = createItemDataTable();
 
-            var result = ParseItemQueryRs(response);
+            var result= ParseItemQueryRs(response);
 
 
             ConnectManager.DisconnectFromQB(connectInfo);
-
-
         }
         private static string BuildItemQueryRqXML(string[] includeRetElement, string itemName, string maxVersion)
         {
@@ -66,7 +66,7 @@ namespace SArtIntegration.qb.Manager.Item
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(response);
 
-            XmlNodeList itemNodes = xmlDoc.SelectNodes("//ItemQueryRs/*[self::ItemInventoryRet or self::ItemServiceRet]");////ItemInventoryQueryRs/ItemInventoryRet
+            XmlNodeList itemNodes = xmlDoc.SelectNodes("//ItemInventoryQueryRs/ItemInventoryRet");// //ItemInventoryQueryRs/ItemInventoryRet
 
 
 
@@ -74,16 +74,11 @@ namespace SArtIntegration.qb.Manager.Item
             {
                 ItemModels ıtem = new ItemModels();
 
-                ıtem.description = itemNode.SelectSingleNode("SalesDesc")?.InnerText ?? "";
-                ıtem.purchaseCost = itemNode.SelectSingleNode("PurchaseCost") != null ? Convert.ToDecimal(itemNode.SelectSingleNode("PurchaseCost").InnerText) : 0.00m;
-                ıtem.taxable = false;
                 ıtem.stock = itemNode.SelectSingleNode("QuantityOnHand") != null ? Convert.ToDecimal(itemNode.SelectSingleNode("QuantityOnHand").InnerText) : 0.00m;
                 ıtem.name = itemNode.SelectSingleNode("Name")?.InnerText ?? "";
-                ıtem.active = Convert.ToBoolean(itemNode.SelectSingleNode("IsActive").InnerText);
                 ıtem.fullyQualifiedName = itemNode.SelectSingleNode("FullName")?.InnerText ?? "";
                 ıtem.id = itemNode.SelectSingleNode("ListID")?.InnerText ?? "";
-                ıtem.unitPrice = itemNode.SelectSingleNode("SalesPrice") != null ? Convert.ToDecimal(itemNode.SelectSingleNode("SalesPrice").InnerText) : 0.00m;
-                ıtem.type = "";
+
 
                 models.Add(ıtem);
             }

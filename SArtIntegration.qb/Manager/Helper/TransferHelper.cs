@@ -22,7 +22,7 @@ namespace SArtIntegration.qb.Manager.Helper
         //    input = inputXMLDoc.OuterXml;
         //    return input;
         //}
-        public XmlElement buildRqEnvelope(XmlDocument doc, string maxVer)
+        public static XmlElement BuildRqEnvelope(XmlDocument doc, string maxVer)
         {
             doc.AppendChild(doc.CreateXmlDeclaration("1.0", null, null));
             doc.AppendChild(doc.CreateProcessingInstruction("qbxml", "version=\"" + maxVer + "\""));
@@ -33,13 +33,13 @@ namespace SArtIntegration.qb.Manager.Helper
             qbXMLMsgsRq.SetAttribute("onError", "stopOnError");
             return qbXMLMsgsRq;
         }
-        public XmlElement MakeSimpleElem(XmlDocument doc, string tagName, string tagVal)
+        public static XmlElement MakeSimpleElem(XmlDocument doc, string tagName, string tagVal)
         {
             XmlElement elem = doc.CreateElement(tagName);
             elem.InnerText = tagVal;
             return elem;
         }
-        public string GetAddress(XmlNode addressNode)
+        public static string GetAddress(XmlNode addressNode)
         {
             if (addressNode != null)
             {
