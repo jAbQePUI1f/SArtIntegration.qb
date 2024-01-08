@@ -13,7 +13,7 @@ namespace SArtIntegration.qb
 
         private void bttnLogin_Click(object sender, EventArgs e)
         {
-    
+
             var response = LoginManager.Login(txtBoxUserName.Text, txtBoxPassword.Text);
 
             if (!response.State)
@@ -25,6 +25,11 @@ namespace SArtIntegration.qb
             UserSharedInfo.UserInfo.UserName = txtBoxUserName.Text;
             UserSharedInfo.UserInfo.Password = txtBoxPassword.Text;
             UserSharedInfo.UserInfo.Token = response.Token;
+        }
+
+        private void MenuCard_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
