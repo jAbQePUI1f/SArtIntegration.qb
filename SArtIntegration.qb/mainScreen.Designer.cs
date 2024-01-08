@@ -56,12 +56,12 @@
             materialCard1.Controls.Add(connectqb);
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(13, 40);
-            materialCard1.Margin = new Padding(14);
+            materialCard1.Location = new Point(15, 53);
+            materialCard1.Margin = new Padding(16, 19, 16, 19);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(14);
-            materialCard1.Size = new Size(719, 400);
+            materialCard1.Padding = new Padding(16, 19, 16, 19);
+            materialCard1.Size = new Size(822, 533);
             materialCard1.TabIndex = 0;
             // 
             // SArtToQb
@@ -69,7 +69,7 @@
             SArtToQb.AutoSize = true;
             SArtToQb.Depth = 0;
             SArtToQb.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            SArtToQb.Location = new Point(253, 218);
+            SArtToQb.Location = new Point(289, 291);
             SArtToQb.MouseState = MaterialSkin.MouseState.HOVER;
             SArtToQb.Name = "SArtToQb";
             SArtToQb.Size = new Size(166, 19);
@@ -80,14 +80,15 @@
             // 
             materialTabSelector2.BackColor = Color.Black;
             materialTabSelector2.BaseTabControl = null;
-            materialTabSelector2.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
+            //materialTabSelector2.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
             materialTabSelector2.Depth = 0;
             materialTabSelector2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialTabSelector2.ForeColor = Color.Black;
-            materialTabSelector2.Location = new Point(-1, 219);
+            materialTabSelector2.Location = new Point(-1, 292);
+            materialTabSelector2.Margin = new Padding(3, 4, 3, 4);
             materialTabSelector2.MouseState = MaterialSkin.MouseState.HOVER;
             materialTabSelector2.Name = "materialTabSelector2";
-            materialTabSelector2.Size = new Size(720, 18);
+            materialTabSelector2.Size = new Size(823, 24);
             materialTabSelector2.TabIndex = 8;
             materialTabSelector2.Text = "materialTabSelector2";
             // 
@@ -98,8 +99,8 @@
             bttnTransferToStocks.Depth = 0;
             bttnTransferToStocks.HighEmphasis = true;
             bttnTransferToStocks.Icon = null;
-            bttnTransferToStocks.Location = new Point(486, 147);
-            bttnTransferToStocks.Margin = new Padding(4, 6, 4, 6);
+            bttnTransferToStocks.Location = new Point(555, 196);
+            bttnTransferToStocks.Margin = new Padding(5, 8, 5, 8);
             bttnTransferToStocks.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferToStocks.Name = "bttnTransferToStocks";
             bttnTransferToStocks.NoAccentTextColor = Color.Empty;
@@ -117,8 +118,8 @@
             bttnTransferToItems.Depth = 0;
             bttnTransferToItems.HighEmphasis = true;
             bttnTransferToItems.Icon = null;
-            bttnTransferToItems.Location = new Point(299, 147);
-            bttnTransferToItems.Margin = new Padding(4, 6, 4, 6);
+            bttnTransferToItems.Location = new Point(342, 196);
+            bttnTransferToItems.Margin = new Padding(5, 8, 5, 8);
             bttnTransferToItems.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferToItems.Name = "bttnTransferToItems";
             bttnTransferToItems.NoAccentTextColor = Color.Empty;
@@ -128,6 +129,7 @@
             bttnTransferToItems.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnTransferToItems.UseAccentColor = false;
             bttnTransferToItems.UseVisualStyleBackColor = true;
+            bttnTransferToItems.Click += bttnTransferToItems_Click;
             // 
             // bttnTrsansferToCustomer
             // 
@@ -136,8 +138,8 @@
             bttnTrsansferToCustomer.Depth = 0;
             bttnTrsansferToCustomer.HighEmphasis = true;
             bttnTrsansferToCustomer.Icon = null;
-            bttnTrsansferToCustomer.Location = new Point(79, 147);
-            bttnTrsansferToCustomer.Margin = new Padding(4, 6, 4, 6);
+            bttnTrsansferToCustomer.Location = new Point(90, 196);
+            bttnTrsansferToCustomer.Margin = new Padding(5, 8, 5, 8);
             bttnTrsansferToCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTrsansferToCustomer.Name = "bttnTrsansferToCustomer";
             bttnTrsansferToCustomer.NoAccentTextColor = Color.Empty;
@@ -147,13 +149,14 @@
             bttnTrsansferToCustomer.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnTrsansferToCustomer.UseAccentColor = false;
             bttnTrsansferToCustomer.UseVisualStyleBackColor = true;
+            bttnTrsansferToCustomer.Click += bttnTrsansferToCustomer_Click;
             // 
             // qbtoSArt
             // 
             qbtoSArt.AutoSize = true;
             qbtoSArt.Depth = 0;
             qbtoSArt.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            qbtoSArt.Location = new Point(253, 87);
+            qbtoSArt.Location = new Point(289, 116);
             qbtoSArt.MouseState = MaterialSkin.MouseState.HOVER;
             qbtoSArt.Name = "qbtoSArt";
             qbtoSArt.Size = new Size(171, 19);
@@ -164,14 +167,15 @@
             // 
             materialTabSelector1.BackColor = Color.Black;
             materialTabSelector1.BaseTabControl = null;
-            materialTabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
+            //materialTabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
             materialTabSelector1.Depth = 0;
             materialTabSelector1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialTabSelector1.ForeColor = Color.Black;
-            materialTabSelector1.Location = new Point(-1, 88);
+            materialTabSelector1.Location = new Point(-1, 117);
+            materialTabSelector1.Margin = new Padding(3, 4, 3, 4);
             materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
             materialTabSelector1.Name = "materialTabSelector1";
-            materialTabSelector1.Size = new Size(720, 18);
+            materialTabSelector1.Size = new Size(823, 24);
             materialTabSelector1.TabIndex = 3;
             materialTabSelector1.Text = "materialTabSelector1";
             // 
@@ -181,7 +185,7 @@
             infoConnectQb.Depth = 0;
             infoConnectQb.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             infoConnectQb.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            infoConnectQb.Location = new Point(219, 32);
+            infoConnectQb.Location = new Point(250, 43);
             infoConnectQb.MouseState = MaterialSkin.MouseState.HOVER;
             infoConnectQb.Name = "infoConnectQb";
             infoConnectQb.Size = new Size(36, 14);
@@ -192,7 +196,7 @@
             // 
             connectqb.AutoSize = true;
             connectqb.Depth = 0;
-            connectqb.Location = new Point(14, 22);
+            connectqb.Location = new Point(16, 29);
             connectqb.Margin = new Padding(0);
             connectqb.MouseLocation = new Point(-1, -1);
             connectqb.MouseState = MaterialSkin.MouseState.HOVER;
@@ -207,11 +211,12 @@
             // 
             // mainScreen
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(737, 450);
+            ClientSize = new Size(842, 600);
             Controls.Add(materialCard1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             Name = "mainScreen";
             Text = "SArtIntegration.qb";
             materialCard1.ResumeLayout(false);
