@@ -26,10 +26,5 @@ namespace SArtIntegration.qb
             UserSharedInfo.UserInfo.Password = txtBoxPassword.Text;
             UserSharedInfo.UserInfo.Token = response.Token;
         }
-
-        private void MenuCard_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

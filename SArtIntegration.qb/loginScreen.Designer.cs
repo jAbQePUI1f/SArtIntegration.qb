@@ -57,7 +57,6 @@
             MenuCard.Padding = new Padding(16, 19, 16, 19);
             MenuCard.Size = new Size(639, 458);
             MenuCard.TabIndex = 0;
-            MenuCard.Paint += MenuCard_Paint;
             // 
             // lblPassword
             // 
