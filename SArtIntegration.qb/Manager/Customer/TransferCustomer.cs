@@ -16,17 +16,11 @@ namespace SArtIntegration.qb.Manager.Customer
 {
     public class TransferCustomer
     {
-        private readonly ConnectManager _connect;
-        private readonly TransferHelper _helper;
-        public TransferCustomer()
+       
+        public static void LoadCustomer()
         {
-            _connect = new ConnectManager();
-            _helper = new TransferHelper();
-        }
-        public void LoadCustomer()
-        {
-            var connectDbResult = _connect.connectToQB();
-            CustomersModels customers = new CustomersModels();
+            var connectDbResult = ConnectManager.ConnectToQB();
+            CustomersModels customers = new();
 
            
 
@@ -36,67 +30,64 @@ namespace SArtIntegration.qb.Manager.Customer
                                      .ToArray();
 
 
-            string response =_connect.processRequestFromQB(connectDbResult,buildCustomerQueryRqXML(includeRetElements, null, connectDbResult.maxVersion));
+            string response = ConnectManager.ProcessRequestFromQB(connectDbResult, BuildCustomerQueryRqXML(includeRetElements, null, connectDbResult.MaxVersion));
 
-            var result = parseCustomerQueryRs(response);
+            var result = ParseCustomerQueryRs(response);
 
         }
-        private string buildCustomerQueryRqXML(string[] includeRetElement, string fullName, string maxVersion)
+        private static string BuildCustomerQueryRqXML(string[] includeRetElement, string fullName, string maxVersion)
         {
-            string xml = "";
-            XmlDocument xmlDoc = new XmlDocument();
-            XmlElement qbXMLMsgsRq = _helper.buildRqEnvelope(xmlDoc, maxVersion);
+            XmlDocument xmlDoc = new();
+            XmlElement qbXMLMsgsRq = TransferHelper.BuildRqEnvelope(xmlDoc, maxVersion);
             qbXMLMsgsRq.SetAttribute("onError", "stopOnError");
             XmlElement CustomerQueryRq = xmlDoc.CreateElement("CustomerQueryRq");
             qbXMLMsgsRq.AppendChild(CustomerQueryRq);
             if (fullName != null)
             {
-                CustomerQueryRq.AppendChild(_helper.MakeSimpleElem(xmlDoc, "FullName", fullName));
+                CustomerQueryRq.AppendChild(TransferHelper.MakeSimpleElem(xmlDoc, "FullName", fullName));
 
-                //XmlElement fullNameElement = xmlDoc.CreateElement("FullName");
-                //CustomerQueryRq.AppendChild(fullNameElement).InnerText = fullName;
             }
             for (int x = 0; x < includeRetElement.Length; x++)
             {
-                CustomerQueryRq.AppendChild(_helper.MakeSimpleElem(xmlDoc, "IncludeRetElement", includeRetElement[x]));
-                //XmlElement includeRet = xmlDoc.CreateElement("IncludeRetElement");
-                //CustomerQueryRq.AppendChild(includeRet).InnerText = includeRetElement[x];
+                CustomerQueryRq.AppendChild(TransferHelper.MakeSimpleElem(xmlDoc, "IncludeRetElement", includeRetElement[x]));
+        
             }
             CustomerQueryRq.SetAttribute("requestID", "1");
-            xml = xmlDoc.OuterXml;
+            string xml = xmlDoc.OuterXml;
             return xml;
         }
 
-        private List<CustomersModels> parseCustomerQueryRs(string response)
+        private static List<CustomersModels> ParseCustomerQueryRs(string response)
         {
-            XmlDocument xmlDoc = new XmlDocument();
+            XmlDocument xmlDoc = new();
             xmlDoc.LoadXml(response);
             List<CustomersModels> customersModels = new List<CustomersModels>();
             XmlNodeList customerNodes = xmlDoc.SelectNodes("//CustomerRet");
             foreach (XmlNode customerNode in customerNodes)
             {
-                CustomersModels customers = new CustomersModels();
-
-                customers.id = customerNode.SelectSingleNode("ListID")?.InnerText ?? "";
-                customers.displayName = customerNode.SelectSingleNode("FullName")?.InnerText ?? "";
-                customers.companyName = customerNode.SelectSingleNode("CompanyName")?.InnerText ?? "";
+                CustomersModels customers = new()
+                {
+                    Id = customerNode.SelectSingleNode("ListID")?.InnerText ?? "",
+                    DisplayName = customerNode.SelectSingleNode("FullName")?.InnerText ?? "",
+                    CompanyName = customerNode.SelectSingleNode("CompanyName")?.InnerText ?? ""
+                };
 
                 XmlNode billAddressNode = customerNode.SelectSingleNode("BillAddress");
 
-                customers.address = new Address
+                customers.Address = new Address
                 {
-                    addLine1 = billAddressNode.SelectSingleNode("Addr1")?.InnerText ?? "" + " " + billAddressNode.SelectSingleNode("Addr2")?.InnerText ?? "",
-                    city = billAddressNode.SelectSingleNode("City")?.InnerText ?? "",
-                    country = billAddressNode.SelectSingleNode("Country")?.InnerText ?? "",
-                    postalCode = billAddressNode.SelectSingleNode("PostalCode")?.InnerText ?? "",
+                    AddLine1 = billAddressNode.SelectSingleNode("Addr1")?.InnerText ?? "" + " " + billAddressNode.SelectSingleNode("Addr2")?.InnerText ?? "",
+                    City = billAddressNode.SelectSingleNode("City")?.InnerText ?? "",
+                    Country = billAddressNode.SelectSingleNode("Country")?.InnerText ?? "",
+                    PostalCode = billAddressNode.SelectSingleNode("PostalCode")?.InnerText ?? "",
                 };
 
-                customers.balance = customerNode.SelectSingleNode("Balance") != null ? Convert.ToDecimal(customerNode.SelectSingleNode("Balance").InnerText) : 0.00m;
+                customers.Balance = customerNode.SelectSingleNode("Balance") != null ? Convert.ToDecimal(customerNode.SelectSingleNode("Balance").InnerText) : 0.00m;
 
-                customers.title = customerNode.SelectSingleNode("JobTitle")?.InnerText ?? "";
-                customers.latitude = "";
-                customers.longitude = "";
-                customers.taxable = false;
+                customers.Title = customerNode.SelectSingleNode("JobTitle")?.InnerText ?? "";
+                customers.Latitude = "";
+                customers.Longitude = "";
+                customers.Taxable = false;
 
                 customersModels.Add(customers);
             }

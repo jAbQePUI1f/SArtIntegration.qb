@@ -25,12 +25,12 @@ namespace SArtIntegration.qb
 
         private void bttnTrsansferToCustomer_Click(object sender, EventArgs e)
         {
-            _transferCustomer.LoadCustomer();
+            TransferCustomer.LoadCustomer();
         }
 
         private void bttnTransferToItems_Click(object sender, EventArgs e)
         {
-            _transferItems.loadItems();
+            TransferItems.LoadItems();
         }
     }
 }
