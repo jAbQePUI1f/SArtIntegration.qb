@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainScreen));
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            bttnTransferInvoice = new MaterialSkin.Controls.MaterialButton();
             SArtToQb = new MaterialSkin.Controls.MaterialLabel();
             materialTabSelector2 = new MaterialSkin.Controls.MaterialTabSelector();
             bttnTransferToStocks = new MaterialSkin.Controls.MaterialButton();
@@ -39,12 +40,15 @@
             materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             infoConnectQb = new MaterialSkin.Controls.MaterialLabel();
             connectqb = new MaterialSkin.Controls.MaterialSwitch();
+            bttnTransferCollection = new MaterialSkin.Controls.MaterialButton();
             materialCard1.SuspendLayout();
             SuspendLayout();
             // 
             // materialCard1
             // 
             materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(bttnTransferCollection);
+            materialCard1.Controls.Add(bttnTransferInvoice);
             materialCard1.Controls.Add(SArtToQb);
             materialCard1.Controls.Add(materialTabSelector2);
             materialCard1.Controls.Add(bttnTransferToStocks);
@@ -63,6 +67,26 @@
             materialCard1.Padding = new Padding(16, 19, 16, 19);
             materialCard1.Size = new Size(822, 533);
             materialCard1.TabIndex = 0;
+            // 
+            // bttnTransferInvoice
+            // 
+            bttnTransferInvoice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnTransferInvoice.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnTransferInvoice.Depth = 0;
+            bttnTransferInvoice.HighEmphasis = true;
+            bttnTransferInvoice.Icon = null;
+            bttnTransferInvoice.Location = new Point(398, 252);
+            bttnTransferInvoice.Margin = new Padding(4, 6, 4, 6);
+            bttnTransferInvoice.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnTransferInvoice.Name = "bttnTransferInvoice";
+            bttnTransferInvoice.NoAccentTextColor = Color.Empty;
+            bttnTransferInvoice.Size = new Size(152, 36);
+            bttnTransferInvoice.TabIndex = 10;
+            bttnTransferInvoice.Text = "Transfer Invoice";
+            bttnTransferInvoice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnTransferInvoice.UseAccentColor = false;
+            bttnTransferInvoice.UseVisualStyleBackColor = true;
+            bttnTransferInvoice.Click += bttnTransferInvoice_Click;
             // 
             // SArtToQb
             // 
@@ -104,7 +128,7 @@
             bttnTransferToStocks.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferToStocks.Name = "bttnTransferToStocks";
             bttnTransferToStocks.NoAccentTextColor = Color.Empty;
-            bttnTransferToStocks.Size = new Size(154, 36);
+            bttnTransferToStocks.Size = new Size(152, 36);
             bttnTransferToStocks.TabIndex = 7;
             bttnTransferToStocks.Text = "Transfer Stocks";
             bttnTransferToStocks.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -123,7 +147,7 @@
             bttnTransferToItems.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferToItems.Name = "bttnTransferToItems";
             bttnTransferToItems.NoAccentTextColor = Color.Empty;
-            bttnTransferToItems.Size = new Size(141, 36);
+            bttnTransferToItems.Size = new Size(140, 36);
             bttnTransferToItems.TabIndex = 6;
             bttnTransferToItems.Text = "Transfer Items";
             bttnTransferToItems.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -143,7 +167,7 @@
             bttnTrsansferToCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTrsansferToCustomer.Name = "bttnTrsansferToCustomer";
             bttnTrsansferToCustomer.NoAccentTextColor = Color.Empty;
-            bttnTrsansferToCustomer.Size = new Size(176, 36);
+            bttnTrsansferToCustomer.Size = new Size(173, 36);
             bttnTrsansferToCustomer.TabIndex = 5;
             bttnTrsansferToCustomer.Text = "Transfer Customer";
             bttnTrsansferToCustomer.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -209,6 +233,26 @@
             connectqb.ThreeState = true;
             connectqb.UseVisualStyleBackColor = true;
             // 
+            // bttnTransferCollection
+            // 
+            bttnTransferCollection.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnTransferCollection.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnTransferCollection.Depth = 0;
+            bttnTransferCollection.HighEmphasis = true;
+            bttnTransferCollection.Icon = null;
+            bttnTransferCollection.Location = new Point(219, 252);
+            bttnTransferCollection.Margin = new Padding(4, 6, 4, 6);
+            bttnTransferCollection.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnTransferCollection.Name = "bttnTransferCollection";
+            bttnTransferCollection.NoAccentTextColor = Color.Empty;
+            bttnTransferCollection.Size = new Size(152, 36);
+            bttnTransferCollection.TabIndex = 11;
+            bttnTransferCollection.Text = "Transfer Collection";
+            bttnTransferCollection.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnTransferCollection.UseAccentColor = false;
+            bttnTransferCollection.UseVisualStyleBackColor = true;
+            bttnTransferCollection.Click += bttnTransferCollection_Click;
+            // 
             // mainScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -236,5 +280,7 @@
         private MaterialSkin.Controls.MaterialButton bttnTransferToStocks;
         private MaterialSkin.Controls.MaterialButton bttnTransferToItems;
         private MaterialSkin.Controls.MaterialButton bttnTrsansferToCustomer;
+        private MaterialSkin.Controls.MaterialButton bttnTransferInvoice;
+        private MaterialSkin.Controls.MaterialButton bttnTransferCollection;
     }
 }

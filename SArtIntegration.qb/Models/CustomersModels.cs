@@ -10,28 +10,35 @@ namespace SArtIntegration.qb.Models
     public class CustomersModels
     {
         [DisplayName("ListID")]
-        public string Id { get; set; }
+        public string id { get; set; }
 
         [DisplayName("JobTitle")]
-        public string Title { get; set; }
+        public string title { get; set; }
 
         [DisplayName("FullName")]
-        public string DisplayName { get; set; }
+        public string displayName { get; set; }
 
         [DisplayName("CompanyName")]
-        public string CompanyName { get; set; }
+        public string companyName { get; set; }
 
-        public bool Taxable { get; set; }
+        public bool taxable { get; set; }
 
         [DisplayName("BillAddress")]
         public Address Address { get; set; }
+        [DisplayName("Addr1")]
+        public string addLine1 { get; set; }
+        [DisplayName("City")]
+        public string city { get; set; }
+        [DisplayName("Country")]
+        public string country { get; set; }
+        [DisplayName("PostalCode")]
+        public string postalCode { get; set; }
+        public string latitude { get; set; }
 
-        public string Latitude { get; set; }
-
-        public string Longitude { get; set; }
+        public string longitude { get; set; }
 
         [DisplayName("Balance")]
-        public decimal Balance { get; set; }
+        public decimal balance { get; set; }
 
     }
     public class Address

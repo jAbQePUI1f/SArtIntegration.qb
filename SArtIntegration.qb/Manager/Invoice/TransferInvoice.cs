@@ -14,7 +14,7 @@ namespace SArtIntegration.qb.Manager.Invoice
     public class TransferInvoice
     {
        
-        public ResponseInvoiceModels BuildInvoiceAddRqXML(TransferInvoiceModels transferInvoice)
+        public static ResponseInvoiceModels BuildInvoiceAddRqXML(TransferInvoiceModels transferInvoice)
         {
             var connectDbResult = ConnectManager.ConnectToQB();
             string requestXML = "";
@@ -177,7 +177,7 @@ namespace SArtIntegration.qb.Manager.Invoice
      
 
         #region helper
-        private string getDateString(DateTime dt)
+        private static string getDateString(DateTime dt)
         {
             string year = dt.Year.ToString();
             string month = dt.Month.ToString();
@@ -186,7 +186,7 @@ namespace SArtIntegration.qb.Manager.Invoice
             if (day.Length < 2) day = "0" + day;
             return year + "-" + month + "-" + day;
         }
-        private double getDueInDays(string terms)
+        private static double getDueInDays(string terms)
         {
             double dueInDays = 0;
             switch (terms)

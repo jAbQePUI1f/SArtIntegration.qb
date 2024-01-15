@@ -4,10 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using Interop.QBXMLRP2;
+using Newtonsoft.Json;
 using SArtIntegration.qb.Manager.Connect;
 using SArtIntegration.qb.Manager.Helper;
 using SArtIntegration.qb.Models;
@@ -33,6 +35,13 @@ namespace SArtIntegration.qb.Manager.Customer
             string response = ConnectManager.ProcessRequestFromQB(connectDbResult, BuildCustomerQueryRqXML(includeRetElements, null, connectDbResult.MaxVersion));
 
             var result = ParseCustomerQueryRs(response);
+
+           
+
+            string jsonResult = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+
+
+            ConnectManager.DisconnectFromQB(connectDbResult);
 
         }
         private static string BuildCustomerQueryRqXML(string[] includeRetElement, string fullName, string maxVersion)
@@ -67,27 +76,26 @@ namespace SArtIntegration.qb.Manager.Customer
             {
                 CustomersModels customers = new()
                 {
-                    Id = customerNode.SelectSingleNode("ListID")?.InnerText ?? "",
-                    DisplayName = customerNode.SelectSingleNode("FullName")?.InnerText ?? "",
-                    CompanyName = customerNode.SelectSingleNode("CompanyName")?.InnerText ?? ""
+                    id = customerNode.SelectSingleNode("ListID")?.InnerText ?? "",
+                    displayName = customerNode.SelectSingleNode("FullName")?.InnerText ?? "",
+                    companyName = customerNode.SelectSingleNode("CompanyName")?.InnerText ?? ""
                 };
 
                 XmlNode billAddressNode = customerNode.SelectSingleNode("BillAddress");
+                
+                customers.addLine1 = billAddressNode.SelectSingleNode("Addr1")?.InnerText ?? "" + " " + billAddressNode.SelectSingleNode("Addr2")?.InnerText ?? "";
+                customers.city = billAddressNode.SelectSingleNode("City")?.InnerText ?? "";
+                customers.country = billAddressNode.SelectSingleNode("Country")?.InnerText ?? "";
+                customers.postalCode = billAddressNode.SelectSingleNode("PostalCode")?.InnerText ?? "";
 
-                customers.Address = new Address
-                {
-                    AddLine1 = billAddressNode.SelectSingleNode("Addr1")?.InnerText ?? "" + " " + billAddressNode.SelectSingleNode("Addr2")?.InnerText ?? "",
-                    City = billAddressNode.SelectSingleNode("City")?.InnerText ?? "",
-                    Country = billAddressNode.SelectSingleNode("Country")?.InnerText ?? "",
-                    PostalCode = billAddressNode.SelectSingleNode("PostalCode")?.InnerText ?? "",
-                };
+            
 
-                customers.Balance = customerNode.SelectSingleNode("Balance") != null ? Convert.ToDecimal(customerNode.SelectSingleNode("Balance").InnerText) : 0.00m;
+                customers.balance = customerNode.SelectSingleNode("Balance") != null ? Convert.ToDecimal(customerNode.SelectSingleNode("Balance").InnerText) : 0.00m;
 
-                customers.Title = customerNode.SelectSingleNode("JobTitle")?.InnerText ?? "";
-                customers.Latitude = "";
-                customers.Longitude = "";
-                customers.Taxable = false;
+                customers.title = customerNode.SelectSingleNode("JobTitle")?.InnerText ?? "";
+                customers.latitude = "";
+                customers.longitude = "";
+                customers.taxable = false;
 
                 customersModels.Add(customers);
             }
