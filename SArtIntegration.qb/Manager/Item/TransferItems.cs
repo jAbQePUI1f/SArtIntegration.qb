@@ -1,4 +1,5 @@
-﻿using SArtIntegration.qb.Manager.Connect;
+﻿using Newtonsoft.Json;
+using SArtIntegration.qb.Manager.Connect;
 using SArtIntegration.qb.Manager.Helper;
 using SArtIntegration.qb.Models;
 using System.ComponentModel;
@@ -31,6 +32,7 @@ namespace SArtIntegration.qb.Manager.Item
 
             var result = ParseItemQueryRs(response);
 
+            string jsonResult = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
 
             ConnectManager.DisconnectFromQB(connectInfo);
 
