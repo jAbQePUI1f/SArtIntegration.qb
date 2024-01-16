@@ -58,6 +58,7 @@ namespace SArtIntegration.qb
                 invoiceTypes = new[] { InvoiceType.SELLING.DisplayName().ToString(), InvoiceType.BUYING.DisplayName().ToString() }
             };
 
+
             var invoiceResponse = await ApiManager.PostAsync<InvoiceRequest, InvoiceModelJson>(Configuration.GetUrl() + "management/invoices-for-erp", invoiceRequest);
             #endregion
 
