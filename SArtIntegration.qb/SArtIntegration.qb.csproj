@@ -9,12 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MaterialSkin" Version="0.2.1" />
     <PackageReference Include="MaterialSkin.2.RTL" Version="2.3.1.1" />
-    <PackageReference Include="MaterialSkin.Updated" Version="0.2.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Interop.QBXMLRP2">
+      <HintPath>..\..\..\..\..\..\Interop.QBXMLRP2.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
@@ -30,12 +34,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Interop.QBXMLRP2">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Common Files\Intuit\QuickBooks\Interop.QBXMLRP2.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

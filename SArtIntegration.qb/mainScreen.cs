@@ -167,7 +167,7 @@ namespace SArtIntegration.qb
             var collectionResponse = await ApiManager.PostAsync<CollectionRequest, CollectionModelJson>(Configuration.GetUrl() + "management/collections-for-erp", collectionRequest);
             #endregion
 
-          
+
             foreach (var item in collectionResponse.data)
             {
                 #region Tahsilatları aktar
@@ -228,5 +228,24 @@ namespace SArtIntegration.qb
 
         }
 
+        private void bttnTrsansferToCustomer_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bttnTransferCollection_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
     }
 }

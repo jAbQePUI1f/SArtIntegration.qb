@@ -4,9 +4,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace SArtIntegration.qb
 {
-    public partial class loginForm : Form
+    public partial class loginScreen : Form
     {
-        public loginForm()
+        public loginScreen()
         {
             InitializeComponent();
         }
@@ -28,7 +28,7 @@ namespace SArtIntegration.qb
             //    Console.WriteLine("Login failed.");
             //}
 
-            var response =await LoginManager.LoginAsync("operasyon@arpaciogluavr.com", "Oa1234");
+            var response = await LoginManager.LoginAsync("operasyon@arpaciogluavr.com", "Oa1234");
 
             if (!response.State)
             {
@@ -41,6 +41,13 @@ namespace SArtIntegration.qb
             UserSharedInfo.UserInfo.Token = response.Token;
 
             new mainScreen().Show();
+            this.Hide();
+        }
+
+        private void lblLoginPage_Click(object sender, EventArgs e)
+        {
+            mainScreen mS = new mainScreen();
+            mS.Show();
             this.Hide();
         }
     }
