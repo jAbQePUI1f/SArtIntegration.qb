@@ -55,7 +55,6 @@ namespace SArtIntegration.qb.Manager.Helper
             }
             return "";
         }
-
         public static string[] ConvertToStringArray<T>(T obj)
         {
             List<string> stringArray = new List<string>();
