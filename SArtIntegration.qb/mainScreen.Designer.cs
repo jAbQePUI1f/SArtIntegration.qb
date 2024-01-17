@@ -34,14 +34,14 @@
             bttnTransferToItems = new MaterialSkin.Controls.MaterialButton();
             bttnTrsansferToCustomer = new MaterialSkin.Controls.MaterialButton();
             lblQBstatus = new MaterialSkin.Controls.MaterialLabel();
-            gboxSalesArtToQB = new GroupBox();
-            gboxQbToSalesArt = new GroupBox();
+            gboxQuickBooks = new GroupBox();
+            gboxSalesArt = new GroupBox();
             menuSArtIntegration = new MenuStrip();
             menüToolStripMenuItem = new ToolStripMenuItem();
             geriDönToolStripMenuItem = new ToolStripMenuItem();
             çıkışToolStripMenuItem = new ToolStripMenuItem();
-            gboxSalesArtToQB.SuspendLayout();
-            gboxQbToSalesArt.SuspendLayout();
+            gboxQuickBooks.SuspendLayout();
+            gboxSalesArt.SuspendLayout();
             menuSArtIntegration.SuspendLayout();
             SuspendLayout();
             // 
@@ -53,7 +53,7 @@
             bttnTransferCollection.Depth = 0;
             bttnTransferCollection.HighEmphasis = true;
             bttnTransferCollection.Icon = null;
-            bttnTransferCollection.Location = new Point(216, 30);
+            bttnTransferCollection.Location = new Point(216, 93);
             bttnTransferCollection.Margin = new Padding(4);
             bttnTransferCollection.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferCollection.Name = "bttnTransferCollection";
@@ -74,7 +74,7 @@
             bttnTransferInvoice.Depth = 0;
             bttnTransferInvoice.HighEmphasis = true;
             bttnTransferInvoice.Icon = null;
-            bttnTransferInvoice.Location = new Point(216, 87);
+            bttnTransferInvoice.Location = new Point(216, 33);
             bttnTransferInvoice.Margin = new Padding(4);
             bttnTransferInvoice.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferInvoice.Name = "bttnTransferInvoice";
@@ -134,7 +134,7 @@
             lblQBstatus.BackColor = SystemColors.ActiveCaption;
             lblQBstatus.Depth = 0;
             lblQBstatus.FlatStyle = FlatStyle.Popup;
-            lblQBstatus.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lblQBstatus.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblQBstatus.ForeColor = Color.Black;
             lblQBstatus.Location = new Point(666, 29);
             lblQBstatus.MouseState = MaterialSkin.MouseState.HOVER;
@@ -143,28 +143,28 @@
             lblQBstatus.TabIndex = 20;
             lblQBstatus.Text = "Deactive";
             // 
-            // gboxSalesArtToQB
+            // gboxQuickBooks
             // 
-            gboxSalesArtToQB.Controls.Add(bttnTransferToItems);
-            gboxSalesArtToQB.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            gboxSalesArtToQB.Location = new Point(37, 45);
-            gboxSalesArtToQB.Name = "gboxSalesArtToQB";
-            gboxSalesArtToQB.Size = new Size(664, 149);
-            gboxSalesArtToQB.TabIndex = 21;
-            gboxSalesArtToQB.TabStop = false;
-            gboxSalesArtToQB.Text = "SalesArt To QuickBooks";
+            gboxQuickBooks.Controls.Add(bttnTransferToItems);
+            gboxQuickBooks.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            gboxQuickBooks.Location = new Point(37, 45);
+            gboxQuickBooks.Name = "gboxQuickBooks";
+            gboxQuickBooks.Size = new Size(664, 149);
+            gboxQuickBooks.TabIndex = 21;
+            gboxQuickBooks.TabStop = false;
+            gboxQuickBooks.Text = "QuickBooks To SalesArt";
             // 
-            // gboxQbToSalesArt
+            // gboxSalesArt
             // 
-            gboxQbToSalesArt.Controls.Add(bttnTransferCollection);
-            gboxQbToSalesArt.Controls.Add(bttnTransferInvoice);
-            gboxQbToSalesArt.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            gboxQbToSalesArt.Location = new Point(37, 267);
-            gboxQbToSalesArt.Name = "gboxQbToSalesArt";
-            gboxQbToSalesArt.Size = new Size(664, 156);
-            gboxQbToSalesArt.TabIndex = 22;
-            gboxQbToSalesArt.TabStop = false;
-            gboxQbToSalesArt.Text = "QuickBooks To SalesArt";
+            gboxSalesArt.Controls.Add(bttnTransferCollection);
+            gboxSalesArt.Controls.Add(bttnTransferInvoice);
+            gboxSalesArt.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            gboxSalesArt.Location = new Point(37, 267);
+            gboxSalesArt.Name = "gboxSalesArt";
+            gboxSalesArt.Size = new Size(664, 156);
+            gboxSalesArt.TabIndex = 22;
+            gboxSalesArt.TabStop = false;
+            gboxSalesArt.Text = "SalesArt To QuickBooks";
             // 
             // menuSArtIntegration
             // 
@@ -194,6 +194,7 @@
             çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
             çıkışToolStripMenuItem.Size = new Size(180, 22);
             çıkışToolStripMenuItem.Text = "Çıkış";
+            çıkışToolStripMenuItem.Click += çıkışToolStripMenuItem_Click;
             // 
             // mainScreen
             // 
@@ -202,15 +203,15 @@
             ClientSize = new Size(737, 450);
             Controls.Add(lblQBstatus);
             Controls.Add(bttnTrsansferToCustomer);
-            Controls.Add(gboxSalesArtToQB);
-            Controls.Add(gboxQbToSalesArt);
+            Controls.Add(gboxQuickBooks);
+            Controls.Add(gboxSalesArt);
             Controls.Add(menuSArtIntegration);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuSArtIntegration;
             Name = "mainScreen";
             Text = "SArtIntegration.qb";
-            gboxSalesArtToQB.ResumeLayout(false);
-            gboxQbToSalesArt.ResumeLayout(false);
+            gboxQuickBooks.ResumeLayout(false);
+            gboxSalesArt.ResumeLayout(false);
             menuSArtIntegration.ResumeLayout(false);
             menuSArtIntegration.PerformLayout();
             ResumeLayout(false);
@@ -226,8 +227,8 @@
         private MaterialSkin.Controls.MaterialButton bttnTrsansferToCustomer;
         private MaterialSkin.Controls.MaterialLabel qbtoSArt;
         private MaterialSkin.Controls.MaterialLabel lblQBstatus;
-        private GroupBox gboxSalesArtToQB;
-        private GroupBox gboxQbToSalesArt;
+        private GroupBox gboxQuickBooks;
+        private GroupBox gboxSalesArt;
         private MenuStrip menuSArtIntegration;
         private ToolStripMenuItem menüToolStripMenuItem;
         private ToolStripMenuItem geriDönToolStripMenuItem;
