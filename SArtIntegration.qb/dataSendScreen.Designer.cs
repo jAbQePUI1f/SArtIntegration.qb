@@ -28,12 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "dataSendScreen";
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dataSendScreen));
+            lblDataSendInfo = new Label();
+            progressBar1 = new ProgressBar();
+            SuspendLayout();
+            // 
+            // lblDataSendInfo
+            // 
+            lblDataSendInfo.AutoSize = true;
+            lblDataSendInfo.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDataSendInfo.Location = new Point(121, 96);
+            lblDataSendInfo.Name = "lblDataSendInfo";
+            lblDataSendInfo.Size = new Size(89, 15);
+            lblDataSendInfo.TabIndex = 0;
+            lblDataSendInfo.Text = "Datas loading...";
+            // 
+            // progressBar1
+            // 
+            progressBar1.Location = new Point(121, 135);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(405, 23);
+            progressBar1.TabIndex = 1;
+            // 
+            // dataSendScreen
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(657, 300);
+            Controls.Add(progressBar1);
+            Controls.Add(lblDataSendInfo);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "dataSendScreen";
+            Text = "SArtIntegration.qb";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label lblDataSendInfo;
+        private ProgressBar progressBar1;
     }
 }
