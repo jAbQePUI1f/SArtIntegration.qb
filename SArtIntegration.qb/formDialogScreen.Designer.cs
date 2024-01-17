@@ -36,6 +36,7 @@
             pickerBeginDate = new DateTimePicker();
             pickerEndDate = new DateTimePicker();
             dataGridView1 = new DataGridView();
+            bttnGetData = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -60,7 +61,7 @@
             // lblBeginDate
             // 
             lblBeginDate.AutoSize = true;
-            lblBeginDate.Location = new Point(312, 53);
+            lblBeginDate.Location = new Point(377, 53);
             lblBeginDate.Name = "lblBeginDate";
             lblBeginDate.Size = new Size(107, 15);
             lblBeginDate.TabIndex = 3;
@@ -69,7 +70,7 @@
             // lblEndDate
             // 
             lblEndDate.AutoSize = true;
-            lblEndDate.Location = new Point(575, 53);
+            lblEndDate.Location = new Point(640, 53);
             lblEndDate.Name = "lblEndDate";
             lblEndDate.Size = new Size(97, 15);
             lblEndDate.TabIndex = 5;
@@ -77,14 +78,14 @@
             // 
             // pickerBeginDate
             // 
-            pickerBeginDate.Location = new Point(312, 75);
+            pickerBeginDate.Location = new Point(377, 75);
             pickerBeginDate.Name = "pickerBeginDate";
             pickerBeginDate.Size = new Size(200, 23);
             pickerBeginDate.TabIndex = 6;
             // 
             // pickerEndDate
             // 
-            pickerEndDate.Location = new Point(575, 75);
+            pickerEndDate.Location = new Point(640, 75);
             pickerEndDate.Name = "pickerEndDate";
             pickerEndDate.Size = new Size(200, 23);
             pickerEndDate.TabIndex = 7;
@@ -93,19 +94,42 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.BorderStyle = BorderStyle.Fixed3D;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(20, 157);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(805, 510);
+            dataGridView1.Size = new Size(948, 510);
             dataGridView1.TabIndex = 8;
+            // 
+            // bttnGetData
+            // 
+            bttnGetData.AutoSize = false;
+            bttnGetData.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnGetData.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            bttnGetData.Depth = 0;
+            bttnGetData.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            bttnGetData.HighEmphasis = true;
+            bttnGetData.Icon = null;
+            bttnGetData.Location = new Point(22, 112);
+            bttnGetData.Margin = new Padding(4, 6, 4, 6);
+            bttnGetData.MouseState = MaterialSkin.MouseState.HOVER;
+            bttnGetData.Name = "bttnGetData";
+            bttnGetData.NoAccentTextColor = Color.Empty;
+            bttnGetData.Size = new Size(210, 36);
+            bttnGetData.TabIndex = 15;
+            bttnGetData.Text = "GET DATA";
+            bttnGetData.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnGetData.UseAccentColor = false;
+            bttnGetData.UseVisualStyleBackColor = true;
             // 
             // formDialogScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(837, 679);
+            ClientSize = new Size(980, 679);
+            Controls.Add(bttnGetData);
             Controls.Add(dataGridView1);
             Controls.Add(pickerEndDate);
             Controls.Add(pickerBeginDate);
@@ -130,5 +154,6 @@
         private DateTimePicker pickerBeginDate;
         private DateTimePicker pickerEndDate;
         private DataGridView dataGridView1;
+        private MaterialSkin.Controls.MaterialButton bttnGetData;
     }
 }
