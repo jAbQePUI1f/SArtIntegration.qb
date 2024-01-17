@@ -35,6 +35,8 @@
             lblEndDate = new Label();
             pickerBeginDate = new DateTimePicker();
             pickerEndDate = new DateTimePicker();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // comBoxDocument
@@ -87,11 +89,24 @@
             pickerEndDate.Size = new Size(200, 23);
             pickerEndDate.TabIndex = 7;
             // 
-            // formDialog
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(20, 157);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(805, 510);
+            dataGridView1.TabIndex = 8;
+            // 
+            // formDialogScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(837, 679);
+            Controls.Add(dataGridView1);
             Controls.Add(pickerEndDate);
             Controls.Add(pickerBeginDate);
             Controls.Add(lblEndDate);
@@ -99,8 +114,9 @@
             Controls.Add(lblDocument);
             Controls.Add(comBoxDocument);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "formDialog";
+            Name = "formDialogScreen";
             Text = "SArtIntegration.qb";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -113,5 +129,6 @@
         private Label lblEndDate;
         private DateTimePicker pickerBeginDate;
         private DateTimePicker pickerEndDate;
+        private DataGridView dataGridView1;
     }
 }
