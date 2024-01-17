@@ -1,9 +1,11 @@
-﻿using SArtIntegration.qb.Models.Base;
+﻿using SArtIntegration.qb.Manager.Config;
+using SArtIntegration.qb.Models.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace SArtIntegration.qb.Manager.Login
 {
@@ -16,7 +18,7 @@ namespace SArtIntegration.qb.Manager.Login
     #endregion
     public class LoginManager
     {
-        public static  LoginResultModel Login(string userName, string password)
+        public static LoginResultModel Login(string userName, string password)
         {
             LoginResultModel model = new LoginResultModel();
 
@@ -44,7 +46,7 @@ namespace SArtIntegration.qb.Manager.Login
             #endregion
 
             var tokenResult = GetToken(userName, password);
-
+            
             if (tokenResult == null)
             {
                 model.State = false;
@@ -52,7 +54,7 @@ namespace SArtIntegration.qb.Manager.Login
                 return model;
             }
 
-            if (string.IsNullOrEmpty(tokenResult.Token))
+            if (string.IsNullOrEmpty(tokenResult.Result.Token))
             {
                 model.State = false;
                 model.Messages.Add("Kullanıcı bilgisi alınamadı");
@@ -61,25 +63,68 @@ namespace SArtIntegration.qb.Manager.Login
 
 
             model.State = true;
-            model.Token = tokenResult.Token;
+            model.Token = tokenResult.Result.Token;
 
             return model;
         }
-       
-        private static LoginResultModel GetToken(string userName, string password)
+        public static Task<LoginResultModel> LoginAsync(string userName, string password)
+        {
+
+            var task = Task.Run(() =>
+            {
+                return Login(userName, password);
+            });
+
+            return task;
+        }
+        private static async  Task<LoginResultModel> GetToken(string email, string password)
         {
             LoginResultModel result = new LoginResultModel();
+            string loginPage = "MANAGEMENT";
+    
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var requestBody = new
+                    {
+                        email,
+                        password,
+                        loginPage
+                    };
 
+                    var jsonRequest = Newtonsoft.Json.JsonConvert.SerializeObject(requestBody);
+                    var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+                    string url = Configuration.GetUrl() + "authenticate";
+                    var response = await client.PostAsync(Configuration.GetUrl() + "authenticate", content);
 
-            //var tokenResult =GetToken(userName, password);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var jsonResponse = await response.Content.ReadAsStringAsync();
+                        dynamic responseData = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonResponse);
 
-            //if (tokenResult.Key)
-            //{
+                        result.Token = responseData.data.jwt;
+                    }
+                    else
+                    {
+                        result.Token = "";
+                        result.State = false;
+                        result.Messages.Add(response.RequestMessage.ToString());
 
-            //    result.Token = tokenResult.Value;
+                        return result;
+                    }
 
-            //    return result;
-            //}
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Token = "";
+                result.State = false;
+                result.Messages.Add(ex.Message.ToString());
+                return result;
+            }
+
+    
 
             return result;
         }

@@ -11,8 +11,8 @@ namespace SArtIntegration.qb.Models
         public required string CustomerName { get; set; }
         public required string TxnDate { get; set; }
         public required string InvoiceNumber { get; set; }
-        public required string BillAddr { get; set; }
-        public required string TermsName { get; set; }
+        public  string BillAddr { get; set; }
+        public  string TermsName { get; set; }
         public string? DueDate { get; set; }
         public required List<InvoiceLineModels> LineModels { get; set; }
     }

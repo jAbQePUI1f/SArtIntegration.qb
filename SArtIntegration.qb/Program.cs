@@ -10,19 +10,21 @@ namespace SArtIntegration.qb
         [STAThread]
         static void Main()
         {
-//            var configuration = new ConfigurationBuilder()
-//.SetBasePath(Directory.GetCurrentDirectory())
-//.AddJsonFile("appsettings.json")
-//.Build();
 
-            //string connectionString = configuration.GetConnectionString("DefaultConnection");
-            //string setting1 = configuration["AppSettings:Setting1"];
-            //string setting2 = configuration["AppSettings:Setting2"];
+            bool openedApp = false;
+            Mutex m = new Mutex(true, "PacketService", out openedApp);
+            if (openedApp)
+            {
+                // To customize application configuration such as set high DPI settings or default font,
+                // see https://aka.ms/applicationconfiguration.
+                ApplicationConfiguration.Initialize();
+                Application.Run(new loginScreen());
+            }
+            else
+            {
+                MessageBox.Show("Invoice Integrator zaten çalýþýyor!", "Uyarý", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new mainScreen());
 
 
 
