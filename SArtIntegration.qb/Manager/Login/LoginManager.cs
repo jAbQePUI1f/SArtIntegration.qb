@@ -3,6 +3,7 @@ using SArtIntegration.qb.Models.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
@@ -46,7 +47,7 @@ namespace SArtIntegration.qb.Manager.Login
             #endregion
 
             var tokenResult = GetToken(userName, password);
-            
+
             if (tokenResult == null)
             {
                 model.State = false;
@@ -77,11 +78,11 @@ namespace SArtIntegration.qb.Manager.Login
 
             return task;
         }
-        private static async  Task<LoginResultModel> GetToken(string email, string password)
+        private static async Task<LoginResultModel> GetToken(string email, string password)
         {
             LoginResultModel result = new LoginResultModel();
             string loginPage = "MANAGEMENT";
-    
+
             try
             {
                 using (var client = new HttpClient())
@@ -102,8 +103,19 @@ namespace SArtIntegration.qb.Manager.Login
                     {
                         var jsonResponse = await response.Content.ReadAsStringAsync();
                         dynamic responseData = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonResponse);
+                        if (responseData.responseStatus == HttpStatusCode.BadRequest)
+                        {
+                            result.Token = "";
+                            result.State = false;
+                            result.Messages.Add(response.RequestMessage.ToString());
 
-                        result.Token = responseData.data.jwt;
+                            return result;
+                        }
+                        else
+                        {
+                            result.Token = responseData.data.jwt;
+                        }
+
                     }
                     else
                     {
@@ -124,7 +136,7 @@ namespace SArtIntegration.qb.Manager.Login
                 return result;
             }
 
-    
+
 
             return result;
         }

@@ -11,6 +11,7 @@ namespace SArtIntegration.qb.Models
         public string Token { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public ConnectModels QbConnectInfo { get; set; }
     }
     public static class UserSharedInfo
     {
@@ -44,7 +45,10 @@ namespace SArtIntegration.qb.Models
         {
             return _userInfo.Password;
 
-
+        }
+        public static ConnectModels GetConnectInfo()
+        {
+            return _userInfo.QbConnectInfo;
         }
     }
 }

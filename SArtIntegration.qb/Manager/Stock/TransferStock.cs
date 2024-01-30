@@ -17,7 +17,7 @@ namespace SArtIntegration.qb.Manager.Stock
       
         public static void LoadStock()
         {
-            var connectInfo = ConnectManager.ConnectToQB();
+            //var connectInfo = ConnectManager.ConnectToQB();
 
             string[] includeRetElements = typeof(ItemModels)
                                   .GetProperties()
@@ -26,7 +26,7 @@ namespace SArtIntegration.qb.Manager.Stock
 
             //string[] includeRetElements = { "ListID", "Name", "QuantityOnHand", "Description", "Price", "IsActive" };
 
-            string response = ConnectManager.ProcessRequestFromQB(connectInfo, BuildItemQueryRqXML(includeRetElements, null, connectInfo.MaxVersion));
+            string response = ConnectManager.ProcessRequestFromQB(UserSharedInfo.GetConnectInfo(), BuildItemQueryRqXML(includeRetElements, null, UserSharedInfo.GetConnectInfo().MaxVersion));
 
 
             //DataTable itemDataTable = createItemDataTable();
@@ -34,7 +34,7 @@ namespace SArtIntegration.qb.Manager.Stock
             var result= ParseItemQueryRs(response);
 
 
-            ConnectManager.DisconnectFromQB(connectInfo);
+            ConnectManager.DisconnectFromQB(UserSharedInfo.GetConnectInfo());
         }
         private static string BuildItemQueryRqXML(string[] includeRetElement, string itemName, string maxVersion)
         {

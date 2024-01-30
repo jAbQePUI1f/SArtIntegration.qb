@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace SArtIntegration.qb.Manager.Helper
 {
-    public class TransferHelper
+    public static class TransferHelper
     {
         //public virtual string buildDataCountQuery(string request)
         //{
@@ -75,7 +75,25 @@ namespace SArtIntegration.qb.Manager.Helper
             return stringArray.ToArray();
         }
 
-       
-       
+        public static string GetMessages(this List<string> list)
+        {
+            string msg = "";
+
+            foreach (var item in list)
+            {
+                if (list.Count > 1)
+                {
+                    msg += item + "\n";
+                }
+                else
+                {
+                    msg += item;
+                }
+            }
+
+
+            return msg;
+        }
+
     }
 }

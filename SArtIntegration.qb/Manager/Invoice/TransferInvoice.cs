@@ -16,14 +16,14 @@ namespace SArtIntegration.qb.Manager.Invoice
        
         public static ResponseInvoiceModels BuildInvoiceAddRqXML(TransferInvoiceModels transferInvoice)
         {
-            var connectDbResult = ConnectManager.ConnectToQB();
+            //var connectDbResult = ConnectManager.ConnectToQB();
             string requestXML = "";
 
             //if (!validateInput()) return null;
 
             //GET ALL INPUT INTO XML
             XmlDocument xmlDoc = new XmlDocument();
-            XmlElement qbXMLMsgsRq = TransferHelper.BuildRqEnvelope(xmlDoc, connectDbResult.MaxVersion);
+            XmlElement qbXMLMsgsRq = TransferHelper.BuildRqEnvelope(xmlDoc, UserSharedInfo.GetConnectInfo().MaxVersion);
             qbXMLMsgsRq.SetAttribute("onError", "stopOnError");
             XmlElement InvoiceAddRq = xmlDoc.CreateElement("InvoiceAddRq");
             qbXMLMsgsRq.AppendChild(InvoiceAddRq);
@@ -143,9 +143,9 @@ namespace SArtIntegration.qb.Manager.Invoice
                 response.StatusMessage = "One of the input is missing. Double-check your entries and then click Save again.";
                 return response;
             }
-            var connectInfo = ConnectManager.ConnectToQB();
-            string returnXml = ConnectManager.ProcessRequestFromQB(connectInfo, requestXML);
-            ConnectManager.DisconnectFromQB(connectInfo);
+            //var connectInfo = ConnectManager.ConnectToQB();
+            string returnXml = ConnectManager.ProcessRequestFromQB(UserSharedInfo.GetConnectInfo(), requestXML);
+            ConnectManager.DisconnectFromQB(UserSharedInfo.GetConnectInfo());
             try
             {
                 XmlNodeList RsNodeList = null;

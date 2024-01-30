@@ -1,3 +1,6 @@
+using SArtIntegration.qb.Manager.Api;
+using SArtIntegration.qb.Manager.Connect;
+using SArtIntegration.qb.Manager.Helper;
 using SArtIntegration.qb.Manager.Login;
 using SArtIntegration.qb.Models;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
@@ -30,15 +33,25 @@ namespace SArtIntegration.qb
 
             var response = await LoginManager.LoginAsync("operasyon@arpaciogluavr.com", "Oa1234");
 
+
+            //var connectInfoQB = ConnectManager.ConnectToQB();
+
+            //if(string.IsNullOrEmpty(connectInfoQB.Ticket))
+            //{
+            //    MessageBox.Show("Quickbooks Not Open!! Pls Open the QuickBooks", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    return;
+            //}
+
             if (!response.State)
             {
-                MessageBox.Show(response.Messages.ToString(), "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(response.Messages.GetMessages(), "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            UserSharedInfo.UserInfo.UserName = txtBoxUserName.Text;
-            UserSharedInfo.UserInfo.Password = txtBoxPassword.Text;
+            UserSharedInfo.UserInfo.UserName = "operasyon@arpaciogluavr.com"; //txtBoxUserName.Text;
+            UserSharedInfo.UserInfo.Password = "Oa1234"; //txtBoxPassword.Text;
             UserSharedInfo.UserInfo.Token = response.Token;
+            //UserSharedInfo.UserInfo.QbConnectInfo = connectInfoQB;
 
             new mainScreen().Show();
             this.Hide();

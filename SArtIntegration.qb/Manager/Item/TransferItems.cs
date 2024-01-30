@@ -17,7 +17,7 @@ namespace SArtIntegration.qb.Manager.Item
         public static void LoadItems()
         {
 
-            var connectInfo = ConnectManager.ConnectToQB();
+            //var connectInfo = ConnectManager.ConnectToQB();
 
             string[] includeRetElements = typeof(ItemModels)
                                   .GetProperties()
@@ -26,7 +26,7 @@ namespace SArtIntegration.qb.Manager.Item
 
             //string[] includeRetElements = { "ListID", "Name", "QuantityOnHand", "Description", "Price", "IsActive" };
 
-            string response = ConnectManager.ProcessRequestFromQB(connectInfo, BuildItemQueryRqXML(includeRetElements, null, connectInfo.MaxVersion));
+            string response = ConnectManager.ProcessRequestFromQB(UserSharedInfo.GetConnectInfo(), BuildItemQueryRqXML(includeRetElements, null, UserSharedInfo.GetConnectInfo().MaxVersion));
 
 
 
@@ -34,7 +34,7 @@ namespace SArtIntegration.qb.Manager.Item
 
             string jsonResult = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
 
-            ConnectManager.DisconnectFromQB(connectInfo);
+            ConnectManager.DisconnectFromQB(UserSharedInfo.GetConnectInfo());
 
 
         }
