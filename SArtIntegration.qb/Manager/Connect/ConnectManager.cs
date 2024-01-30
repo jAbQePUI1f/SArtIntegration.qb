@@ -16,18 +16,30 @@ namespace SArtIntegration.qb.Manager.Connect
 
         public static ConnectModels ConnectToQB()
         {
-            ConnectModels connectModels = new ConnectModels()
-            { 
-                
-                Rp = new RequestProcessor2() //new RequestProcessor2Class();
-            };
+            try
+            {
+                ConnectModels connectModels = new ConnectModels()
+                {
 
-            connectModels.Rp.OpenConnection(appID, appName);
-            connectModels.Ticket = connectModels.Rp.BeginSession("", connectModels.Mode);
-            string[] versions = connectModels.Rp.get_QBXMLVersionsForSession(connectModels.Ticket);
-            connectModels.MaxVersion = versions[versions.Length - 1];
+                    Rp = new RequestProcessor2() //new RequestProcessor2Class();
+                };
 
-            return connectModels;
+                connectModels.Rp.OpenConnection(appID, appName);
+                connectModels.Ticket = connectModels.Rp.BeginSession("", connectModels.Mode);
+                string[] versions = connectModels.Rp.get_QBXMLVersionsForSession(connectModels.Ticket);
+                connectModels.MaxVersion = versions[versions.Length - 1];
+
+                return connectModels;
+
+            }
+            catch (Exception)
+            {
+                ConnectModels connectModelss = new ConnectModels();
+                connectModelss.Ticket = "";
+
+                return connectModelss;
+            }
+           
         }
         public static void DisconnectFromQB(ConnectModels connect)
         {

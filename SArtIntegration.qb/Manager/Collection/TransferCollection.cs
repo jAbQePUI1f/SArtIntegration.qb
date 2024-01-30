@@ -87,9 +87,9 @@ namespace SArtIntegration.qb.Manager.Collection
                 collectionModels.StatusMessage = "One of the input is missing. Double-check your entries and then click Save again.";
                 return collectionModels;
             }
-            var connectInfo = ConnectManager.ConnectToQB();
-            string returnXml = ConnectManager.ProcessRequestFromQB(connectInfo, requestXML);
-            ConnectManager.DisconnectFromQB(connectInfo);
+            //var connectInfo = ConnectManager.ConnectToQB();
+            string returnXml = ConnectManager.ProcessRequestFromQB(UserSharedInfo.GetConnectInfo(), requestXML);
+            ConnectManager.DisconnectFromQB(UserSharedInfo.GetConnectInfo());
             try
             {
                 XmlNodeList RsNodeList = null;

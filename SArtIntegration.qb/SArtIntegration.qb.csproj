@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <Reference Include="Interop.QBXMLRP2">
-      <HintPath>..\..\..\..\..\..\Interop.QBXMLRP2.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Common Files\Intuit\QuickBooks\Interop.QBXMLRP2.dll</HintPath>
     </Reference>
   </ItemGroup>
 

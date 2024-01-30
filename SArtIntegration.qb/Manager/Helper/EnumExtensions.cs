@@ -27,5 +27,6 @@ namespace SArtIntegration.qb.Manager.Helper
 
             return outString;
         }
+      
     }
 }

@@ -21,7 +21,7 @@ namespace SArtIntegration.qb.Manager.Customer
        
         public static void LoadCustomer()
         {
-            var connectDbResult = ConnectManager.ConnectToQB();
+            //var connectDbResult = ConnectManager.ConnectToQB();
             CustomersModels customers = new();
 
            
@@ -32,7 +32,7 @@ namespace SArtIntegration.qb.Manager.Customer
                                      .ToArray();
 
 
-            string response = ConnectManager.ProcessRequestFromQB(connectDbResult, BuildCustomerQueryRqXML(includeRetElements, null, connectDbResult.MaxVersion));
+            string response = ConnectManager.ProcessRequestFromQB(UserSharedInfo.GetConnectInfo(), BuildCustomerQueryRqXML(includeRetElements, null, UserSharedInfo.GetConnectInfo().MaxVersion));
 
             var result = ParseCustomerQueryRs(response);
 
@@ -41,7 +41,7 @@ namespace SArtIntegration.qb.Manager.Customer
             string jsonResult = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
 
 
-            ConnectManager.DisconnectFromQB(connectDbResult);
+            ConnectManager.DisconnectFromQB(UserSharedInfo.GetConnectInfo());
 
         }
         private static string BuildCustomerQueryRqXML(string[] includeRetElement, string fullName, string maxVersion)

@@ -20,6 +20,7 @@ using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SArtIntegration.qb.Models.Enums.DocumentTypes;
 using static SArtIntegration.qb.Models.Enums.InvoiceTypes;
 using static SArtIntegration.qb.Models.Enums.TransactionTypes;
 using static SArtIntegration.qb.Models.Json.CollectionSyncRequest;
@@ -51,6 +52,10 @@ namespace SArtIntegration.qb
         private async void bttnTransferInvoice_Click(object sender, EventArgs e)
         {
             #region Faturaları çağır
+
+            formDialogScreen frmDialog = new formDialogScreen(DocumentType.InvoiceType);
+            frmDialog.ShowDialog();
+
             var invoiceRequest = new InvoiceRequest
             {
                 startDate = "2023-12-01",
@@ -145,6 +150,11 @@ namespace SArtIntegration.qb
 
         private async void bttnTransferCollection_Click(object sender, EventArgs e)
         {
+
+            formDialogScreen frmDialog = new formDialogScreen(DocumentType.CollectionType);
+            frmDialog.ShowDialog();
+
+
             #region Tahsilatları çağır
             var collectionRequest = new CollectionRequest
             {
@@ -251,6 +261,11 @@ namespace SArtIntegration.qb
         private void çıkışToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void bttnTransferInvoice_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
