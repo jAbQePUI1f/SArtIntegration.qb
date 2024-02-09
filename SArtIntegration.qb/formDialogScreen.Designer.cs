@@ -36,10 +36,11 @@
             pickerBeginDate = new DateTimePicker();
             pickerEndDate = new DateTimePicker();
             dataGridView1 = new DataGridView();
+            chk = new DataGridViewCheckBoxColumn();
             bttnGetData = new MaterialSkin.Controls.MaterialButton();
             chckAll = new CheckBox();
             btnTransfer = new MaterialSkin.Controls.MaterialButton();
-            chk = new DataGridViewCheckBoxColumn();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -115,6 +116,16 @@
             dataGridView1.Size = new Size(1083, 680);
             dataGridView1.TabIndex = 8;
             // 
+            // chk
+            // 
+            chk.FillWeight = 45F;
+            chk.HeaderText = "";
+            chk.MinimumWidth = 6;
+            chk.Name = "chk";
+            chk.ToolTipText = "Select All...";
+            chk.Visible = false;
+            chk.Width = 25;
+            // 
             // bttnGetData
             // 
             bttnGetData.AutoSize = false;
@@ -171,21 +182,22 @@
             btnTransfer.UseVisualStyleBackColor = true;
             btnTransfer.Click += btnTransfer_Click;
             // 
-            // chk
+            // button1
             // 
-            chk.FillWeight = 45F;
-            chk.HeaderText = "";
-            chk.MinimumWidth = 6;
-            chk.Name = "chk";
-            chk.ToolTipText = "Select All...";
-            chk.Visible = false;
-            chk.Width = 25;
+            button1.Location = new Point(943, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(152, 29);
+            button1.TabIndex = 18;
+            button1.Text = "Return Main Menu";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // formDialogScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1120, 905);
+            Controls.Add(button1);
             Controls.Add(btnTransfer);
             Controls.Add(chckAll);
             Controls.Add(bttnGetData);
@@ -218,5 +230,6 @@
         private CheckBox chckAll;
         private MaterialSkin.Controls.MaterialButton btnTransfer;
         private DataGridViewCheckBoxColumn chk;
+        private Button button1;
     }
 }

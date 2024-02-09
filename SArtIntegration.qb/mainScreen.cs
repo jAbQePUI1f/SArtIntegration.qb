@@ -55,94 +55,94 @@ namespace SArtIntegration.qb
 
             formDialogScreen frmDialog = new formDialogScreen(DocumentType.InvoiceType);
             frmDialog.ShowDialog();
+            this.Close();
+            //var invoiceRequest = new InvoiceRequest
+            //{
+            //    startDate = "2023-12-01",
+            //    endDate = "2024-01-01",
+            //    invoiceTypes = new[] { InvoiceType.SELLING.DisplayName().ToString(), InvoiceType.BUYING.DisplayName().ToString() }
+            //};
 
-            var invoiceRequest = new InvoiceRequest
-            {
-                startDate = "2023-12-01",
-                endDate = "2024-01-01",
-                invoiceTypes = new[] { InvoiceType.SELLING.DisplayName().ToString(), InvoiceType.BUYING.DisplayName().ToString() }
-            };
 
-
-            var invoiceResponse = await ApiManager.PostAsync<InvoiceRequest, InvoiceModelJson>(Configuration.GetUrl() + "management/invoices-for-erp", invoiceRequest);
+            //var invoiceResponse = await ApiManager.PostAsync<InvoiceRequest, InvoiceModelJson>(Configuration.GetUrl() + "management/invoices-for-erp", invoiceRequest);
             #endregion
 
 
-            foreach (var item in invoiceResponse.data)
-            {
-                #region Faturaları QB aktar
-                TransferInvoiceModels transferInvoice = new TransferInvoiceModels()
-                {
-                    BillAddr = "",
-                    CustomerName = item.customerName,
-                    InvoiceNumber = item.documentNumber,
-                    TermsName = "",
-                    TxnDate = item.documentDate.ToString(),
-                    DueDate = item.documentDate.ToString(),
-                    LineModels = new List<InvoiceLineModels>()
+            //foreach (var item in invoiceResponse.data)
+            //{
+            //    #region Faturaları QB aktar
+            //    TransferInvoiceModels transferInvoice = new TransferInvoiceModels()
+            //    {
+            //        BillAddr = "",
+            //        CustomerName = item.customerName,
+            //        InvoiceNumber = item.documentNumber,
+            //        TermsName = "",
+            //        TxnDate = item.documentDate.ToString(),
+            //        DueDate = item.documentDate.ToString(),
+            //        LineModels = new List<InvoiceLineModels>()
 
-                };
-                foreach (var detailItem in item.details)
-                {
-                    InvoiceLineModels lineModel = new InvoiceLineModels()
-                    {
-                        ItemDesc = detailItem.code,
-                        ItemName = detailItem.code,
-                        Quantity = detailItem.quantity,
-                        TotalAmount = Convert.ToDecimal(detailItem.grossTotal),
-                        UnitPrice = Convert.ToDecimal(detailItem.price)
-                    };
+            //    };
+            //    foreach (var detailItem in item.details)
+            //    {
+            //        InvoiceLineModels lineModel = new InvoiceLineModels()
+            //        {
+            //            ItemDesc = detailItem.code,
+            //            ItemName = detailItem.code,
+            //            Quantity = detailItem.quantity,
+            //            TotalAmount = Convert.ToDecimal(detailItem.grossTotal),
+            //            UnitPrice = Convert.ToDecimal(detailItem.price)
+            //        };
 
-                    transferInvoice.LineModels.Add(lineModel);
-                }
+            //        transferInvoice.LineModels.Add(lineModel);
+            //    }
 
-                var transferResult = TransferInvoice.BuildInvoiceAddRqXML(transferInvoice);
-                #endregion
+            //    var transferResult = TransferInvoice.BuildInvoiceAddRqXML(transferInvoice);
+            //#endregion
 
-                #region Faturalar Başarılı/Başarısız İşaretle
-                InvoiceSyncRequest request = new InvoiceSyncRequest();
+            //#region Faturalar Başarılı/Başarısız İşaretle
+            //InvoiceSyncRequest request = new InvoiceSyncRequest();
 
-                if (transferResult.TxnId != null)
-                {
-                    request = new InvoiceSyncRequest
-                    {
-                        IntegratedInvoices = new[]
-                       {
-                        new IntegratedInvoice
-                        {
-                            SuccessfullyIntegrated = true,
-                            InvoiceNumber = item.documentNumber,
-                            RemoteInvoiceNumber = transferResult.TxnId,
-                            ErrorMessage = transferResult.StatusMessage.ToString()
-                        }
-                        }
-                    };
+            //if (transferResult.TxnId != null)
+            //{
+            //    request = new InvoiceSyncRequest
+            //    {
+            //        IntegratedInvoices = new[]
+            //       {
+            //        new IntegratedInvoice
+            //        {
+            //            SuccessfullyIntegrated = true,
+            //            InvoiceNumber = item.documentNumber,
+            //            RemoteInvoiceNumber = transferResult.TxnId,
+            //            ErrorMessage = transferResult.StatusMessage.ToString()
+            //        }
+            //        }
+            //    };
 
 
 
-                }
-                else
-                {
-                    request = new InvoiceSyncRequest
-                    {
-                        IntegratedInvoices = new[]
-                      {
-                        new IntegratedInvoice
-                        {
-                            SuccessfullyIntegrated = false,
-                            InvoiceNumber = item.documentNumber,
-                            RemoteInvoiceNumber = "",
-                            ErrorMessage = transferResult.StatusMessage.ToString()
-                        }
-                        }
-                    };
-                }
+            //}
+            //else
+            //{
+            //    request = new InvoiceSyncRequest
+            //    {
+            //        IntegratedInvoices = new[]
+            //      {
+            //        new IntegratedInvoice
+            //        {
+            //            SuccessfullyIntegrated = false,
+            //            InvoiceNumber = item.documentNumber,
+            //            RemoteInvoiceNumber = "",
+            //            ErrorMessage = transferResult.StatusMessage.ToString()
+            //        }
+            //        }
+            //    };
+            //}
 
-                var response = await ApiManager.SendRequestAsync<InvoiceSyncRequest, InvoiceSyncResponse>(request, Configuration.GetUrl() + "sync-invoice-statuses");
-                #endregion
+            //var response = await ApiManager.SendRequestAsync<InvoiceSyncRequest, InvoiceSyncResponse>(request, Configuration.GetUrl() + "sync-invoice-statuses");
+            //#endregion
 
-                MessageBox.Show(response.message.ToString());
-            }
+            //MessageBox.Show(response.message.ToString());
+            //}
 
 
 
@@ -154,87 +154,87 @@ namespace SArtIntegration.qb
             formDialogScreen frmDialog = new formDialogScreen(DocumentType.CollectionType);
             frmDialog.ShowDialog();
 
+            this.Close();
+            //#region Tahsilatları çağır
+            //var collectionRequest = new CollectionRequest
+            //{
+            //    startDate = "2023-12-01",
+            //    endDate = "2024-01-11",
+            //    transactionTypes = new[] { TransactionType.CASH_COLLECTION.DisplayName().ToString(),
+            //        TransactionType.CASH_PAYMENT.DisplayName().ToString(),
+            //        TransactionType.CHECK_COLLECTION.DisplayName().ToString(),
+            //        TransactionType.CREDIT_CARD_PAYMENT.DisplayName().ToString(),
+            //        TransactionType.BOND_PAYMENT.DisplayName().ToString(),
+            //        TransactionType.BANK_TRANSFER_PAYMENT.DisplayName().ToString(),
+            //        TransactionType.CREDIT_CARD_COLLECTION.DisplayName().ToString(),
+            //        TransactionType.BOND_COLLECTION.DisplayName().ToString(),
+            //        TransactionType.CHECK_PAYMENT.DisplayName().ToString(),
+            //        TransactionType.BANK_TRANSFER_COLLECTION.DisplayName().ToString(),
+            //    }
 
-            #region Tahsilatları çağır
-            var collectionRequest = new CollectionRequest
-            {
-                startDate = "2023-12-01",
-                endDate = "2024-01-11",
-                transactionTypes = new[] { TransactionType.CASH_COLLECTION.DisplayName().ToString(),
-                    TransactionType.CASH_PAYMENT.DisplayName().ToString(),
-                    TransactionType.CHECK_COLLECTION.DisplayName().ToString(),
-                    TransactionType.CREDIT_CARD_PAYMENT.DisplayName().ToString(),
-                    TransactionType.BOND_PAYMENT.DisplayName().ToString(),
-                    TransactionType.BANK_TRANSFER_PAYMENT.DisplayName().ToString(),
-                    TransactionType.CREDIT_CARD_COLLECTION.DisplayName().ToString(),
-                    TransactionType.BOND_COLLECTION.DisplayName().ToString(),
-                    TransactionType.CHECK_PAYMENT.DisplayName().ToString(),
-                    TransactionType.BANK_TRANSFER_COLLECTION.DisplayName().ToString(),
-                }
+            //};
 
-            };
-
-            var collectionResponse = await ApiManager.PostAsync<CollectionRequest, CollectionModelJson>(Configuration.GetUrl() + "management/collections-for-erp", collectionRequest);
-            #endregion
+            //var collectionResponse = await ApiManager.PostAsync<CollectionRequest, CollectionModelJson>(Configuration.GetUrl() + "management/collections-for-erp", collectionRequest);
+            //#endregion
 
 
-            foreach (var item in collectionResponse.data)
-            {
-                #region Tahsilatları aktar
-                TransferCollectionModels collectionModels = new TransferCollectionModels()
-                {
-                    CustomerName = item.customerName,
-                    Number = item.documentNo,
-                    TxnDate = item.dueDate.ToString(),
-                    AppliedTxnID = item.invoiceNo,
-                    AppliedPaymentAmount = item.amount,
-                    PaymentMethodName = item.paymentName,
-                    TotalAmount = item.amount
-                };
+            //foreach (var item in collectionResponse.data)
+            //{
+            //    #region Tahsilatları aktar
+            //    TransferCollectionModels collectionModels = new TransferCollectionModels()
+            //    {
+            //        CustomerName = item.customerName,
+            //        Number = item.documentNo,
+            //        TxnDate = item.dueDate.ToString(),
+            //        AppliedTxnID = item.invoiceNo,
+            //        AppliedPaymentAmount = item.amount,
+            //        PaymentMethodName = item.paymentName,
+            //        TotalAmount = item.amount
+            //    };
 
-                var result = TransferCollection.BuildCollectionAddRqXML(collectionModels);
-                #endregion
+            //    var result = TransferCollection.BuildCollectionAddRqXML(collectionModels);
+            //    #endregion
 
-                #region Tahsilatlar Başarılı/Başarısız İşaretle
-                CollectionSyncRequest request = new CollectionSyncRequest();
+            //    #region Tahsilatlar Başarılı/Başarısız İşaretle
+            //    CollectionSyncRequest request = new CollectionSyncRequest();
 
-                if (result.TxnId != null)
-                {
-                    request = new CollectionSyncRequest
-                    {
-                        IntegratedCollections = new[]
-                       {
-                        new IntegratedCollection
-                        {
-                             customerFinancialTransactionId=item.customerFinancialTransactionId,
-                             message=result.StatusMessage,
-                              synced=true
+            //    if (result.TxnId != null)
+            //    {
+            //        request = new CollectionSyncRequest
+            //        {
+            //            IntegratedCollections = new[]
+            //           {
+            //            new IntegratedCollection
+            //            {
+            //                 customerFinancialTransactionId=item.customerFinancialTransactionId,
+            //                 message=result.StatusMessage,
+            //                  synced=true
 
-                        }
-                        }
-                    };
-                }
-                else
-                {
-                    request = new CollectionSyncRequest
-                    {
-                        IntegratedCollections = new[]
-                      {
-                        new IntegratedCollection
-                        {
-                           customerFinancialTransactionId=item.customerFinancialTransactionId,
-                             message=result.StatusMessage,
-                              synced=false
-                        }
-                        }
-                    };
-                }
+            //            }
+            //            }
+            //        };
+            //    }
+            //    else
+            //    {
+            //        request = new CollectionSyncRequest
+            //        {
+            //            IntegratedCollections = new[]
+            //          {
+            //            new IntegratedCollection
+            //            {
+            //               customerFinancialTransactionId=item.customerFinancialTransactionId,
+            //                 message=result.StatusMessage,
+            //                  synced=false
+            //            }
+            //            }
+            //        };
+            //    }
 
-                var response = await ApiManager.SendRequestAsync<CollectionSyncRequest, CollectionSyncResponse>(request, Configuration.GetUrl() + "sync-collection-statuses");
-                #endregion
+            //    var response = await ApiManager.SendRequestAsync<CollectionSyncRequest, CollectionSyncResponse>(request, Configuration.GetUrl() + "sync-collection-statuses");
+            //    #endregion
 
-                MessageBox.Show(response.message.ToString());
-            }
+            //    MessageBox.Show(response.message.ToString());
+            //}
 
         }
 
@@ -264,6 +264,11 @@ namespace SArtIntegration.qb
         }
 
         private void bttnTransferInvoice_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bttnTransferToItems_Click_1(object sender, EventArgs e)
         {
 
         }

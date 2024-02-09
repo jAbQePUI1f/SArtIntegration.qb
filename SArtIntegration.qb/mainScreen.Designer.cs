@@ -54,7 +54,7 @@
             bttnTransferCollection.HighEmphasis = true;
             bttnTransferCollection.Icon = null;
             bttnTransferCollection.Location = new Point(247, 124);
-            bttnTransferCollection.Margin = new Padding(5, 5, 5, 5);
+            bttnTransferCollection.Margin = new Padding(5);
             bttnTransferCollection.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferCollection.Name = "bttnTransferCollection";
             bttnTransferCollection.NoAccentTextColor = Color.Empty;
@@ -75,7 +75,7 @@
             bttnTransferInvoice.HighEmphasis = true;
             bttnTransferInvoice.Icon = null;
             bttnTransferInvoice.Location = new Point(247, 44);
-            bttnTransferInvoice.Margin = new Padding(5, 5, 5, 5);
+            bttnTransferInvoice.Margin = new Padding(5);
             bttnTransferInvoice.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferInvoice.Name = "bttnTransferInvoice";
             bttnTransferInvoice.NoAccentTextColor = Color.Empty;
@@ -106,6 +106,7 @@
             bttnTransferToItems.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnTransferToItems.UseAccentColor = false;
             bttnTransferToItems.UseVisualStyleBackColor = true;
+            bttnTransferToItems.Click += bttnTransferToItems_Click;
             // 
             // bttnTrsansferToCustomer
             // 
@@ -127,7 +128,7 @@
             bttnTrsansferToCustomer.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnTrsansferToCustomer.UseAccentColor = false;
             bttnTrsansferToCustomer.UseVisualStyleBackColor = true;
-            bttnTrsansferToCustomer.Click += bttnTrsansferToCustomer_Click_1;
+            bttnTrsansferToCustomer.Click += bttnTrsansferToCustomer_Click;
             // 
             // lblQBstatus
             // 

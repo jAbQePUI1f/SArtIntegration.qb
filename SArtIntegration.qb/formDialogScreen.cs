@@ -33,8 +33,10 @@ namespace SArtIntegration.qb
         CollectionModelJson collectionResponse = new CollectionModelJson();
         public formDialogScreen(DocumentType type)
         {
+
             operationType = type;
             InitializeComponent();
+            btnTransfer.Text = "Transfer Data";
             FillComboBoxWithEnumValues(type);
 
         }
@@ -149,14 +151,14 @@ namespace SArtIntegration.qb
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    row.Cells["chck"].Value = true;
+                    row.Cells["chk"].Value = true;
                 }
             }
             else
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    row.Cells["chck"].Value = false;
+                    row.Cells["chk"].Value = false;
                 }
             }
         }
@@ -344,6 +346,13 @@ namespace SArtIntegration.qb
 
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+            new mainScreen().Show();
         }
     }
 
