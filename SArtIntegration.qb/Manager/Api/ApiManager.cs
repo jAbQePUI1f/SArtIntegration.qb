@@ -34,7 +34,7 @@ namespace SArtIntegration.qb.Manager.Api
                     HttpContent content = new StringContent(jsonRequestBody, Encoding.UTF8, "application/json");
 
                     // Make PUT request
-                    HttpResponseMessage response = await client.PutAsync(apiUrl, content);
+                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
 
                     // Check if request is successful
                     if (response.IsSuccessStatusCode)
@@ -81,7 +81,10 @@ namespace SArtIntegration.qb.Manager.Api
             {
                 // Serialize request body to JSON
                 string jsonRequestBody = Newtonsoft.Json.JsonConvert.SerializeObject(requestBody);
-
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                };
                 using (HttpClient client = new HttpClient())
                 {
                     // Add JWT token to request headers
@@ -98,7 +101,7 @@ namespace SArtIntegration.qb.Manager.Api
                     {
                         // Read response content as string
                         string responseContent = await response.Content.ReadAsStringAsync();
-                        TResponse responseObject = JsonConvert.DeserializeObject<TResponse>(responseContent);
+                        TResponse responseObject = JsonConvert.DeserializeObject<TResponse>(responseContent, settings);
                         return responseObject;
                     }
                     else if (response.StatusCode == HttpStatusCode.Unauthorized) // Unauthorized hatası alındığında

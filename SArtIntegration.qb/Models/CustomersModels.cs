@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static SArtIntegration.qb.Models.Json.InvoiceSyncRequest;
 
 namespace SArtIntegration.qb.Models
 {
+
     public class CustomersModels
     {
         [DisplayName("ListID")]

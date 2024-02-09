@@ -1,11 +1,16 @@
 ﻿using Newtonsoft.Json;
+using SArtIntegration.qb.Manager.Api;
+using SArtIntegration.qb.Manager.Config;
 using SArtIntegration.qb.Manager.Connect;
 using SArtIntegration.qb.Manager.Helper;
 using SArtIntegration.qb.Models;
+using SArtIntegration.qb.Models.Json;
 using System.ComponentModel;
 using System.Data;
 using System.Reflection;
 using System.Xml;
+using static SArtIntegration.qb.Models.Json.CustomerRequest;
+using static SArtIntegration.qb.Models.Json.ProductRequest;
 
 namespace SArtIntegration.qb.Manager.Item
 {
@@ -16,6 +21,32 @@ namespace SArtIntegration.qb.Manager.Item
 
         public static void LoadItems()
         {
+
+            var customer1 = new ProductRequest
+            {
+                importProductFromQuickbooks = new[]
+               {
+                    new ProductModelJson {
+                       id=10,
+                     name = "New",
+                 description = "new new ",
+                 fullyQualifiedName = "new2",
+                taxable = false,
+                 active = true,
+                 type = "Inventory",
+                 purchaseCost =Convert.ToDecimal("5.5"),
+                 unitPrice = Convert.ToDecimal("10.5"),
+                 stock=Convert.ToDecimal("10"),
+                     }
+                }
+
+            };
+
+
+
+            //var response1 = ApiManager.SendRequestAsync<ProductRequest, ProductResponse>(customer1, Configuration.GetUrl() + "management/quick-books/products?lang=tr");
+
+
 
             //var connectInfo = ConnectManager.ConnectToQB();
 
@@ -32,7 +63,41 @@ namespace SArtIntegration.qb.Manager.Item
 
             var result = ParseItemQueryRs(response);
 
-            string jsonResult = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+
+            List<ProductModelJson> productList = new List<ProductModelJson>();
+
+
+            foreach (var item in result)
+            {
+                ProductModelJson productModel = new ProductModelJson()
+                {
+                    active = true,
+                    description = item.description,
+                    fullyQualifiedName = item.fullyQualifiedName,
+                    type = item.type,
+                    id = (long)Convert.ToDouble(item.id),
+                    name = item.name,
+                    purchaseCost = item.purchaseCost,
+                    stock = item.stock,
+                    taxable = item.taxable,
+                    unitPrice = item.unitPrice
+                };
+                productList.Add(productModel);
+
+            }
+
+            ProductRequest productRequest = new ProductRequest();
+            productRequest.importProductFromQuickbooks = productList.ToArray();
+
+            var response1 = ApiManager.SendRequestAsync<ProductRequest, ProductResponse>(productRequest, Configuration.GetUrl() + "management/quick-books/products?lang=tr");
+
+            //string jsonResult = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+            if (response1.Result.responseStatus == 200)
+            {
+                MessageBox.Show("Products add Succesfully");
+
+            }
+
 
             ConnectManager.DisconnectFromQB(UserSharedInfo.GetConnectInfo());
 

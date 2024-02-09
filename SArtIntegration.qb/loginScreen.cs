@@ -31,12 +31,12 @@ namespace SArtIntegration.qb
             //    Console.WriteLine("Login failed.");
             //}
 
-            var response = await LoginManager.LoginAsync("operasyon@arpaciogluavr.com", "Oa1234");
+            var response = await LoginManager.LoginAsync(txtUserName.Text, txtPassword.Text);//"operasyon@arpaciogluavr.com", "Oa1234"
 
 
             //var connectInfoQB = ConnectManager.ConnectToQB();
 
-            //if(string.IsNullOrEmpty(connectInfoQB.Ticket))
+            //if (string.IsNullOrEmpty(connectInfoQB.Ticket))
             //{
             //    MessageBox.Show("Quickbooks Not Open!! Pls Open the QuickBooks", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //    return;
@@ -48,8 +48,8 @@ namespace SArtIntegration.qb
                 return;
             }
 
-            UserSharedInfo.UserInfo.UserName = "operasyon@arpaciogluavr.com"; //txtBoxUserName.Text;
-            UserSharedInfo.UserInfo.Password = "Oa1234"; //txtBoxPassword.Text;
+            UserSharedInfo.UserInfo.UserName = txtUserName.Text;
+            UserSharedInfo.UserInfo.Password = txtPassword.Text;
             UserSharedInfo.UserInfo.Token = response.Token;
             //UserSharedInfo.UserInfo.QbConnectInfo = connectInfoQB;
 
@@ -62,6 +62,11 @@ namespace SArtIntegration.qb
             mainScreen mS = new mainScreen();
             mS.Show();
             this.Hide();
+        }
+
+        private void txtBoxUserName_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
