@@ -3,6 +3,7 @@ using SArtIntegration.qb.Manager.Helper;
 using SArtIntegration.qb.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -120,7 +121,8 @@ namespace SArtIntegration.qb.Manager.Invoice
                 Element_InvoiceLineAdd.AppendChild(Element_InvoiceLineAdd_Rate).InnerText = item.UnitPrice.ToString();
 
                 XmlElement Element_InvoiceLineAdd_Amount = xmlDoc.CreateElement("Amount");
-                Element_InvoiceLineAdd.AppendChild(Element_InvoiceLineAdd_Amount).InnerText = item.TotalAmount.ToString().Replace(",", ".");
+                Element_InvoiceLineAdd.AppendChild(Element_InvoiceLineAdd_Amount).InnerText = item.TotalAmount.ToString();
+
 
 
             }
