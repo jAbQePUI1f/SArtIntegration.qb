@@ -3,10 +3,13 @@ using SArtIntegration.qb.Manager.Helper;
 using SArtIntegration.qb.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using SArtIntegration.qb.Manager.Config;
+using Configuration = SArtIntegration.qb.Manager.Config.Configuration;
 
 namespace SArtIntegration.qb.Manager.Collection
 {
@@ -45,15 +48,21 @@ namespace SArtIntegration.qb.Manager.Collection
             receivePaymentAdd.AppendChild(TransferHelper.MakeSimpleElem(inputXMLDoc, "RefNumber", collectionModels.Number));
             receivePaymentAdd.AppendChild(TransferHelper.MakeSimpleElem(inputXMLDoc, "TotalAmount", collectionModels.TotalAmount.ToString()));
 
-            XmlElement appliendtoTxnAdd = inputXMLDoc.CreateElement("AppliedToTxnAdd");
-            receivePaymentAdd.AppendChild(appliendtoTxnAdd);
-            appliendtoTxnAdd.AppendChild(TransferHelper.MakeSimpleElem(inputXMLDoc, "TxnID", collectionModels.AppliedTxnID)); // Ödeme Yöntemi ListID'si
-            appliendtoTxnAdd.AppendChild(TransferHelper.MakeSimpleElem(inputXMLDoc, "PaymentAmount", collectionModels.AppliedPaymentAmount.ToString())); // Ödeme Yöntemi ListID'si
+            
 
 
             // ödeme bir faturaya bağlayı yapılmayacak ise
-            //receivePaymentAdd.AppendChild(TransferHelper.MakeSimpleElem(inputXMLDoc, "IsAutoApply", "false"));
-
+            if (Configuration.getCollectionIsAutoApply() == "true")
+            {
+                receivePaymentAdd.AppendChild(TransferHelper.MakeSimpleElem(inputXMLDoc, "IsAutoApply", "false"));
+            }
+            else
+            {
+                XmlElement appliendtoTxnAdd = inputXMLDoc.CreateElement("AppliedToTxnAdd");
+                receivePaymentAdd.AppendChild(appliendtoTxnAdd);
+                appliendtoTxnAdd.AppendChild(TransferHelper.MakeSimpleElem(inputXMLDoc, "TxnID", collectionModels.AppliedTxnID)); // Ödeme Yöntemi ListID'si
+                appliendtoTxnAdd.AppendChild(TransferHelper.MakeSimpleElem(inputXMLDoc, "PaymentAmount", collectionModels.AppliedPaymentAmount.ToString())); // Ödeme Yöntemi ListID'si
+            }
 
             // Ödeme yöntemi referansı ekle
             //XmlElement paymentMethodRef = inputXMLDoc.CreateElement("PaymentMethodRef");

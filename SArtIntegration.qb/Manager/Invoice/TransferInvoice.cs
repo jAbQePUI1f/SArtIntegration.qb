@@ -3,6 +3,7 @@ using SArtIntegration.qb.Manager.Helper;
 using SArtIntegration.qb.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -98,6 +99,11 @@ namespace SArtIntegration.qb.Manager.Invoice
 
             //Line Items
             XmlElement Element_InvoiceLineAdd;
+            // ABD bölgesel ayarlarını oluşturmak için "en-US" kültürünü kullanın
+            CultureInfo usCulture = new CultureInfo("en-US");
+
+            // ABD bölgesel ayarlarını kullanan bir sayı biçimlendirici oluşturun
+            NumberFormatInfo usNumberFormat = usCulture.NumberFormat;
 
 
             foreach (var item in transferInvoice.LineModels)
@@ -117,10 +123,10 @@ namespace SArtIntegration.qb.Manager.Invoice
                 Element_InvoiceLineAdd.AppendChild(Element_InvoiceLineAdd_Quantity).InnerText = item.Quantity.ToString();
 
                 XmlElement Element_InvoiceLineAdd_Rate = xmlDoc.CreateElement("Rate");
-                Element_InvoiceLineAdd.AppendChild(Element_InvoiceLineAdd_Rate).InnerText = item.UnitPrice.ToString();
+                Element_InvoiceLineAdd.AppendChild(Element_InvoiceLineAdd_Rate).InnerText = item.UnitPrice.ToString().Replace(",", ".");
 
                 XmlElement Element_InvoiceLineAdd_Amount = xmlDoc.CreateElement("Amount");
-                Element_InvoiceLineAdd.AppendChild(Element_InvoiceLineAdd_Amount).InnerText = item.TotalAmount.ToString().Replace(",", ".");
+                Element_InvoiceLineAdd.AppendChild(Element_InvoiceLineAdd_Amount).InnerText = item.TotalAmount.ToString("N", usNumberFormat);
 
 
             }

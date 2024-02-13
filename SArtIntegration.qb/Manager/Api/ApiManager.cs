@@ -12,9 +12,66 @@ namespace SArtIntegration.qb.Manager.Api
 {
     public  class ApiManager
     {
-       
 
-      
+
+
+        public static async Task<TResponse> PutAsync<TRequest, TResponse>(TRequest request, string apiUrl)
+        {
+            int maxRetryCount = 3; // Tekrar deneme limiti
+            string jwtToken = UserSharedInfo.GetToken();
+
+            for (int retryCount = 0; retryCount < maxRetryCount; retryCount++)
+            {
+                // Serialize request body to JSON
+                string jsonRequestBody = JsonConvert.SerializeObject(request);
+
+                using (HttpClient client = new HttpClient())
+                {
+                    // Add JWT token to request headers
+                    client.DefaultRequestHeaders.Add("x-auth-token", $"Bearer {jwtToken}");
+
+                    // Create HttpContent from JSON
+                    HttpContent content = new StringContent(jsonRequestBody, Encoding.UTF8, "application/json");
+
+                    // Make PUT request
+                    HttpResponseMessage response = await client.PutAsync(apiUrl, content);
+
+                    // Check if request is successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Read response content as string
+                        string responseContent = await response.Content.ReadAsStringAsync();
+
+                        // Deserialize response JSON to the specified type
+                        TResponse responseObject = JsonConvert.DeserializeObject<TResponse>(responseContent);
+
+                        return responseObject;
+                    }
+                    else if (response.StatusCode == HttpStatusCode.Unauthorized) // Unauthorized hatası alındığında
+                    {
+                        // Burada kullanıcı kimlik doğrulama işlemlerini gerçekleştirmeniz gerekecek
+                        // Bu örnekte varsayılan bir sınıf kullanılıyor, gerçek duruma göre uyarlayın
+                        var newToken = await AuthenticateAndGetToken();
+
+                        // Eğer yeni bir token alındıysa, yeni token ile tekrar deneme yapın
+                        if (!string.IsNullOrEmpty(newToken))
+                        {
+                            jwtToken = newToken;
+                            continue; // Retry
+                        }
+                    }
+
+                    // Diğer hatalar için uyarı veya log işlemleri eklenebilir
+                    MessageBox.Show($"Token Error: {response.StatusCode} - {response.ReasonPhrase}");
+                    return default(TResponse);
+                }
+            }
+
+            // Retry limitine ulaşıldığında
+            Console.WriteLine($"Error: Maximum retry limit reached");
+            return default(TResponse);
+        }
+
         public static async Task<TResponse> SendRequestAsync<TRequest, TResponse>(TRequest request, string apiUrl)
         {
             int maxRetryCount = 3; // Tekrar deneme limiti
