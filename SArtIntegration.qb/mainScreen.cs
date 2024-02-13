@@ -267,10 +267,5 @@ namespace SArtIntegration.qb
         {
 
         }
-
-        private void bttnTransferToItems_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

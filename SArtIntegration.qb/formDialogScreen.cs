@@ -204,20 +204,20 @@ namespace SArtIntegration.qb
                 if (Convert.ToBoolean(row.Cells["chk"].Value))
                 {
 
-                    string number = row.Cells["Number"].Value.ToString();
+                    
 
                     if (operationType == DocumentType.InvoiceType)
                     {
-
+                        string number = row.Cells["Number"].Value.ToString();
                         var selectedInvoice = invoiceResponse.data.FirstOrDefault(inv => inv.number == number);
 
 
                         #region Faturaları QB aktar
                         TransferInvoiceModels transferInvoice = new TransferInvoiceModels()
                         {
-                            BillAddr = "",
+                            BillAddr = selectedInvoice.customerBranchName,
                             CustomerName = selectedInvoice.customerName,
-                            InvoiceNumber = selectedInvoice.documentNumber,
+                            InvoiceNumber = selectedInvoice.number,
                             TermsName = "",
                             TxnDate = selectedInvoice.documentDate.ToString(),
                             DueDate = selectedInvoice.documentDate.ToString(),
@@ -242,6 +242,7 @@ namespace SArtIntegration.qb
                         #endregion
 
                         #region Faturalar Başarılı/Başarısız İşaretle
+                        
                         InvoiceSyncRequest request = new InvoiceSyncRequest();
 
                         if (transferResult.TxnId != null)
@@ -253,7 +254,7 @@ namespace SArtIntegration.qb
                         new IntegratedInvoice
                         {
                             SuccessfullyIntegrated = true,
-                            InvoiceNumber = selectedInvoice.documentNumber,
+                            InvoiceNumber = selectedInvoice.number,
                             RemoteInvoiceNumber = transferResult.TxnId,
                             ErrorMessage = transferResult.StatusMessage.ToString()
                         }
@@ -280,12 +281,13 @@ namespace SArtIntegration.qb
                             };
                         }
 
-                        var response = await ApiManager.SendRequestAsync<InvoiceSyncRequest, InvoiceSyncResponse>(request, Configuration.GetUrl() + "sync-invoice-statuses");
+                        var response = await ApiManager.PutAsync<InvoiceSyncRequest, InvoiceSyncResponse>(request, Configuration.GetUrl() + "sync-invoice-statuses");
                         #endregion
 
                     }
                     else
                     {
+                        string number = row.Cells["DocumentNo"].Value.ToString();
                         var selectedCollection = collectionResponse.data.FirstOrDefault(inv => inv.documentNo == number);
 
                         #region Tahsilatları aktar
@@ -293,7 +295,7 @@ namespace SArtIntegration.qb
                         {
                             CustomerName = selectedCollection.customerName,
                             Number = selectedCollection.documentNo,
-                            TxnDate = selectedCollection.dueDate.ToString(),
+                            TxnDate = selectedCollection.createDate.ToString(),
                             AppliedTxnID = selectedCollection.invoiceNo,
                             AppliedPaymentAmount = selectedCollection.amount,
                             PaymentMethodName = selectedCollection.paymentName,
@@ -338,7 +340,7 @@ namespace SArtIntegration.qb
                             };
                         }
 
-                        var response = await ApiManager.SendRequestAsync<CollectionSyncRequest, CollectionSyncResponse>(request, Configuration.GetUrl() + "sync-collection-statuses");
+                        var response = await ApiManager.PutAsync<CollectionSyncRequest, CollectionSyncResponse>(request, Configuration.GetUrl() + "sync-collection-statuses");
                         #endregion
 
 
