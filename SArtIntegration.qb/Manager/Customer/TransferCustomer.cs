@@ -82,7 +82,7 @@ namespace SArtIntegration.qb.Manager.Customer
                     longitude = item.longitude,
                     companyName = item.companyName,
                     displayName = item.displayName,
-                    id = (long)Convert.ToDouble(item.id),
+                    id = item.id,
                     taxable = item.taxable,
                     title = item.title
                 };

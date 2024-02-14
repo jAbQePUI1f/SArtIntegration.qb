@@ -13,7 +13,7 @@ namespace SArtIntegration.qb.Models.Json
         public class ProductModelJson
         {
 
-            public long id { get; set; }
+            public string id { get; set; }
             public string name { get; set; }
             public string fullyQualifiedName { get; set; }
             public string description { get; set; }
