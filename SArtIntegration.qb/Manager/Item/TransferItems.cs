@@ -27,7 +27,7 @@ namespace SArtIntegration.qb.Manager.Item
                 importProductFromQuickbooks = new[]
                {
                     new ProductModelJson {
-                       id=10,
+                       id="10",
                      name = "New",
                  description = "new new ",
                  fullyQualifiedName = "new2",
@@ -75,7 +75,7 @@ namespace SArtIntegration.qb.Manager.Item
                     description = item.description,
                     fullyQualifiedName = item.fullyQualifiedName,
                     type = item.type,
-                    id = (long)Convert.ToDouble(item.id),
+                    id = item.id,
                     name = item.name,
                     purchaseCost = item.purchaseCost,
                     stock = item.stock,

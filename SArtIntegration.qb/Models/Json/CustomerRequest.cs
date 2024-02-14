@@ -11,7 +11,7 @@ namespace SArtIntegration.qb.Models.Json
         public CustomerModelJson[] importCustomerFromQuickbooks { get; set; }
         public class CustomerModelJson
         {
-            public long id { get; set; }
+            public string id { get; set; }
             public string title { get; set; }
             public string displayName { get; set; }
             public string companyName { get; set; }

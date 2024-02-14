@@ -126,7 +126,7 @@ namespace SArtIntegration.qb.Manager.Invoice
                 Element_InvoiceLineAdd.AppendChild(Element_InvoiceLineAdd_Rate).InnerText = item.UnitPrice.ToString().Replace(",", ".");
 
                 XmlElement Element_InvoiceLineAdd_Amount = xmlDoc.CreateElement("Amount");
-                Element_InvoiceLineAdd.AppendChild(Element_InvoiceLineAdd_Amount).InnerText = item.TotalAmount.ToString("N", usNumberFormat);
+                Element_InvoiceLineAdd.AppendChild(Element_InvoiceLineAdd_Amount).InnerText = item.TotalAmount.ToString();
 
 
             }

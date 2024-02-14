@@ -1,4 +1,5 @@
-﻿using SArtIntegration.qb.Manager.Api;
+﻿using Newtonsoft.Json;
+using SArtIntegration.qb.Manager.Api;
 using SArtIntegration.qb.Manager.Collection;
 using SArtIntegration.qb.Manager.Config;
 using SArtIntegration.qb.Manager.Helper;
@@ -249,14 +250,14 @@ namespace SArtIntegration.qb
                         {
                             request = new InvoiceSyncRequest
                             {
-                                IntegratedInvoices = new[]
+                                integratedInvoices = new[]
                                {
                         new IntegratedInvoice
                         {
-                            SuccessfullyIntegrated = true,
-                            InvoiceNumber = selectedInvoice.number,
-                            RemoteInvoiceNumber = transferResult.TxnId,
-                            ErrorMessage = transferResult.StatusMessage.ToString()
+                            successfullyIntegrated = true,
+                            invoiceNumber = selectedInvoice.number,
+                            remoteInvoiceNumber = transferResult.TxnId,
+                            errorMessage = transferResult.StatusMessage.ToString()
                         }
                         }
                             };
@@ -268,18 +269,20 @@ namespace SArtIntegration.qb
                         {
                             request = new InvoiceSyncRequest
                             {
-                                IntegratedInvoices = new[]
+                                integratedInvoices = new[]
                               {
                         new IntegratedInvoice
                         {
-                            SuccessfullyIntegrated = false,
-                            InvoiceNumber = selectedInvoice.documentNumber,
-                            RemoteInvoiceNumber = "",
-                            ErrorMessage = transferResult.StatusMessage.ToString()
+                            successfullyIntegrated = false,
+                            invoiceNumber = selectedInvoice.number,
+                            remoteInvoiceNumber = "",
+                            errorMessage = transferResult.StatusMessage.ToString()
                         }
                         }
                             };
                         }
+
+
 
                         var response = await ApiManager.PutAsync<InvoiceSyncRequest, InvoiceSyncResponse>(request, Configuration.GetUrl() + "sync-invoice-statuses");
                         #endregion

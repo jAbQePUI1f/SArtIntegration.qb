@@ -8,13 +8,13 @@ namespace SArtIntegration.qb.Models.Json
 {
     public class InvoiceSyncRequest
     {
-        public IntegratedInvoice[] IntegratedInvoices { get; set; }
+        public IntegratedInvoice[] integratedInvoices { get; set; }
         public class IntegratedInvoice
         {
-            public bool SuccessfullyIntegrated { get; set; }
-            public string InvoiceNumber { get; set; }
-            public string RemoteInvoiceNumber { get; set; }
-            public string ErrorMessage { get; set; }
+            public bool successfullyIntegrated { get; set; }
+            public string invoiceNumber { get; set; }
+            public string remoteInvoiceNumber { get; set; }
+            public string errorMessage { get; set; }
         }
     }
         
