@@ -61,7 +61,7 @@ namespace SArtIntegration.qb.Manager.Customer
             List<CustomerModelJson> customerList = new List<CustomerModelJson>();
 
 
-            foreach (var item in result.Take(1))
+            foreach (var item in result.Take(10))
             {
                 CustomerModelJson customerModel = new CustomerModelJson()
                 {
@@ -70,8 +70,8 @@ namespace SArtIntegration.qb.Manager.Customer
                     city = item.city,
                     country = item.country,
                     postalCode = item.postalCode,
-                    latitude = item.latitude,
-                    longitude = item.longitude,
+                    //latitude = item.latitude,
+                    //longitude = item.longitude,
                     companyName = item.companyName,
                     displayName = item.displayName,
                     id = item.id,
