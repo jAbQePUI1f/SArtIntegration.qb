@@ -14,6 +14,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -205,8 +206,6 @@ namespace SArtIntegration.qb
                 if (Convert.ToBoolean(row.Cells["chk"].Value))
                 {
 
-                    
-
                     if (operationType == DocumentType.InvoiceType)
                     {
                         string number = row.Cells["Number"].Value.ToString();
@@ -243,7 +242,7 @@ namespace SArtIntegration.qb
                         #endregion
 
                         #region Faturalar Başarılı/Başarısız İşaretle
-                        
+
                         InvoiceSyncRequest request = new InvoiceSyncRequest();
 
                         if (transferResult.TxnId != null)
@@ -282,9 +281,25 @@ namespace SArtIntegration.qb
                             };
                         }
 
+   //                     request = new InvoiceSyncRequest
+   //                     {
+   //                         integratedInvoices = new[]
+   //{
+   //     new IntegratedInvoice
+   //     {
+   //         successfullyIntegrated = false,
+   //         invoiceNumber = "SKNETE00024599",
+   //         remoteInvoiceNumber = "",
+   //         errorMessage = "System.NullReferenceException: Object reference not set to an instance of an object.170"
+   //     }
+   // }
+   //                     };
 
 
-                        var response = await ApiManager.PutAsync<InvoiceSyncRequest, InvoiceSyncResponse>(request, Configuration.GetUrl() + "sync-invoice-statuses");
+
+                        var response = await ApiManager.PutAsync<InvoiceSyncRequest, InvoiceSyncResponse>(request, Configuration.GetUrl() + "management/sync-invoice-statuses");
+
+
                         #endregion
 
                     }
@@ -343,7 +358,8 @@ namespace SArtIntegration.qb
                             };
                         }
 
-                        var response = await ApiManager.PutAsync<CollectionSyncRequest, CollectionSyncResponse>(request, Configuration.GetUrl() + "sync-collection-statuses");
+                        var response = await ApiManager.PutAsync<CollectionSyncRequest, CollectionSyncResponse>(request, Configuration.GetUrl() + "management/sync-collection-statuses");
+                       
                         #endregion
 
 
@@ -351,6 +367,7 @@ namespace SArtIntegration.qb
 
                 }
             }
+            MessageBox.Show("Transfer is Completed");
         }
 
         private void button1_Click(object sender, EventArgs e)

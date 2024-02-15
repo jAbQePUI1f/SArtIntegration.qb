@@ -93,7 +93,7 @@ namespace SArtIntegration.qb.Manager.Customer
             CustomerRequest customerRequest = new CustomerRequest();
             customerRequest.importCustomerFromQuickbooks = customerList.ToArray();
 
-            var response1 = ApiManager.SendRequestAsync<CustomerRequest, CustomerResponse>(customerRequest, Configuration.GetUrl() + "management/quick-books/customers?lang=tr");
+            var response1 = ApiManager.PostAsync<CustomerRequest, CustomerResponse>(Configuration.GetUrl() + "management/quick-books/customers?lang=tr", customerRequest);
 
             //string jsonResult = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             if (response1.Result.responseStatus == 200)
