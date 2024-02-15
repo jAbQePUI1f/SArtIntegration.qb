@@ -1,13 +1,8 @@
 ﻿using SArtIntegration.qb.Manager.Connect;
 using SArtIntegration.qb.Manager.Helper;
 using SArtIntegration.qb.Models;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace SArtIntegration.qb.Manager.Stock

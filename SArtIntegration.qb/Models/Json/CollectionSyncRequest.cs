@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SArtIntegration.qb.Models.Json
+﻿namespace SArtIntegration.qb.Models.Json
 {
     public class CollectionSyncRequest
     {
         public IntegratedCollection[] integratedCollections { get; set; }
         public class IntegratedCollection
         {
-            public long customerFinancialTransactionId { get; set; }
-            public bool synced { get; set; }
-            public string message { get; set; }
+            public string ficheNo { get; set; }
+            public bool successfullyIntegrated { get; set; }
+            public string remoteCollectionNumber { get; set; }
+            public string errorMessage { get; set; }
         }
     }
 }
