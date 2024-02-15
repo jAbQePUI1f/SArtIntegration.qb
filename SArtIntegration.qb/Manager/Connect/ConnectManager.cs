@@ -1,10 +1,5 @@
 ﻿using Interop.QBXMLRP2;
 using SArtIntegration.qb.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SArtIntegration.qb.Manager.Connect
 {
