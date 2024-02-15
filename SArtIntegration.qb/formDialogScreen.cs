@@ -337,7 +337,7 @@ namespace SArtIntegration.qb
                              ficheNo=selectedCollection.ficheNo,
                              errorMessage=result.StatusMessage,
                              successfullyIntegrated=true,
-                             remoteCollectionNumber=collectionModels.AppliedTxnID
+                             remoteCollectionNumber=result.TxnId
 
                         }
                         }
