@@ -1,29 +1,15 @@
-﻿using Newtonsoft.Json;
-using SArtIntegration.qb.Manager.Api;
+﻿using SArtIntegration.qb.Manager.Api;
 using SArtIntegration.qb.Manager.Collection;
 using SArtIntegration.qb.Manager.Config;
-using SArtIntegration.qb.Manager.Helper;
 using SArtIntegration.qb.Manager.Invoice;
 using SArtIntegration.qb.Models;
 using SArtIntegration.qb.Models.Enums;
 using SArtIntegration.qb.Models.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using static SArtIntegration.qb.Models.Enums.DocumentTypes;
-using static SArtIntegration.qb.Models.Enums.InvoiceTypes;
-using static SArtIntegration.qb.Models.Enums.TransactionTypes;
 using static SArtIntegration.qb.Models.Json.CollectionSyncRequest;
 using static SArtIntegration.qb.Models.Json.InvoiceSyncRequest;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SArtIntegration.qb
 {
@@ -359,7 +345,7 @@ namespace SArtIntegration.qb
                             };
                         }
 
-                        var response = await ApiManager.PutAsync<CollectionSyncRequest, CollectionSyncResponse>(request, Configuration.GetUrl() + "management/sync-collection-statuses");
+                        var response = await ApiManager.PostAsync<CollectionSyncRequest, CollectionSyncResponse>(Configuration.GetUrl() + "management/sync-collection-statuses", request);
                        
                         #endregion
 
