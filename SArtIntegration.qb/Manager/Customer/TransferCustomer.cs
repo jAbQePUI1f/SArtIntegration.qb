@@ -69,7 +69,7 @@ namespace SArtIntegration.qb.Manager.Customer
             List<CustomerModelJson> customerList = new List<CustomerModelJson>();
 
 
-            foreach (var item in result)
+            foreach (var item in result.Take(1))
             {
                 CustomerModelJson customerModel = new CustomerModelJson()
                 {
