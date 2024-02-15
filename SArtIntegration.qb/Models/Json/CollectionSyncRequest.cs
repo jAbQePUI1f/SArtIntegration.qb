@@ -8,7 +8,7 @@ namespace SArtIntegration.qb.Models.Json
 {
     public class CollectionSyncRequest
     {
-        public IntegratedCollection[] IntegratedCollections { get; set; }
+        public IntegratedCollection[] integratedCollections { get; set; }
         public class IntegratedCollection
         {
             public long customerFinancialTransactionId { get; set; }

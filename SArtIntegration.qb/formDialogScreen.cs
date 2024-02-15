@@ -231,8 +231,8 @@ namespace SArtIntegration.qb
                                 ItemDesc = detailItem.code,
                                 ItemName = detailItem.code,
                                 Quantity = detailItem.quantity,
-                                TotalAmount = Convert.ToDecimal(detailItem.grossTotal),
-                                UnitPrice = Convert.ToDecimal(detailItem.price)
+                                TotalAmount = Convert.ToDecimal(detailItem.grossTotal.ToString("0.00")),
+                                UnitPrice = Convert.ToDecimal(detailItem.price.ToString("0.00"))
                             };
 
                             transferInvoice.LineModels.Add(lineModel);
@@ -315,9 +315,9 @@ namespace SArtIntegration.qb
                             Number = selectedCollection.documentNo,
                             TxnDate = selectedCollection.createDate.ToString(),
                             AppliedTxnID = selectedCollection.invoiceNo,
-                            AppliedPaymentAmount = selectedCollection.amount,
+                            AppliedPaymentAmount =Convert.ToDecimal(selectedCollection.amount.ToString("0.00")),
                             PaymentMethodName = selectedCollection.paymentName,
-                            TotalAmount = selectedCollection.amount
+                            TotalAmount = Convert.ToDecimal(selectedCollection.amount.ToString("0.00")),
                         };
 
                         var result = TransferCollection.BuildCollectionAddRqXML(collectionModels);
@@ -330,7 +330,7 @@ namespace SArtIntegration.qb
                         {
                             request = new CollectionSyncRequest
                             {
-                                IntegratedCollections = new[]
+                                integratedCollections = new[]
                                {
                         new IntegratedCollection
                         {
@@ -346,7 +346,7 @@ namespace SArtIntegration.qb
                         {
                             request = new CollectionSyncRequest
                             {
-                                IntegratedCollections = new[]
+                                integratedCollections = new[]
                               {
                         new IntegratedCollection
                         {
