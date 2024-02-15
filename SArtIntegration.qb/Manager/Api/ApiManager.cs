@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SArtIntegration.qb.Manager.Api
 {
-    public  class ApiManager
+    public class ApiManager
     {
 
 
@@ -24,17 +24,20 @@ namespace SArtIntegration.qb.Manager.Api
             for (int retryCount = 0; retryCount < maxRetryCount; retryCount++)
             {
                 // Serialize request body to JSON
-                string jsonRequestBody = JsonConvert.SerializeObject(request);
-
+                string jsonRequestBody = Newtonsoft.Json.JsonConvert.SerializeObject(request);
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                };
                 using (HttpClient client = new HttpClient())
                 {
                     // Add JWT token to request headers
                     client.DefaultRequestHeaders.Add("x-auth-token", $"Bearer {jwtToken}");
 
                     // Create HttpContent from JSON
-                    HttpContent content = new StringContent(jsonRequestBody, Encoding.UTF8, "application/json");
+                    HttpContent content = new StringContent(jsonRequestBody, System.Text.Encoding.UTF8, "application/json");
 
-                    // Make PUT request
+                    // Make POST request
                     HttpResponseMessage response = await client.PutAsync(apiUrl, content);
 
                     // Check if request is successful
@@ -42,10 +45,7 @@ namespace SArtIntegration.qb.Manager.Api
                     {
                         // Read response content as string
                         string responseContent = await response.Content.ReadAsStringAsync();
-
-                        // Deserialize response JSON to the specified type
-                        TResponse responseObject = JsonConvert.DeserializeObject<TResponse>(responseContent);
-
+                        TResponse responseObject = JsonConvert.DeserializeObject<TResponse>(responseContent, settings);
                         return responseObject;
                     }
                     else if (response.StatusCode == HttpStatusCode.Unauthorized) // Unauthorized hatası alındığında
@@ -63,14 +63,14 @@ namespace SArtIntegration.qb.Manager.Api
                     }
 
                     // Diğer hatalar için uyarı veya log işlemleri eklenebilir
-                    MessageBox.Show($"Token Error: {response.StatusCode} - {response.ReasonPhrase}");
-                    return default(TResponse);
+                    MessageBox.Show($"Token Error: {response.StatusCode} - {response.ReasonPhrase}");  //Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+                    return default; // veya isteğe bağlı olarak hata işleme stratejisi
                 }
             }
 
             // Retry limitine ulaşıldığında
             Console.WriteLine($"Error: Maximum retry limit reached");
-            return default(TResponse);
+            return default; // veya isteğe bağlı olarak hata işleme stratejisi
         }
 
         public static async Task<TResponse> SendRequestAsync<TRequest, TResponse>(TRequest request, string apiUrl)
@@ -194,6 +194,6 @@ namespace SArtIntegration.qb.Manager.Api
             return response.Token;
         }
 
-       
+
     }
 }

@@ -34,13 +34,13 @@ namespace SArtIntegration.qb
             var response = await LoginManager.LoginAsync("operasyon@arpaciogluavr.com", "Oa1234");//"operasyon@arpaciogluavr.com", "Oa1234"
 
 
-            var connectInfoQB = ConnectManager.ConnectToQB();
+            //var connectInfoQB = ConnectManager.ConnectToQB();
 
-            if (string.IsNullOrEmpty(connectInfoQB.Ticket))
-            {
-                MessageBox.Show("Quickbooks not open!! Pls Open the QuickBooks", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
+            //if (string.IsNullOrEmpty(connectInfoQB.Ticket))
+            //{
+            //    MessageBox.Show("Quickbooks not open!! Pls Open the QuickBooks", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    return;
+            //}
 
             if (!response.State)
             {
@@ -51,7 +51,7 @@ namespace SArtIntegration.qb
             UserSharedInfo.UserInfo.UserName = txtUserName.Text;
             UserSharedInfo.UserInfo.Password = txtPassword.Text;
             UserSharedInfo.UserInfo.Token = response.Token;
-            UserSharedInfo.UserInfo.QbConnectInfo = connectInfoQB;
+            //UserSharedInfo.UserInfo.QbConnectInfo = connectInfoQB;
 
             new mainScreen().Show();
             this.Hide();
