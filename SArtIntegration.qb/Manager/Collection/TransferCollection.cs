@@ -46,7 +46,7 @@ namespace SArtIntegration.qb.Manager.Collection
             receivePaymentAdd.AppendChild(TransferHelper.MakeSimpleElem(inputXMLDoc, "TxnDate", DateTime.Parse(collectionModels.TxnDate).ToString("yyyy-MM-dd")));
             //receivePaymentAdd.AppendChild(MakeSimpleElem(inputXMLDoc, "TxnDate", "2023-12-26"));
             receivePaymentAdd.AppendChild(TransferHelper.MakeSimpleElem(inputXMLDoc, "RefNumber", collectionModels.Number));
-            receivePaymentAdd.AppendChild(TransferHelper.MakeSimpleElem(inputXMLDoc, "TotalAmount", collectionModels.TotalAmount.ToString()));
+            receivePaymentAdd.AppendChild(TransferHelper.MakeSimpleElem(inputXMLDoc, "TotalAmount", collectionModels.TotalAmount.ToString().Replace(",",".")));
 
             
 
