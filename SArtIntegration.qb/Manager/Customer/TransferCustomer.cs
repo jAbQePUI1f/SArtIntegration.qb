@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography.Pkcs;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
-using Interop.QBXMLRP2;
-using Newtonsoft.Json;
-using SArtIntegration.qb.Manager.Api;
+﻿using SArtIntegration.qb.Manager.Api;
 using SArtIntegration.qb.Manager.Config;
 using SArtIntegration.qb.Manager.Connect;
 using SArtIntegration.qb.Manager.Helper;
 using SArtIntegration.qb.Models;
 using SArtIntegration.qb.Models.Json;
+using System.ComponentModel;
+using System.Data;
+using System.Reflection;
+using System.Xml;
 using static SArtIntegration.qb.Models.Json.CustomerRequest;
 
 namespace SArtIntegration.qb.Manager.Customer

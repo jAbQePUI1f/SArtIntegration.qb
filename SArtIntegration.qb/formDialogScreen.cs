@@ -334,9 +334,10 @@ namespace SArtIntegration.qb
                                {
                         new IntegratedCollection
                         {
-                             customerFinancialTransactionId=selectedCollection.customerFinancialTransactionId,
-                             message=result.StatusMessage,
-                              synced=true
+                             ficheNo=selectedCollection.ficheNo,
+                             errorMessage=result.StatusMessage,
+                             successfullyIntegrated=true,
+                             remoteCollectionNumber=result.TxnId
 
                         }
                         }
@@ -350,9 +351,9 @@ namespace SArtIntegration.qb
                               {
                         new IntegratedCollection
                         {
-                           customerFinancialTransactionId=selectedCollection.customerFinancialTransactionId,
-                             message=result.StatusMessage,
-                              synced=false
+                           ficheNo=selectedCollection.ficheNo,
+                           errorMessage=result.StatusMessage,
+                           successfullyIntegrated=false
                         }
                         }
                             };
@@ -369,7 +370,6 @@ namespace SArtIntegration.qb
             }
             MessageBox.Show("Transfer is Completed");
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();

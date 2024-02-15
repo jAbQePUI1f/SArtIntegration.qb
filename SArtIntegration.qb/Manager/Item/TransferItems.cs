@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using SArtIntegration.qb.Manager.Api;
+﻿using SArtIntegration.qb.Manager.Api;
 using SArtIntegration.qb.Manager.Config;
 using SArtIntegration.qb.Manager.Connect;
 using SArtIntegration.qb.Manager.Helper;
@@ -9,7 +8,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Reflection;
 using System.Xml;
-using static SArtIntegration.qb.Models.Json.CustomerRequest;
 using static SArtIntegration.qb.Models.Json.ProductRequest;
 
 namespace SArtIntegration.qb.Manager.Item
