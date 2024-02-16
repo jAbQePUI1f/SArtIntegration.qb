@@ -85,38 +85,46 @@ namespace SArtIntegration.qb.Manager.Api
 
                     // Create HttpContent from JSON
                     HttpContent content = new StringContent(jsonRequestBody, Encoding.UTF8, "application/json");
-
-                    // Make PUT request
-                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-
-                    // Check if request is successful
-                    if (response.IsSuccessStatusCode)
+                    try
                     {
-                        // Read response content as string
-                        string responseContent = await response.Content.ReadAsStringAsync();
+                        // Make PUT request
+                        HttpResponseMessage response = await client.PostAsync(apiUrl, content);
 
-                        // Deserialize response JSON to the specified type
-                        TResponse responseObject = JsonConvert.DeserializeObject<TResponse>(responseContent);
 
-                        return responseObject;
-                    }
-                    else if (response.StatusCode == HttpStatusCode.Unauthorized) // Unauthorized hatası alındığında
-                    {
-                        // Burada kullanıcı kimlik doğrulama işlemlerini gerçekleştirmeniz gerekecek
-                        // Bu örnekte varsayılan bir sınıf kullanılıyor, gerçek duruma göre uyarlayın
-                        var newToken = await AuthenticateAndGetToken();
 
-                        // Eğer yeni bir token alındıysa, yeni token ile tekrar deneme yapın
-                        if (!string.IsNullOrEmpty(newToken))
+                        // Check if request is successful
+                        if (response.IsSuccessStatusCode)
                         {
-                            jwtToken = newToken;
-                            continue; // Retry
-                        }
-                    }
+                            // Read response content as string
+                            string responseContent = await response.Content.ReadAsStringAsync();
 
-                    // Diğer hatalar için uyarı veya log işlemleri eklenebilir
-                    MessageBox.Show($"Token Error: {response.StatusCode} - {response.ReasonPhrase}");
-                    return default(TResponse);
+                            // Deserialize response JSON to the specified type
+                            TResponse responseObject = JsonConvert.DeserializeObject<TResponse>(responseContent);
+
+                            return responseObject;
+                        }
+                        else if (response.StatusCode == HttpStatusCode.Unauthorized) // Unauthorized hatası alındığında
+                        {
+                            // Burada kullanıcı kimlik doğrulama işlemlerini gerçekleştirmeniz gerekecek
+                            // Bu örnekte varsayılan bir sınıf kullanılıyor, gerçek duruma göre uyarlayın
+                            var newToken = await AuthenticateAndGetToken();
+
+                            // Eğer yeni bir token alındıysa, yeni token ile tekrar deneme yapın
+                            if (!string.IsNullOrEmpty(newToken))
+                            {
+                                jwtToken = newToken;
+                                continue; // Retry
+                            }
+                        }
+
+                        // Diğer hatalar için uyarı veya log işlemleri eklenebilir
+                        MessageBox.Show($"Token Error: {response.StatusCode} - {response.ReasonPhrase}");
+                        return default(TResponse);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
             }
 
@@ -182,6 +190,7 @@ namespace SArtIntegration.qb.Manager.Api
             return default; // veya isteğe bağlı olarak hata işleme stratejisi
         }
 
+       
         private static async Task<string> AuthenticateAndGetToken()
         {
             var response = await LoginManager.LoginAsync(UserSharedInfo.UserInfo.UserName, UserSharedInfo.UserInfo.Password);

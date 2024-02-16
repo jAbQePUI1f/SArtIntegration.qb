@@ -15,7 +15,7 @@ namespace SArtIntegration.qb.Manager.Customer
     public class TransferCustomer
     {
 
-        public static void LoadCustomer()
+        public static async void LoadCustomer()
         {
             //var connectDbResult = ConnectManager.ConnectToQB();
 
@@ -26,7 +26,7 @@ namespace SArtIntegration.qb.Manager.Customer
             //    importCustomerFromQuickbooks = new[]
             //    {
             //        new CustomerModelJson {
-            //           id=10,
+            //           id="1001",
             //        title = "Ms.1",
             //    displayName = "Jane Smith1",
             //    companyName = "XYZ Corp.1",
@@ -35,8 +35,6 @@ namespace SArtIntegration.qb.Manager.Customer
             //    city = "Othertown1",
             //    country = "USA1",
             //    postalCode = "34500",
-            //    latitude = "",
-            //    longitude = "",
             //    balance = Convert.ToDecimal("5.5"),
             //         }
             //    }
@@ -45,7 +43,7 @@ namespace SArtIntegration.qb.Manager.Customer
 
 
 
-            //var response1 = ApiManager.SendRequestAsync<CustomerRequest, CustomerResponse>(customer1, Configuration.GetUrl() + "management/quick-books/customers?lang=tr");
+            //var response2 =await  ApiManager.PostAsync<CustomerRequest, CustomerResponse>(Configuration.GetUrl() + "management/quick-books/customers?lang=tr", customer1);
 
 
 
@@ -85,10 +83,10 @@ namespace SArtIntegration.qb.Manager.Customer
             CustomerRequest customerRequest = new CustomerRequest();
             customerRequest.importCustomerFromQuickbooks = customerList.ToArray();
 
-            var response1 = ApiManager.PostAsync<CustomerRequest, CustomerResponse>(Configuration.GetUrl() + "management/quick-books/customers?lang=tr", customerRequest);
+            var response1 =await ApiManager.PostAsync<CustomerRequest, CustomerResponse>(Configuration.GetUrl() + "management/quick-books/customers?lang=tr", customerRequest);
 
             //string jsonResult = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
-            if (response1.Result.responseStatus == 200)
+            if (response1.responseStatus == 200)
             {
                 MessageBox.Show("Customers add Succesfully");
 
