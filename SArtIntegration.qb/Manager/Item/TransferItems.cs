@@ -17,32 +17,32 @@ namespace SArtIntegration.qb.Manager.Item
 
 
 
-        public static void LoadItems()
+        public static async void LoadItems()
         {
 
-            var customer1 = new ProductRequest
-            {
-                importProductFromQuickbooks = new[]
-               {
-                    new ProductModelJson {
-                       id="10",
-                     name = "New",
-                 description = "new new ",
-                 fullyQualifiedName = "new2",
-                taxable = false,
-                 active = true,
-                 type = "Inventory",
-                 purchaseCost =Convert.ToDecimal("5.5"),
-                 unitPrice = Convert.ToDecimal("10.5"),
-                 stock=Convert.ToDecimal("10"),
-                     }
-                }
+            //var customer1 = new ProductRequest
+            //{
+            //    importProductFromQuickbooks = new[]
+            //   {
+            //        new ProductModelJson {
+            //           id="11111",
+            //         name = "New",
+            //     description = "new new ",
+            //     fullyQualifiedName = "new2",
+            //    taxable = false,
+            //     active = true,
+            //     type = "Inventory",
+            //     purchaseCost =Convert.ToDecimal("5.5"),
+            //     unitPrice = Convert.ToDecimal("10.5"),
+            //     stock=Convert.ToDecimal("10"),
+            //         }
+            //    }
 
-            };
+            //};
 
 
 
-            //var response1 = ApiManager.SendRequestAsync<ProductRequest, ProductResponse>(customer1, Configuration.GetUrl() + "management/quick-books/products?lang=tr");
+            //var response2 =await ApiManager.PostAsync<ProductRequest, ProductResponse>(Configuration.GetUrl() + "management/quick-books/products?lang=tr", customer1);
 
 
 
@@ -87,10 +87,10 @@ namespace SArtIntegration.qb.Manager.Item
             ProductRequest productRequest = new ProductRequest();
             productRequest.importProductFromQuickbooks = productList.ToArray();
 
-            var response1 = ApiManager.PostAsync<ProductRequest, ProductResponse>(Configuration.GetUrl() + "management/quick-books/products?lang=tr",productRequest);
+            var response1 = await ApiManager.PostAsync<ProductRequest, ProductResponse>(Configuration.GetUrl() + "management/quick-books/products?lang=tr",productRequest);
 
             //string jsonResult = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
-            if (response1.Result.responseStatus == 200)
+            if (response1.responseStatus == 200)
             {
                 MessageBox.Show("Products add Succesfully");
 
