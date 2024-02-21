@@ -7,8 +7,7 @@ using System.Xml;
 namespace SArtIntegration.qb.Manager.Invoice
 {
     public class TransferInvoice
-    {
-       
+    {       
         public static ResponseInvoiceModels BuildInvoiceAddRqXML(TransferInvoiceModels transferInvoice)
         {
             //var connectDbResult = ConnectManager.ConnectToQB();
@@ -34,7 +33,7 @@ namespace SArtIntegration.qb.Manager.Invoice
                 Element_CustomerRef.AppendChild(Element_CustomerRef_FullName).InnerText = transferInvoice.CustomerName;
             }
 
-            // TxnDate Fatura TArihi
+            // TxnDate Invoice Date
             DateTime DT_TxnDate = System.DateTime.Today;
             if (transferInvoice.TxnDate != "")
             {
@@ -89,8 +88,6 @@ namespace SArtIntegration.qb.Manager.Invoice
                 InvoiceAdd.AppendChild(Element_DueDate).InnerText = DueDate;
             }
 
-
-
             //Line Items
             XmlElement Element_InvoiceLineAdd;
             // ABD bölgesel ayarlarını oluşturmak için "en-US" kültürünü kullanın
@@ -98,7 +95,6 @@ namespace SArtIntegration.qb.Manager.Invoice
 
             // ABD bölgesel ayarlarını kullanan bir sayı biçimlendirici oluşturun
             NumberFormatInfo usNumberFormat = usCulture.NumberFormat;
-
 
             foreach (var item in transferInvoice.LineModels)
             {
@@ -137,7 +133,6 @@ namespace SArtIntegration.qb.Manager.Invoice
         {
             ResponseInvoiceModels response = new ResponseInvoiceModels();
 
-
             if (requestXML == null)
             {
                 response.StatusMessage = "One of the input is missing. Double-check your entries and then click Save again.";
@@ -172,9 +167,7 @@ namespace SArtIntegration.qb.Manager.Invoice
             }
 
             return response;
-        }
-
-     
+        }     
 
         #region helper
         private static string getDateString(DateTime dt)

@@ -8,9 +8,6 @@ namespace SArtIntegration.qb.Manager.Api
 {
     public class ApiManager
     {
-
-
-
         public static async Task<TResponse> PutAsync<TRequest, TResponse>(TRequest request, string apiUrl)
         {
             int maxRetryCount = 3; // Tekrar deneme limiti
@@ -56,18 +53,15 @@ namespace SArtIntegration.qb.Manager.Api
                             continue; // Retry
                         }
                     }
-
                     // Diğer hatalar için uyarı veya log işlemleri eklenebilir
                     MessageBox.Show($"Token Error: {response.StatusCode} - {response.ReasonPhrase}");  //Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
                     return default; // veya isteğe bağlı olarak hata işleme stratejisi
                 }
             }
-
             // Retry limitine ulaşıldığında
             Console.WriteLine($"Error: Maximum retry limit reached");
             return default; // veya isteğe bağlı olarak hata işleme stratejisi
         }
-
         public static async Task<TResponse> SendRequestAsync<TRequest, TResponse>(TRequest request, string apiUrl)
         {
             int maxRetryCount = 3; // Tekrar deneme limiti
@@ -89,8 +83,6 @@ namespace SArtIntegration.qb.Manager.Api
                     {
                         // Make PUT request
                         HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-
-
 
                         // Check if request is successful
                         if (response.IsSuccessStatusCode)
@@ -116,7 +108,6 @@ namespace SArtIntegration.qb.Manager.Api
                                 continue; // Retry
                             }
                         }
-
                         // Diğer hatalar için uyarı veya log işlemleri eklenebilir
                         MessageBox.Show($"Token Error: {response.StatusCode} - {response.ReasonPhrase}");
                         return default(TResponse);
@@ -127,12 +118,10 @@ namespace SArtIntegration.qb.Manager.Api
                     }
                 }
             }
-
             // Retry limitine ulaşıldığında
             Console.WriteLine($"Error: Maximum retry limit reached");
             return default(TResponse);
         }
-
         public static async Task<TResponse> PostAsync<TRequest, TResponse>(string apiUrl, TRequest requestBody)
         {
             int maxRetryCount = 3; // Tekrar deneme limiti
@@ -189,15 +178,11 @@ namespace SArtIntegration.qb.Manager.Api
             Console.WriteLine($"Error: Maximum retry limit reached");
             return default; // veya isteğe bağlı olarak hata işleme stratejisi
         }
-
-       
         private static async Task<string> AuthenticateAndGetToken()
         {
             var response = await LoginManager.LoginAsync(UserSharedInfo.UserInfo.UserName, UserSharedInfo.UserInfo.Password);
 
             return response.Token;
         }
-
-
     }
 }

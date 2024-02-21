@@ -14,12 +14,9 @@ namespace SArtIntegration.qb.Manager.Item
 {
     public class TransferItems
     {
-
-
-
         public static async void LoadItems()
         {
-
+            #region -- let me check
             //var customer1 = new ProductRequest
             //{
             //    importProductFromQuickbooks = new[]
@@ -40,13 +37,10 @@ namespace SArtIntegration.qb.Manager.Item
 
             //};
 
-
-
             //var response2 =await ApiManager.PostAsync<ProductRequest, ProductResponse>(Configuration.GetUrl() + "management/quick-books/products?lang=tr", customer1);
 
-
-
             //var connectInfo = ConnectManager.ConnectToQB();
+            #endregion
 
             string[] includeRetElements = typeof(ItemModels)
                                   .GetProperties()
@@ -57,13 +51,9 @@ namespace SArtIntegration.qb.Manager.Item
 
             string response = ConnectManager.ProcessRequestFromQB(UserSharedInfo.GetConnectInfo(), BuildItemQueryRqXML(includeRetElements, null, UserSharedInfo.GetConnectInfo().MaxVersion));
 
-
-
             var result = ParseItemQueryRs(response);
 
-
             List<ProductModelJson> productList = new List<ProductModelJson>();
-
 
             foreach (var item in result)
             {
@@ -87,7 +77,7 @@ namespace SArtIntegration.qb.Manager.Item
             ProductRequest productRequest = new ProductRequest();
             productRequest.importProductFromQuickbooks = productList.ToArray();
 
-            var response1 = await ApiManager.PostAsync<ProductRequest, ProductResponse>(Configuration.GetUrl() + "management/quick-books/products?lang=tr",productRequest);
+            var response1 = await ApiManager.PostAsync<ProductRequest, ProductResponse>(Configuration.GetUrl() + "management/quick-books/products?lang=tr", productRequest);
 
             //string jsonResult = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             if (response1.responseStatus == 200)
@@ -96,9 +86,7 @@ namespace SArtIntegration.qb.Manager.Item
 
             }
 
-
-            ConnectManager.DisconnectFromQB(UserSharedInfo.GetConnectInfo());
-
+            //ConnectManager.DisconnectFromQB(UserSharedInfo.GetConnectInfo());
 
         }
         private static string BuildItemQueryRqXML(string[] includeRetElement, string itemName, string maxVersion)
@@ -124,7 +112,6 @@ namespace SArtIntegration.qb.Manager.Item
             xml = xmlDoc.OuterXml;
             return xml;
         }
-
         private static List<ItemModels> ParseItemQueryRs(string response)
         {
             List<ItemModels> models = new List<ItemModels>();
@@ -133,24 +120,22 @@ namespace SArtIntegration.qb.Manager.Item
 
             XmlNodeList itemNodes = xmlDoc.SelectNodes("//ItemQueryRs/*[self::ItemInventoryRet or self::ItemServiceRet]");////ItemInventoryQueryRs/ItemInventoryRet
 
-
-
             foreach (XmlNode itemNode in itemNodes)
             {
-                ItemModels ıtem = new ItemModels();
+                ItemModels itemModels = new ItemModels();
 
-                ıtem.description = itemNode.SelectSingleNode("SalesDesc")?.InnerText ?? "";
-                ıtem.purchaseCost = itemNode.SelectSingleNode("PurchaseCost") != null ? Convert.ToDecimal(itemNode.SelectSingleNode("PurchaseCost").InnerText) : 0.00m;
-                ıtem.taxable = false;
-                ıtem.stock = itemNode.SelectSingleNode("QuantityOnHand") != null ? Convert.ToDecimal(itemNode.SelectSingleNode("QuantityOnHand").InnerText) : 0.00m;
-                ıtem.name = itemNode.SelectSingleNode("Name")?.InnerText ?? "";
-                ıtem.active = Convert.ToBoolean(itemNode.SelectSingleNode("IsActive").InnerText);
-                ıtem.fullyQualifiedName = itemNode.SelectSingleNode("FullName")?.InnerText ?? "";
-                ıtem.id = itemNode.SelectSingleNode("ListID")?.InnerText ?? "";
-                ıtem.unitPrice = itemNode.SelectSingleNode("SalesPrice") != null ? Convert.ToDecimal(itemNode.SelectSingleNode("SalesPrice").InnerText) : 0.00m;
-                ıtem.type = "";
+                itemModels.description = itemNode.SelectSingleNode("SalesDesc")?.InnerText ?? "";
+                itemModels.purchaseCost = itemNode.SelectSingleNode("PurchaseCost") != null ? Convert.ToDecimal(itemNode.SelectSingleNode("PurchaseCost").InnerText) : 0.00m;
+                itemModels.taxable = false;
+                itemModels.stock = itemNode.SelectSingleNode("QuantityOnHand") != null ? Convert.ToDecimal(itemNode.SelectSingleNode("QuantityOnHand").InnerText) : 0.00m;
+                itemModels.name = itemNode.SelectSingleNode("Name")?.InnerText ?? "";
+                itemModels.active = Convert.ToBoolean(itemNode.SelectSingleNode("IsActive").InnerText);
+                itemModels.fullyQualifiedName = itemNode.SelectSingleNode("FullName")?.InnerText ?? "";
+                itemModels.id = itemNode.SelectSingleNode("ListID")?.InnerText ?? "";
+                itemModels.unitPrice = itemNode.SelectSingleNode("SalesPrice") != null ? Convert.ToDecimal(itemNode.SelectSingleNode("SalesPrice").InnerText) : 0.00m;
+                itemModels.type = itemNode.Name == "ItemInventoryRet" ? "INVENTORY" : "SERVICE";
 
-                models.Add(ıtem);
+                models.Add(itemModels);
             }
 
             return models;

@@ -14,9 +14,9 @@ namespace SArtIntegration.qb.Manager.Customer
 {
     public class TransferCustomer
     {
-
         public static async void LoadCustomer()
         {
+            #region -- let me check 2
             //var connectDbResult = ConnectManager.ConnectToQB();
 
             //CustomersModels customers = new();
@@ -41,25 +41,21 @@ namespace SArtIntegration.qb.Manager.Customer
 
             //};
 
-
-
             //var response2 =await  ApiManager.PostAsync<CustomerRequest, CustomerResponse>(Configuration.GetUrl() + "management/quick-books/customers?lang=tr", customer1);
-
-
+            #endregion
 
             string[] includeRetElements = typeof(CustomersModels)
                                      .GetProperties()
                                      .Select(p => GetDisplayName(p))
                                      .ToArray();
 
-
-            string response = ConnectManager.ProcessRequestFromQB(UserSharedInfo.GetConnectInfo(), BuildCustomerQueryRqXML(includeRetElements, null, UserSharedInfo.GetConnectInfo().MaxVersion));
+            string response = ConnectManager.ProcessRequestFromQB(UserSharedInfo.GetConnectInfo(), 
+                BuildCustomerQueryRqXML(includeRetElements, null, UserSharedInfo.GetConnectInfo().MaxVersion));
 
             var result = ParseCustomerQueryRs(response);
             List<CustomerModelJson> customerList = new List<CustomerModelJson>();
 
-
-            foreach (var item in result.Take(10))
+            foreach (var item in result)
             {
                 CustomerModelJson customerModel = new CustomerModelJson()
                 {
@@ -68,8 +64,10 @@ namespace SArtIntegration.qb.Manager.Customer
                     city = item.city,
                     country = item.country,
                     postalCode = item.postalCode,
+                    #region -- Customer Location Info
                     //latitude = item.latitude,
                     //longitude = item.longitude,
+                    #endregion
                     companyName = item.companyName,
                     displayName = item.displayName,
                     id = item.id,
@@ -82,7 +80,6 @@ namespace SArtIntegration.qb.Manager.Customer
 
             CustomerRequest customerRequest = new CustomerRequest();
             customerRequest.importCustomerFromQuickbooks = customerList.ToArray();
-
             var response1 =await ApiManager.PostAsync<CustomerRequest, CustomerResponse>(Configuration.GetUrl() + "management/quick-books/customers?lang=tr", customerRequest);
 
             //string jsonResult = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
@@ -91,9 +88,7 @@ namespace SArtIntegration.qb.Manager.Customer
                 MessageBox.Show("Customers add Succesfully");
 
             }
-
-            ConnectManager.DisconnectFromQB(UserSharedInfo.GetConnectInfo());
-
+            //ConnectManager.DisconnectFromQB(UserSharedInfo.GetConnectInfo());
         }
         private static string BuildCustomerQueryRqXML(string[] includeRetElement, string fullName, string maxVersion)
         {
@@ -116,7 +111,6 @@ namespace SArtIntegration.qb.Manager.Customer
             string xml = xmlDoc.OuterXml;
             return xml;
         }
-
         private static List<CustomersModels> ParseCustomerQueryRs(string response)
         {
             XmlDocument xmlDoc = new();
@@ -133,16 +127,11 @@ namespace SArtIntegration.qb.Manager.Customer
                 };
 
                 XmlNode billAddressNode = customerNode.SelectSingleNode("BillAddress");
-
                 customers.addLine1 = billAddressNode.SelectSingleNode("Addr1")?.InnerText ?? "" + " " + billAddressNode.SelectSingleNode("Addr2")?.InnerText ?? "";
                 customers.city = billAddressNode.SelectSingleNode("City")?.InnerText ?? "";
                 customers.country = billAddressNode.SelectSingleNode("Country")?.InnerText ?? "";
                 customers.postalCode = billAddressNode.SelectSingleNode("PostalCode")?.InnerText ?? "";
-
-
-
                 customers.balance = customerNode.SelectSingleNode("Balance") != null ? Convert.ToDecimal(customerNode.SelectSingleNode("Balance").InnerText) : 0.00m;
-
                 customers.title = customerNode.SelectSingleNode("JobTitle")?.InnerText ?? "";
                 customers.latitude = "";
                 customers.longitude = "";

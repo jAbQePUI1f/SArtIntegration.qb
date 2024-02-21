@@ -1,10 +1,4 @@
 ﻿using SArtIntegration.qb.Models.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static SArtIntegration.qb.Models.Json.InvoiceModelJson;
 
 namespace SArtIntegration.qb.Models.Json
 {
@@ -35,7 +29,6 @@ namespace SArtIntegration.qb.Models.Json
             public string warehouseName { get; set; }
             public CollectionDetail detail { get; set; }
         }
-
         public class CollectionDetail
         {
             public string checkNo { get; set; }

@@ -10,7 +10,6 @@ namespace SArtIntegration.qb
         [STAThread]
         static void Main()
         {
-
             bool openedApp = false;
             Mutex m = new Mutex(true, "PacketService", out openedApp);
             if (openedApp)
@@ -22,12 +21,8 @@ namespace SArtIntegration.qb
             }
             else
             {
-                MessageBox.Show("Invoice Integrator zaten çalýþýyor!", "Uyarý", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Integrator is already running!", "Uyarý", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
-
-
         }
     }
 }

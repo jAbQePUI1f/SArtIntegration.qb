@@ -53,7 +53,7 @@
             bttnTransferCollection.HighEmphasis = true;
             bttnTransferCollection.Icon = null;
             bttnTransferCollection.Location = new Point(216, 93);
-            bttnTransferCollection.Margin = new Padding(4, 4, 4, 4);
+            bttnTransferCollection.Margin = new Padding(4);
             bttnTransferCollection.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferCollection.Name = "bttnTransferCollection";
             bttnTransferCollection.NoAccentTextColor = Color.Empty;
@@ -74,7 +74,7 @@
             bttnTransferInvoice.HighEmphasis = true;
             bttnTransferInvoice.Icon = null;
             bttnTransferInvoice.Location = new Point(216, 33);
-            bttnTransferInvoice.Margin = new Padding(4, 4, 4, 4);
+            bttnTransferInvoice.Margin = new Padding(4);
             bttnTransferInvoice.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferInvoice.Name = "bttnTransferInvoice";
             bttnTransferInvoice.NoAccentTextColor = Color.Empty;
@@ -168,19 +168,19 @@
             menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { geriDönToolStripMenuItem, çıkışToolStripMenuItem });
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
             menüToolStripMenuItem.Size = new Size(50, 20);
-            menüToolStripMenuItem.Text = "Menü";
+            menüToolStripMenuItem.Text = "Menu";
             // 
             // geriDönToolStripMenuItem
             // 
             geriDönToolStripMenuItem.Name = "geriDönToolStripMenuItem";
-            geriDönToolStripMenuItem.Size = new Size(121, 22);
-            geriDönToolStripMenuItem.Text = "Geri Dön";
+            geriDönToolStripMenuItem.Size = new Size(180, 22);
+            geriDönToolStripMenuItem.Text = "Back Return";
             // 
             // çıkışToolStripMenuItem
             // 
             çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
-            çıkışToolStripMenuItem.Size = new Size(121, 22);
-            çıkışToolStripMenuItem.Text = "Çıkış";
+            çıkışToolStripMenuItem.Size = new Size(180, 22);
+            çıkışToolStripMenuItem.Text = "Exit";
             çıkışToolStripMenuItem.Click += çıkışToolStripMenuItem_Click;
             // 
             // mainScreen
