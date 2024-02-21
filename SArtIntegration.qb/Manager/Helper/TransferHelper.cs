@@ -68,7 +68,6 @@ namespace SArtIntegration.qb.Manager.Helper
 
             return stringArray.ToArray();
         }
-
         public static string GetMessages(this List<string> list)
         {
             string msg = "";
@@ -84,7 +83,6 @@ namespace SArtIntegration.qb.Manager.Helper
                     msg += item;
                 }
             }
-
 
             return msg;
         }

@@ -46,14 +46,14 @@ namespace SArtIntegration.qb.Manager.Login
             if (tokenResult == null)
             {
                 model.State = false;
-                model.Messages.Add("Kullanıcı bilgisi alınamadı");
+                model.Messages.Add("User token information could not be obtained");
                 return model;
             }
 
             if (string.IsNullOrEmpty(tokenResult.Result.Token))
             {
                 model.State = false;
-                model.Messages.Add("Kullanıcı bilgisi alınamadı");
+                model.Messages.Add("User token information could not be obtained x2");
                 return model;
             }
 
@@ -130,9 +130,6 @@ namespace SArtIntegration.qb.Manager.Login
                 result.Messages.Add(ex.Message.ToString());
                 return result;
             }
-
-
-
             return result;
         }
 

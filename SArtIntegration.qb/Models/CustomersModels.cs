@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static SArtIntegration.qb.Models.Json.InvoiceSyncRequest;
+﻿using System.ComponentModel;
 
 namespace SArtIntegration.qb.Models
 {
-
     public class CustomersModels
     {
         [DisplayName("ListID")]
@@ -22,7 +15,6 @@ namespace SArtIntegration.qb.Models
 
         [DisplayName("CompanyName")]
         public string companyName { get; set; }
-
         public bool taxable { get; set; }
 
         [DisplayName("BillAddress")]
@@ -36,12 +28,10 @@ namespace SArtIntegration.qb.Models
         [DisplayName("PostalCode")]
         public string postalCode { get; set; }
         public string latitude { get; set; }
-
         public string longitude { get; set; }
 
         [DisplayName("Balance")]
         public decimal balance { get; set; }
-
     }
     public class Address
     {

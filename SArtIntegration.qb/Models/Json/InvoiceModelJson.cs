@@ -1,9 +1,4 @@
 ﻿using SArtIntegration.qb.Models.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SArtIntegration.qb.Models.Json
 {
@@ -30,7 +25,6 @@ namespace SArtIntegration.qb.Models.Json
             public string lineType { get; set; }
             public List<object> campaignRewards { get; set; }
         }
-
         public class InvoiceHeader
         {
             public long invoiceId { get; set; }
@@ -63,7 +57,5 @@ namespace SArtIntegration.qb.Models.Json
             public List<InvoiceDetail> details { get; set; }
             public bool ebillCustomer { get; set; }
         }
-
-
     }
 }

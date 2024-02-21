@@ -1,30 +1,7 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using SArtIntegration.qb.Manager.Api;
-using SArtIntegration.qb.Manager.Collection;
-using SArtIntegration.qb.Manager.Config;
-using SArtIntegration.qb.Manager.Customer;
-using SArtIntegration.qb.Manager.Helper;
-using SArtIntegration.qb.Manager.Invoice;
+﻿using SArtIntegration.qb.Manager.Customer;
 using SArtIntegration.qb.Manager.Item;
-using SArtIntegration.qb.Models;
-using SArtIntegration.qb.Models.Enums;
-using SArtIntegration.qb.Models.Json;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.Xml;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using static SArtIntegration.qb.Models.Enums.DocumentTypes;
-using static SArtIntegration.qb.Models.Enums.InvoiceTypes;
-using static SArtIntegration.qb.Models.Enums.TransactionTypes;
-using static SArtIntegration.qb.Models.Json.CollectionSyncRequest;
-using static SArtIntegration.qb.Models.Json.InvoiceSyncRequest;
 
 namespace SArtIntegration.qb
 {

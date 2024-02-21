@@ -26,8 +26,6 @@ namespace SArtIntegration.qb.Models.Enums
             BANK_TRANSFER_PAYMENT,
             [Display(Name = "CASH_PAYMENT")]
             CASH_PAYMENT            
-
-
         }
     }
 }

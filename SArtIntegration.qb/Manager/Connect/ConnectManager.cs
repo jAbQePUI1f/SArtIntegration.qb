@@ -5,17 +5,14 @@ namespace SArtIntegration.qb.Manager.Connect
 {
     public class ConnectManager
     {
-
         private static readonly string appID = "SArt1";
         private static readonly string appName = "SalesArtIntegration";
-
         public static ConnectModels ConnectToQB()
         {
             try
             {
                 ConnectModels connectModels = new ConnectModels()
                 {
-
                     Rp = new RequestProcessor2() //new RequestProcessor2Class();
                 };
 
@@ -25,7 +22,6 @@ namespace SArtIntegration.qb.Manager.Connect
                 connectModels.MaxVersion = versions[versions.Length - 1];
 
                 return connectModels;
-
             }
             catch (Exception)
             {
@@ -33,8 +29,7 @@ namespace SArtIntegration.qb.Manager.Connect
                 connectModelss.Ticket = "";
 
                 return connectModelss;
-            }
-           
+            }          
         }
         public static void DisconnectFromQB(ConnectModels connect)
         {

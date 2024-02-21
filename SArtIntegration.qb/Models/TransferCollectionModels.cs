@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SArtIntegration.qb.Models
+﻿namespace SArtIntegration.qb.Models
 {
     public  class TransferCollectionModels
     {
@@ -15,7 +9,6 @@ namespace SArtIntegration.qb.Models
         public string? PaymentMethodName { get; set; }
         public string? AppliedTxnID { get; set; }
         public decimal AppliedPaymentAmount { get; set; }
-
     }
     public class ResponseCollectionModels
     {

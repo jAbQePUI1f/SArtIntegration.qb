@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace SArtIntegration.qb.Models
 {
@@ -26,9 +21,7 @@ namespace SArtIntegration.qb.Models
 
         [DisplayName("SalesPrice")]
         public decimal unitPrice { get; set; }
-
         public bool taxable { get; set; }
-
         public string type { get; set; }
 
         [DisplayName("IsActive")]
@@ -36,7 +29,5 @@ namespace SArtIntegration.qb.Models
 
         [DisplayName("QuantityOnHand")]
         public decimal stock { get; set; }
-
-
     }
 }

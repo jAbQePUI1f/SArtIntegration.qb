@@ -51,13 +51,8 @@ namespace SArtIntegration.qb
             comBoxDocument.DisplayMember = "Text";
             comBoxDocument.ValueMember = "Value";
         }
-
-
-
         private async void bttnGetData_Click(object sender, EventArgs e)
         {
-
-
             #region helper
 
 
@@ -113,7 +108,8 @@ namespace SArtIntegration.qb
 
                 };
 
-                collectionResponse = await ApiManager.PostAsync<CollectionRequest, CollectionModelJson>(Configuration.GetUrl() + "management/collections-for-erp", collectionRequest);
+                collectionResponse = await ApiManager.PostAsync<CollectionRequest,
+                    CollectionModelJson>(Configuration.GetUrl() + "management/collections-for-erp", collectionRequest);
 
 
                 List<DisplayCollectionInfo> displayInfoList = collectionResponse.data.Select(header => new DisplayCollectionInfo
@@ -128,11 +124,8 @@ namespace SArtIntegration.qb
                 }).ToList();
 
                 dataGridView1.DataSource = displayInfoList;
-
             }
-
         }
-
         private void chckAll_CheckedChanged(object sender, EventArgs e)
         {
             if (chckAll.Checked)
@@ -150,8 +143,6 @@ namespace SArtIntegration.qb
                 }
             }
         }
-
-
         private void comBoxDocument_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -172,10 +163,7 @@ namespace SArtIntegration.qb
                     // Burada seçilen metni kullanabilirsiniz
                 }
             }
-
-
         }
-
         private string GetEnumDisplayValue(Enum value)
         {
             var field = value.GetType().GetField(value.ToString());
@@ -183,12 +171,10 @@ namespace SArtIntegration.qb
 
             return displayAttribute == null ? value.ToString() : displayAttribute.Name;
         }
-
         private async void btnTransfer_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-
                 if (Convert.ToBoolean(row.Cells["chk"].Value))
                 {
 
@@ -196,7 +182,6 @@ namespace SArtIntegration.qb
                     {
                         string number = row.Cells["Number"].Value.ToString();
                         var selectedInvoice = invoiceResponse.data.FirstOrDefault(inv => inv.number == number);
-
 
                         #region Faturaları QB aktar
                         TransferInvoiceModels transferInvoice = new TransferInvoiceModels()
@@ -267,19 +252,19 @@ namespace SArtIntegration.qb
                             };
                         }
 
-   //                     request = new InvoiceSyncRequest
-   //                     {
-   //                         integratedInvoices = new[]
-   //{
-   //     new IntegratedInvoice
-   //     {
-   //         successfullyIntegrated = false,
-   //         invoiceNumber = "SKNETE00024599",
-   //         remoteInvoiceNumber = "",
-   //         errorMessage = "System.NullReferenceException: Object reference not set to an instance of an object.170"
-   //     }
-   // }
-   //                     };
+                        //                     request = new InvoiceSyncRequest
+                        //                     {
+                        //                         integratedInvoices = new[]
+                        //{
+                        //     new IntegratedInvoice
+                        //     {
+                        //         successfullyIntegrated = false,
+                        //         invoiceNumber = "SKNETE00024599",
+                        //         remoteInvoiceNumber = "",
+                        //         errorMessage = "System.NullReferenceException: Object reference not set to an instance of an object.170"
+                        //     }
+                        // }
+                        //                     };
 
 
 
@@ -301,7 +286,7 @@ namespace SArtIntegration.qb
                             Number = selectedCollection.documentNo,
                             TxnDate = selectedCollection.createDate.ToString(),
                             AppliedTxnID = selectedCollection.invoiceNo,
-                            AppliedPaymentAmount =Convert.ToDecimal(selectedCollection.amount.ToString("0.00")),
+                            AppliedPaymentAmount = Convert.ToDecimal(selectedCollection.amount.ToString("0.00")),
                             PaymentMethodName = selectedCollection.paymentName,
                             TotalAmount = Convert.ToDecimal(selectedCollection.amount.ToString("0.00")),
                         };
@@ -346,22 +331,22 @@ namespace SArtIntegration.qb
                         }
 
                         var response = await ApiManager.PostAsync<CollectionSyncRequest, CollectionSyncResponse>(Configuration.GetUrl() + "management/sync-collection-statuses", request);
-                       
+
                         #endregion
-
-
+                        
                     }
-
                 }
             }
             MessageBox.Show("Transfer is Completed");
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void geriDönToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-
             new mainScreen().Show();
         }
+        private void çıkışToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
-
 }

@@ -10,7 +10,6 @@ namespace SArtIntegration.qb.Manager.Collection
     {
         public static ResponseCollectionModels BuildCollectionAddRqXML(TransferCollectionModels  collectionModels)
         {
-
             // Ödeme eklemek için QBXML belgesi oluştur
             XmlDocument inputXMLDoc = new XmlDocument();
             inputXMLDoc.AppendChild(inputXMLDoc.CreateXmlDeclaration("1.0", "UTF-8", null));
@@ -41,9 +40,6 @@ namespace SArtIntegration.qb.Manager.Collection
             receivePaymentAdd.AppendChild(TransferHelper.MakeSimpleElem(inputXMLDoc, "RefNumber", collectionModels.Number));
             receivePaymentAdd.AppendChild(TransferHelper.MakeSimpleElem(inputXMLDoc, "TotalAmount", collectionModels.TotalAmount.ToString().Replace(",",".")));
 
-            
-
-
             // ödeme bir faturaya bağlayı yapılmayacak ise
             if (Configuration.getCollectionIsAutoApply() == "true")
             {
@@ -57,32 +53,27 @@ namespace SArtIntegration.qb.Manager.Collection
                 appliendtoTxnAdd.AppendChild(TransferHelper.MakeSimpleElem(inputXMLDoc, "PaymentAmount", collectionModels.AppliedPaymentAmount.ToString())); // Ödeme Yöntemi ListID'si
             }
 
+            #region -- let me check 3
             // Ödeme yöntemi referansı ekle
             //XmlElement paymentMethodRef = inputXMLDoc.CreateElement("PaymentMethodRef");
             //receivePaymentAdd.AppendChild(paymentMethodRef);
             //paymentMethodRef.AppendChild(MakeSimpleElem(inputXMLDoc, "FullName", "CASH")); // Ödeme Yöntemi ListID'si
-
-
             //// ARAccountRef ekle (isteğe bağlı)
             //XmlElement arAccountRef = inputXMLDoc.CreateElement("ARAccountRef");
             //receivePaymentAdd.AppendChild(arAccountRef);
             //arAccountRef.AppendChild(MakeSimpleElem(inputXMLDoc, "ListID", "200000-1011023419")); // Hesap ListID'si
-
             // Not (isteğe bağlı)
             //receivePaymentAdd.AppendChild(MakeSimpleElem(inputXMLDoc, "Memo", "Ödeme notu"));
-
             // İşlemi gerçekleştir
+            #endregion
+
             string input = inputXMLDoc.OuterXml;
-
             var responseModel = ResponseCollection(input);
-
             return responseModel;
-
         }
         public static ResponseCollectionModels ResponseCollection(string requestXML)
         {
             ResponseCollectionModels collectionModels = new();
-
 
             if (requestXML == null)
             {
@@ -110,13 +101,12 @@ namespace SArtIntegration.qb.Manager.Collection
                 collectionModels.TxnId = RsNodeListt.Item(0).SelectSingleNode("TxnID").InnerText;
                 //XmlNode txId = rsAttributess.GetNamedItem("TxnID");
                 //string bb = txId.Value;
-
             }
             catch (Exception ex)
             {
                 collectionModels.StatusMessage = ex.ToString();
             }
-
+            
             return collectionModels;
         }
     }

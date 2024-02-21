@@ -1,10 +1,8 @@
-﻿namespace SArtIntegration.qb.Models.Base
-{
+﻿namespace SArtIntegration.qb.Models.Base{
     public  class BaseResponseJson
     {
         public Message message { get; set; }
-        public int responseStatus { get; set; }
-        
+        public int responseStatus { get; set; }        
         public class Message
         {
             public string code { get; set; }
