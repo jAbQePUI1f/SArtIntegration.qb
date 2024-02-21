@@ -49,7 +49,7 @@ namespace SArtIntegration.qb.Manager.Customer
                                      .Select(p => GetDisplayName(p))
                                      .ToArray();
 
-            string response = ConnectManager.ProcessRequestFromQB(UserSharedInfo.GetConnectInfo(), 
+            string response = ConnectManager.ProcessRequestFromQB(UserSharedInfo.GetConnectInfo(),
                 BuildCustomerQueryRqXML(includeRetElements, null, UserSharedInfo.GetConnectInfo().MaxVersion));
 
             var result = ParseCustomerQueryRs(response);
@@ -80,7 +80,7 @@ namespace SArtIntegration.qb.Manager.Customer
 
             CustomerRequest customerRequest = new CustomerRequest();
             customerRequest.importCustomerFromQuickbooks = customerList.ToArray();
-            var response1 =await ApiManager.PostAsync<CustomerRequest, CustomerResponse>(Configuration.GetUrl() + "management/quick-books/customers?lang=tr", customerRequest);
+            var response1 = await ApiManager.PostAsync<CustomerRequest, CustomerResponse>(Configuration.GetUrl() + "management/quick-books/customers?lang=tr", customerRequest);
 
             //string jsonResult = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             if (response1.responseStatus == 200)
@@ -127,10 +127,21 @@ namespace SArtIntegration.qb.Manager.Customer
                 };
 
                 XmlNode billAddressNode = customerNode.SelectSingleNode("BillAddress");
-                customers.addLine1 = billAddressNode.SelectSingleNode("Addr1")?.InnerText ?? "" + " " + billAddressNode.SelectSingleNode("Addr2")?.InnerText ?? "";
-                customers.city = billAddressNode.SelectSingleNode("City")?.InnerText ?? "";
-                customers.country = billAddressNode.SelectSingleNode("Country")?.InnerText ?? "";
-                customers.postalCode = billAddressNode.SelectSingleNode("PostalCode")?.InnerText ?? "";
+                if (billAddressNode != null)
+                {
+                    customers.addLine1 = billAddressNode.SelectSingleNode("Addr1")?.InnerText ?? "" + " " + billAddressNode.SelectSingleNode("Addr2")?.InnerText ?? "";
+                    customers.city = billAddressNode.SelectSingleNode("City")?.InnerText ?? "";
+                    customers.country = billAddressNode.SelectSingleNode("Country")?.InnerText ?? "";
+                    customers.postalCode = billAddressNode.SelectSingleNode("PostalCode")?.InnerText ?? "";
+                }
+                else
+                {
+                    customers.addLine1 = "";
+                    customers.city = "";
+                    customers.country = "";
+                    customers.postalCode = "";
+                }
+
                 customers.balance = customerNode.SelectSingleNode("Balance") != null ? Convert.ToDecimal(customerNode.SelectSingleNode("Balance").InnerText) : 0.00m;
                 customers.title = customerNode.SelectSingleNode("JobTitle")?.InnerText ?? "";
                 customers.latitude = "";
