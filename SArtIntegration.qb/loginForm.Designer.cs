@@ -30,13 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(loginScreen));
             MenuCard = new MaterialSkin.Controls.MaterialCard();
+            lblLoginPage = new Label();
             txtPassword = new MaterialSkin.Controls.MaterialMaskedTextBox();
             txtUserName = new MaterialSkin.Controls.MaterialMaskedTextBox();
             lblUserPassword = new Label();
             lblUserName = new Label();
-            lblLoginPage = new Label();
             bttnLogin = new MaterialSkin.Controls.MaterialButton();
+            pictureBox1 = new PictureBox();
             MenuCard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // MenuCard
@@ -52,12 +54,23 @@
             MenuCard.Depth = 0;
             MenuCard.ForeColor = Color.FromArgb(222, 0, 0, 0);
             MenuCard.Location = new Point(23, 40);
-            MenuCard.Margin = new Padding(14, 14, 14, 14);
+            MenuCard.Margin = new Padding(14);
             MenuCard.MouseState = MaterialSkin.MouseState.HOVER;
             MenuCard.Name = "MenuCard";
-            MenuCard.Padding = new Padding(14, 14, 14, 14);
+            MenuCard.Padding = new Padding(14);
             MenuCard.Size = new Size(559, 344);
             MenuCard.TabIndex = 0;
+            // 
+            // lblLoginPage
+            // 
+            lblLoginPage.AutoSize = true;
+            lblLoginPage.Font = new Font("Segoe UI Semibold", 10.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblLoginPage.Location = new Point(-1, -1);
+            lblLoginPage.Name = "lblLoginPage";
+            lblLoginPage.Size = new Size(78, 19);
+            lblLoginPage.TabIndex = 1;
+            lblLoginPage.Text = "Login Page";
+            lblLoginPage.Click += lblLoginPage_Click;
             // 
             // txtPassword
             // 
@@ -163,17 +176,6 @@
             lblUserName.TabIndex = 4;
             lblUserName.Text = "Username :";
             // 
-            // lblLoginPage
-            // 
-            lblLoginPage.AutoSize = true;
-            lblLoginPage.Font = new Font("Segoe UI Semibold", 10.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lblLoginPage.Location = new Point(-1, -1);
-            lblLoginPage.Name = "lblLoginPage";
-            lblLoginPage.Size = new Size(78, 19);
-            lblLoginPage.TabIndex = 1;
-            lblLoginPage.Text = "Login Page";
-            lblLoginPage.Click += lblLoginPage_Click;
-            // 
             // bttnLogin
             // 
             bttnLogin.AutoSize = false;
@@ -182,12 +184,12 @@
             bttnLogin.Depth = 0;
             bttnLogin.HighEmphasis = true;
             bttnLogin.Icon = null;
-            bttnLogin.Location = new Point(229, 208);
+            bttnLogin.Location = new Point(204, 208);
             bttnLogin.Margin = new Padding(4, 6, 4, 6);
             bttnLogin.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogin.Name = "bttnLogin";
             bttnLogin.NoAccentTextColor = Color.Empty;
-            bttnLogin.Size = new Size(226, 49);
+            bttnLogin.Size = new Size(273, 49);
             bttnLogin.TabIndex = 0;
             bttnLogin.Text = "Login UP";
             bttnLogin.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -195,18 +197,31 @@
             bttnLogin.UseVisualStyleBackColor = true;
             bttnLogin.Click += bttnLogin_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.logo_1920;
+            pictureBox1.Location = new Point(23, 431);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(559, 50);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            // 
             // loginScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(605, 437);
+            ClientSize = new Size(605, 500);
+            Controls.Add(pictureBox1);
             Controls.Add(MenuCard);
             Icon = (Icon)resources.GetObject("$this.Icon");
             ImeMode = ImeMode.On;
+            MaximizeBox = false;
             Name = "loginScreen";
             Text = "SArtIntegration.qb";
             MenuCard.ResumeLayout(false);
             MenuCard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -221,5 +236,6 @@
         private Label lblUserName;
         private MaterialSkin.Controls.MaterialMaskedTextBox txtUserName;
         private MaterialSkin.Controls.MaterialMaskedTextBox txtPassword;
+        private PictureBox pictureBox1;
     }
 }

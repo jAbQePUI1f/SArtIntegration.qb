@@ -1,6 +1,5 @@
 ﻿using SArtIntegration.qb.Manager.Customer;
 using SArtIntegration.qb.Manager.Item;
-using System.ComponentModel;
 using static SArtIntegration.qb.Models.Enums.DocumentTypes;
 
 namespace SArtIntegration.qb
@@ -15,21 +14,16 @@ namespace SArtIntegration.qb
             _transferCustomer = new TransferCustomer();
             _transferItems = new TransferItems();
         }
-
         private void bttnTrsansferToCustomer_Click(object sender, EventArgs e)
         {
             TransferCustomer.LoadCustomer();
         }
-
         private void bttnTransferToItems_Click(object sender, EventArgs e)
         {
             TransferItems.LoadItems();
         }
-
         private async void bttnTransferInvoice_Click(object sender, EventArgs e)
         {
-
-
             formDialogScreen frmDialog = new formDialogScreen(DocumentType.InvoiceType);
             frmDialog.ShowDialog();
             this.Close();
@@ -149,9 +143,10 @@ namespace SArtIntegration.qb
             //var collectionResponse = await ApiManager.PostAsync<CollectionRequest, CollectionModelJson>(Configuration.GetUrl() + "management/collections-for-erp", collectionRequest);
             #endregion
 
+            #region --Send Collection
             //foreach (var item in collectionResponse.data)
             //{
-            //    #region Tahsilatları aktar
+            //    
             //    TransferCollectionModels collectionModels = new TransferCollectionModels()
             //    {
             //        CustomerName = item.customerName,
@@ -164,9 +159,9 @@ namespace SArtIntegration.qb
             //    };
 
             //    var result = TransferCollection.BuildCollectionAddRqXML(collectionModels);
-            //    #endregion
+            #endregion
 
-            //    #region Tahsilatlar Başarılı/Başarısız İşaretle
+            #region --Sync Collection
             //    CollectionSyncRequest request = new CollectionSyncRequest();
 
             //    if (result.TxnId != null)
@@ -202,11 +197,9 @@ namespace SArtIntegration.qb
             //    }
 
             //    var response = await ApiManager.SendRequestAsync<CollectionSyncRequest, CollectionSyncResponse>(request, Configuration.GetUrl() + "sync-collection-statuses");
-            //    #endregion
-
             //    MessageBox.Show(response.message.ToString());
             //}
-
+            #endregion
         }
         private void çıkışToolStripMenuItem_Click(object sender, EventArgs e)
         {
