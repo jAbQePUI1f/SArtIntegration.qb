@@ -337,7 +337,7 @@ namespace SArtIntegration.qb
                     }
                 }
             }
-            MessageBox.Show("Transfer is Completed");
+            MessageBox.Show("Transfer is Completed", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void geriDönToolStripMenuItem_Click(object sender, EventArgs e)
         {
