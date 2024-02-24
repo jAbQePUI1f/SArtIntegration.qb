@@ -134,7 +134,7 @@
             bttnGetData.Depth = 0;
             bttnGetData.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             bttnGetData.HighEmphasis = false;
-            bttnGetData.Icon = Properties.Resources.get1;
+            bttnGetData.Icon = Properties.Resources.get;
             bttnGetData.Location = new Point(22, 85);
             bttnGetData.Margin = new Padding(4, 6, 4, 6);
             bttnGetData.MouseState = MaterialSkin.MouseState.HOVER;
@@ -169,7 +169,7 @@
             btnTransfer.Depth = 0;
             btnTransfer.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             btnTransfer.HighEmphasis = true;
-            btnTransfer.Icon = Properties.Resources._23438051;
+            btnTransfer.Icon = Properties.Resources._2343805;
             btnTransfer.Location = new Point(753, 85);
             btnTransfer.Margin = new Padding(4, 6, 4, 6);
             btnTransfer.MouseState = MaterialSkin.MouseState.HOVER;

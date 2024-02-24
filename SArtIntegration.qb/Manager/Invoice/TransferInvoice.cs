@@ -117,8 +117,6 @@ namespace SArtIntegration.qb.Manager.Invoice
 
                 XmlElement Element_InvoiceLineAdd_Amount = xmlDoc.CreateElement("Amount");
                 Element_InvoiceLineAdd.AppendChild(Element_InvoiceLineAdd_Amount).InnerText = item.TotalAmount.ToString();
-
-
             }
 
             InvoiceAddRq.SetAttribute("requestID", "99");
@@ -140,7 +138,7 @@ namespace SArtIntegration.qb.Manager.Invoice
             }
             //var connectInfo = ConnectManager.ConnectToQB();
             string returnXml = ConnectManager.ProcessRequestFromQB(UserSharedInfo.GetConnectInfo(), requestXML);
-            ConnectManager.DisconnectFromQB(UserSharedInfo.GetConnectInfo());
+            //ConnectManager.DisconnectFromQB(UserSharedInfo.GetConnectInfo());
             try
             {
                 XmlNodeList RsNodeList = null;
