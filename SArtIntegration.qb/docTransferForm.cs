@@ -183,7 +183,7 @@ namespace SArtIntegration.qb
                         string number = row.Cells["Number"].Value.ToString();
                         var selectedInvoice = invoiceResponse.data.FirstOrDefault(inv => inv.number == number);
 
-                        #region Faturaları QB aktar
+                        #region --Send Invoice To QB
                         TransferInvoiceModels transferInvoice = new TransferInvoiceModels()
                         {
                             BillAddr = selectedInvoice.customerBranchName,
@@ -212,7 +212,7 @@ namespace SArtIntegration.qb
                         var transferResult = TransferInvoice.BuildInvoiceAddRqXML(transferInvoice);
                         #endregion
 
-                        #region Faturalar Başarılı/Başarısız İşaretle
+                        #region --Sync Invoice
 
                         InvoiceSyncRequest request = new InvoiceSyncRequest();
 
@@ -279,7 +279,7 @@ namespace SArtIntegration.qb
                         string number = row.Cells["DocumentNo"].Value.ToString();
                         var selectedCollection = collectionResponse.data.FirstOrDefault(inv => inv.documentNo == number);
 
-                        #region Tahsilatları aktar
+                        #region --Send Collection To QB
                         TransferCollectionModels collectionModels = new TransferCollectionModels()
                         {
                             CustomerName = selectedCollection.customerName,
@@ -294,7 +294,7 @@ namespace SArtIntegration.qb
                         var result = TransferCollection.BuildCollectionAddRqXML(collectionModels);
                         #endregion
 
-                        #region Tahsilatlar Başarılı/Başarısız İşaretle
+                        #region --Sync Collection
                         CollectionSyncRequest request = new CollectionSyncRequest();
 
                         if (result.TxnId != null)

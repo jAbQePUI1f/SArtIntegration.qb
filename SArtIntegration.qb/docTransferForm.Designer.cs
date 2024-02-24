@@ -133,7 +133,7 @@
             bttnGetData.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnGetData.Depth = 0;
             bttnGetData.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            bttnGetData.HighEmphasis = true;
+            bttnGetData.HighEmphasis = false;
             bttnGetData.Icon = Properties.Resources.get1;
             bttnGetData.Location = new Point(22, 85);
             bttnGetData.Margin = new Padding(4, 6, 4, 6);
@@ -143,8 +143,8 @@
             bttnGetData.Size = new Size(219, 36);
             bttnGetData.TabIndex = 15;
             bttnGetData.Text = "GET DATA";
-            bttnGetData.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            bttnGetData.UseAccentColor = false;
+            bttnGetData.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            bttnGetData.UseAccentColor = true;
             bttnGetData.UseVisualStyleBackColor = true;
             bttnGetData.Click += bttnGetData_Click;
             // 

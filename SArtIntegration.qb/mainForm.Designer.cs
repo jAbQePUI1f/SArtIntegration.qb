@@ -50,7 +50,7 @@
             bttnTransferCollection.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnTransferCollection.Depth = 0;
             bttnTransferCollection.HighEmphasis = true;
-            bttnTransferCollection.Icon = null;
+            bttnTransferCollection.Icon = Properties.Resources._2343805;
             bttnTransferCollection.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferCollection.Name = "bttnTransferCollection";
             bttnTransferCollection.NoAccentTextColor = Color.Empty;
@@ -65,7 +65,7 @@
             bttnTransferInvoice.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnTransferInvoice.Depth = 0;
             bttnTransferInvoice.HighEmphasis = true;
-            bttnTransferInvoice.Icon = null;
+            bttnTransferInvoice.Icon = Properties.Resources._2343805;
             bttnTransferInvoice.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferInvoice.Name = "bttnTransferInvoice";
             bttnTransferInvoice.NoAccentTextColor = Color.Empty;
@@ -80,11 +80,11 @@
             bttnTransferToItems.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnTransferToItems.Depth = 0;
             bttnTransferToItems.HighEmphasis = true;
-            bttnTransferToItems.Icon = null;
+            bttnTransferToItems.Icon = Properties.Resources._2343805;
             bttnTransferToItems.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferToItems.Name = "bttnTransferToItems";
             bttnTransferToItems.NoAccentTextColor = Color.Empty;
-            bttnTransferToItems.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnTransferToItems.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             bttnTransferToItems.UseAccentColor = false;
             bttnTransferToItems.UseVisualStyleBackColor = true;
             bttnTransferToItems.Click += bttnTransferToItems_Click;
@@ -93,15 +93,15 @@
             // 
             resources.ApplyResources(bttnTrsansferToCustomer, "bttnTrsansferToCustomer");
             bttnTrsansferToCustomer.BackColor = Color.White;
-            bttnTrsansferToCustomer.BackgroundImage = Properties.Resources._23438051;
             bttnTrsansferToCustomer.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnTrsansferToCustomer.Depth = 0;
+            bttnTrsansferToCustomer.ForeColor = SystemColors.ActiveCaption;
             bttnTrsansferToCustomer.HighEmphasis = true;
-            bttnTrsansferToCustomer.Icon = null;
+            bttnTrsansferToCustomer.Icon = Properties.Resources._2343805;
             bttnTrsansferToCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTrsansferToCustomer.Name = "bttnTrsansferToCustomer";
             bttnTrsansferToCustomer.NoAccentTextColor = Color.Empty;
-            bttnTrsansferToCustomer.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnTrsansferToCustomer.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             bttnTrsansferToCustomer.UseAccentColor = false;
             bttnTrsansferToCustomer.UseVisualStyleBackColor = false;
             bttnTrsansferToCustomer.Click += bttnTrsansferToCustomer_Click;
@@ -156,6 +156,7 @@
             MainMenuStrip = menuSArtIntegration;
             MaximizeBox = false;
             Name = "mainScreen";
+            Load += mainScreen_Load;
             gboxQuickBooks.ResumeLayout(false);
             gboxSalesArt.ResumeLayout(false);
             menuSArtIntegration.ResumeLayout(false);
