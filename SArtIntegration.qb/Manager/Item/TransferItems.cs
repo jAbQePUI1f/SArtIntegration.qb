@@ -82,8 +82,7 @@ namespace SArtIntegration.qb.Manager.Item
             //string jsonResult = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             if (response1.responseStatus == 200)
             {
-                MessageBox.Show("Products add Succesfully");
-
+                MessageBox.Show("Products add Succesfully", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             //ConnectManager.DisconnectFromQB(UserSharedInfo.GetConnectInfo());

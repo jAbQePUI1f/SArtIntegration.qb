@@ -21,7 +21,7 @@ namespace SArtIntegration.qb
             }
             else
             {
-                MessageBox.Show("Integrator is already running!", "Uyarý", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Integrator is already running!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
