@@ -16,34 +16,6 @@ namespace SArtIntegration.qb.Manager.Customer
     {
         public static async void LoadCustomer()
         {
-            #region -- let me check 2
-            //var connectDbResult = ConnectManager.ConnectToQB();
-
-            //CustomersModels customers = new();
-
-            //var customer1 = new CustomerRequest
-            //{
-            //    importCustomerFromQuickbooks = new[]
-            //    {
-            //        new CustomerModelJson {
-            //           id="1001",
-            //        title = "Ms.1",
-            //    displayName = "Jane Smith1",
-            //    companyName = "XYZ Corp.1",
-            //    taxable = false,
-            //    addLine1 = "456 Elm St1",
-            //    city = "Othertown1",
-            //    country = "USA1",
-            //    postalCode = "34500",
-            //    balance = Convert.ToDecimal("5.5"),
-            //         }
-            //    }
-
-            //};
-
-            //var response2 =await  ApiManager.PostAsync<CustomerRequest, CustomerResponse>(Configuration.GetUrl() + "management/quick-books/customers?lang=tr", customer1);
-            #endregion
-
             string[] includeRetElements = typeof(CustomersModels)
                                      .GetProperties()
                                      .Select(p => GetDisplayName(p))

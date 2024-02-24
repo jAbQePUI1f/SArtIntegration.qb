@@ -156,7 +156,6 @@
             MainMenuStrip = menuSArtIntegration;
             MaximizeBox = false;
             Name = "mainScreen";
-            Load += mainScreen_Load;
             gboxQuickBooks.ResumeLayout(false);
             gboxSalesArt.ResumeLayout(false);
             menuSArtIntegration.ResumeLayout(false);
