@@ -86,7 +86,7 @@
             txtPassword.HideSelection = true;
             txtPassword.InsertKeyMode = InsertKeyMode.Default;
             txtPassword.LeadingIcon = null;
-            txtPassword.Location = new Point(204, 152);
+            txtPassword.Location = new Point(204, 155);
             txtPassword.Margin = new Padding(3, 2, 3, 2);
             txtPassword.Mask = "";
             txtPassword.MaxLength = 32767;
@@ -104,7 +104,7 @@
             txtPassword.SelectionLength = 0;
             txtPassword.SelectionStart = 0;
             txtPassword.ShortcutsEnabled = true;
-            txtPassword.Size = new Size(273, 48);
+            txtPassword.Size = new Size(273, 36);
             txtPassword.SkipLiterals = true;
             txtPassword.TabIndex = 7;
             txtPassword.TabStop = false;
@@ -112,6 +112,7 @@
             txtPassword.TextMaskFormat = MaskFormat.IncludeLiterals;
             txtPassword.TrailingIcon = null;
             txtPassword.UseSystemPasswordChar = false;
+            txtPassword.UseTallSize = false;
             txtPassword.ValidatingType = null;
             // 
             // txtUserName
@@ -128,7 +129,7 @@
             txtUserName.HideSelection = true;
             txtUserName.InsertKeyMode = InsertKeyMode.Default;
             txtUserName.LeadingIcon = null;
-            txtUserName.Location = new Point(204, 86);
+            txtUserName.Location = new Point(204, 100);
             txtUserName.Margin = new Padding(3, 2, 3, 2);
             txtUserName.Mask = "";
             txtUserName.MaxLength = 32767;
@@ -146,7 +147,7 @@
             txtUserName.SelectionLength = 0;
             txtUserName.SelectionStart = 0;
             txtUserName.ShortcutsEnabled = true;
-            txtUserName.Size = new Size(273, 48);
+            txtUserName.Size = new Size(273, 36);
             txtUserName.SkipLiterals = true;
             txtUserName.TabIndex = 6;
             txtUserName.TabStop = false;
@@ -154,13 +155,14 @@
             txtUserName.TextMaskFormat = MaskFormat.IncludeLiterals;
             txtUserName.TrailingIcon = null;
             txtUserName.UseSystemPasswordChar = false;
+            txtUserName.UseTallSize = false;
             txtUserName.ValidatingType = null;
             // 
             // lblUserPassword
             // 
             lblUserPassword.AutoSize = true;
             lblUserPassword.Font = new Font("Segoe UI Semibold", 10.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lblUserPassword.Location = new Point(71, 172);
+            lblUserPassword.Location = new Point(71, 155);
             lblUserPassword.Name = "lblUserPassword";
             lblUserPassword.Size = new Size(107, 19);
             lblUserPassword.TabIndex = 5;
@@ -180,27 +182,29 @@
             // 
             bttnLogin.AutoSize = false;
             bttnLogin.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            bttnLogin.BackColor = Color.FromArgb(255, 255, 192);
             bttnLogin.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnLogin.Depth = 0;
+            bttnLogin.DrawShadows = false;
             bttnLogin.HighEmphasis = true;
-            bttnLogin.Icon = null;
+            bttnLogin.Icon = Properties.Resources.fp;
             bttnLogin.Location = new Point(204, 208);
             bttnLogin.Margin = new Padding(4, 6, 4, 6);
             bttnLogin.MouseState = MaterialSkin.MouseState.HOVER;
             bttnLogin.Name = "bttnLogin";
             bttnLogin.NoAccentTextColor = Color.Empty;
-            bttnLogin.Size = new Size(273, 49);
+            bttnLogin.Size = new Size(273, 55);
             bttnLogin.TabIndex = 0;
             bttnLogin.Text = "Login UP";
-            bttnLogin.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnLogin.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             bttnLogin.UseAccentColor = false;
-            bttnLogin.UseVisualStyleBackColor = true;
+            bttnLogin.UseVisualStyleBackColor = false;
             bttnLogin.Click += bttnLogin_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.logo_1920;
-            pictureBox1.Location = new Point(23, 431);
+            pictureBox1.Location = new Point(23, 401);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(559, 50);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -211,7 +215,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(605, 500);
+            ClientSize = new Size(605, 475);
             Controls.Add(pictureBox1);
             Controls.Add(MenuCard);
             Icon = (Icon)resources.GetObject("$this.Icon");

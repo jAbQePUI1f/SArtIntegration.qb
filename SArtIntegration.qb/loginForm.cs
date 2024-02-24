@@ -11,7 +11,6 @@ namespace SArtIntegration.qb
         {
             InitializeComponent();
         }
-
         private async void bttnLogin_Click(object sender, EventArgs e)
         {
             #region --Auth Code
@@ -30,7 +29,6 @@ namespace SArtIntegration.qb
             #endregion
             var response = await LoginManager.LoginAsync("operasyon@arpaciogluavr.com", "Oa1234");//"operasyon@arpaciogluavr.com", "Oa1234"
 
-
             var connectInfoQB = ConnectManager.ConnectToQB();
 
             if (string.IsNullOrEmpty(connectInfoQB.Ticket))
@@ -41,7 +39,7 @@ namespace SArtIntegration.qb
 
             if (!response.State)
             {
-                MessageBox.Show(response.Messages.GetMessages(), "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(response.Messages.GetMessages(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
