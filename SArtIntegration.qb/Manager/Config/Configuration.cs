@@ -12,5 +12,9 @@ namespace SArtIntegration.qb.Manager.Config
         {
             return ConfigurationManager.AppSettings["collectionIsAutoApply"];
         }
+        public static string getRequestSource()
+        {
+            return ConfigurationManager.AppSettings["requestSource"];
+        }
     }
 }

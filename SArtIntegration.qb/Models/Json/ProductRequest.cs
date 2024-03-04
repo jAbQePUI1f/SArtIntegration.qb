@@ -3,6 +3,7 @@
     public class ProductRequest
     {
         public ProductModelJson[] importProductFromQuickbooks { get; set; }
+        public string requestSource { get; set; } // QB_DESKTOP
         public class ProductModelJson
         {
             public string id { get; set; }
