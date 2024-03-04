@@ -76,14 +76,13 @@ namespace SArtIntegration.qb.Manager.Item
 
             ProductRequest productRequest = new ProductRequest();
             productRequest.importProductFromQuickbooks = productList.ToArray();
-
+            productRequest.requestSource = Configuration.getRequestSource();
             var response1 = await ApiManager.PostAsync<ProductRequest, ProductResponse>(Configuration.GetUrl() + "management/quick-books/products?lang=tr", productRequest);
 
             //string jsonResult = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             if (response1.responseStatus == 200)
             {
-                MessageBox.Show("Products add Succesfully");
-
+                MessageBox.Show("Products add Succesfully", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             //ConnectManager.DisconnectFromQB(UserSharedInfo.GetConnectInfo());

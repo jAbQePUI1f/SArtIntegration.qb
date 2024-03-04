@@ -133,8 +133,8 @@
             bttnGetData.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnGetData.Depth = 0;
             bttnGetData.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            bttnGetData.HighEmphasis = true;
-            bttnGetData.Icon = null;
+            bttnGetData.HighEmphasis = false;
+            bttnGetData.Icon = Properties.Resources.get;
             bttnGetData.Location = new Point(22, 85);
             bttnGetData.Margin = new Padding(4, 6, 4, 6);
             bttnGetData.MouseState = MaterialSkin.MouseState.HOVER;
@@ -143,8 +143,8 @@
             bttnGetData.Size = new Size(219, 36);
             bttnGetData.TabIndex = 15;
             bttnGetData.Text = "GET DATA";
-            bttnGetData.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            bttnGetData.UseAccentColor = false;
+            bttnGetData.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            bttnGetData.UseAccentColor = true;
             bttnGetData.UseVisualStyleBackColor = true;
             bttnGetData.Click += bttnGetData_Click;
             // 
@@ -169,7 +169,7 @@
             btnTransfer.Depth = 0;
             btnTransfer.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             btnTransfer.HighEmphasis = true;
-            btnTransfer.Icon = null;
+            btnTransfer.Icon = Properties.Resources._2343805;
             btnTransfer.Location = new Point(753, 85);
             btnTransfer.Margin = new Padding(4, 6, 4, 6);
             btnTransfer.MouseState = MaterialSkin.MouseState.HOVER;
@@ -204,14 +204,14 @@
             // geriDönToolStripMenuItem
             // 
             geriDönToolStripMenuItem.Name = "geriDönToolStripMenuItem";
-            geriDönToolStripMenuItem.Size = new Size(180, 22);
+            geriDönToolStripMenuItem.Size = new Size(137, 22);
             geriDönToolStripMenuItem.Text = "Back Return";
             geriDönToolStripMenuItem.Click += geriDönToolStripMenuItem_Click;
             // 
             // çıkışToolStripMenuItem
             // 
             çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
-            çıkışToolStripMenuItem.Size = new Size(180, 22);
+            çıkışToolStripMenuItem.Size = new Size(137, 22);
             çıkışToolStripMenuItem.Text = "Exit";
             çıkışToolStripMenuItem.Click += çıkışToolStripMenuItem_Click;
             // 

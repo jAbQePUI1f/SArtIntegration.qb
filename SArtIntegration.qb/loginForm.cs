@@ -11,12 +11,10 @@ namespace SArtIntegration.qb
         {
             InitializeComponent();
         }
-
         private async void bttnLogin_Click(object sender, EventArgs e)
         {
+            #region --Auth Code
             //var authenticationHelper = new AuthenticationHelper();
-
-
 
             //var jwtToken = await authenticationHelper.GetJwtTokenAsync("operasyon@arpaciogluavr.com", "Oa1234", "MANAGEMENT");
 
@@ -28,21 +26,20 @@ namespace SArtIntegration.qb
             //{
             //    Console.WriteLine("Login failed.");
             //}
-
+            #endregion
             var response = await LoginManager.LoginAsync("operasyon@arpaciogluavr.com", "Oa1234");//"operasyon@arpaciogluavr.com", "Oa1234"
-
 
             var connectInfoQB = ConnectManager.ConnectToQB();
 
             if (string.IsNullOrEmpty(connectInfoQB.Ticket))
             {
-                MessageBox.Show("Quickbooks not open!! Pls Open the QuickBooks", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Your Quickbooks ERP application is not open. Please try again after opening your application.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             if (!response.State)
             {
-                MessageBox.Show(response.Messages.GetMessages(), "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(response.Messages.GetMessages(), "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -54,17 +51,11 @@ namespace SArtIntegration.qb
             new mainScreen().Show();
             this.Hide();
         }
-
         private void lblLoginPage_Click(object sender, EventArgs e)
         {
             mainScreen mS = new mainScreen();
             mS.Show();
             this.Hide();
-        }
-
-        private void txtBoxUserName_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

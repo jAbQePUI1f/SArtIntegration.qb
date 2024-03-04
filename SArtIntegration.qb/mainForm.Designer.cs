@@ -46,20 +46,14 @@
             // 
             // bttnTransferCollection
             // 
-            bttnTransferCollection.AutoSize = false;
-            bttnTransferCollection.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            resources.ApplyResources(bttnTransferCollection, "bttnTransferCollection");
             bttnTransferCollection.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnTransferCollection.Depth = 0;
             bttnTransferCollection.HighEmphasis = true;
-            bttnTransferCollection.Icon = null;
-            bttnTransferCollection.Location = new Point(216, 93);
-            bttnTransferCollection.Margin = new Padding(4);
+            bttnTransferCollection.Icon = Properties.Resources._2343805;
             bttnTransferCollection.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferCollection.Name = "bttnTransferCollection";
             bttnTransferCollection.NoAccentTextColor = Color.Empty;
-            bttnTransferCollection.Size = new Size(192, 36);
-            bttnTransferCollection.TabIndex = 19;
-            bttnTransferCollection.Text = "Transfer Collectıon";
             bttnTransferCollection.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnTransferCollection.UseAccentColor = false;
             bttnTransferCollection.UseVisualStyleBackColor = true;
@@ -67,20 +61,14 @@
             // 
             // bttnTransferInvoice
             // 
-            bttnTransferInvoice.AutoSize = false;
-            bttnTransferInvoice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            resources.ApplyResources(bttnTransferInvoice, "bttnTransferInvoice");
             bttnTransferInvoice.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnTransferInvoice.Depth = 0;
             bttnTransferInvoice.HighEmphasis = true;
-            bttnTransferInvoice.Icon = null;
-            bttnTransferInvoice.Location = new Point(216, 33);
-            bttnTransferInvoice.Margin = new Padding(4);
+            bttnTransferInvoice.Icon = Properties.Resources._2343805;
             bttnTransferInvoice.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferInvoice.Name = "bttnTransferInvoice";
             bttnTransferInvoice.NoAccentTextColor = Color.Empty;
-            bttnTransferInvoice.Size = new Size(192, 36);
-            bttnTransferInvoice.TabIndex = 18;
-            bttnTransferInvoice.Text = "Transfer Invoıce";
             bttnTransferInvoice.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             bttnTransferInvoice.UseAccentColor = false;
             bttnTransferInvoice.UseVisualStyleBackColor = true;
@@ -88,114 +76,86 @@
             // 
             // bttnTransferToItems
             // 
-            bttnTransferToItems.AutoSize = false;
-            bttnTransferToItems.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            resources.ApplyResources(bttnTransferToItems, "bttnTransferToItems");
             bttnTransferToItems.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnTransferToItems.Depth = 0;
             bttnTransferToItems.HighEmphasis = true;
-            bttnTransferToItems.Icon = null;
-            bttnTransferToItems.Location = new Point(216, 85);
-            bttnTransferToItems.Margin = new Padding(4, 6, 4, 6);
+            bttnTransferToItems.Icon = Properties.Resources._2343805;
             bttnTransferToItems.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTransferToItems.Name = "bttnTransferToItems";
             bttnTransferToItems.NoAccentTextColor = Color.Empty;
-            bttnTransferToItems.Size = new Size(192, 36);
-            bttnTransferToItems.TabIndex = 15;
-            bttnTransferToItems.Text = "Transfer Items";
-            bttnTransferToItems.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnTransferToItems.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             bttnTransferToItems.UseAccentColor = false;
             bttnTransferToItems.UseVisualStyleBackColor = true;
             bttnTransferToItems.Click += bttnTransferToItems_Click;
             // 
             // bttnTrsansferToCustomer
             // 
-            bttnTrsansferToCustomer.AutoSize = false;
-            bttnTrsansferToCustomer.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            resources.ApplyResources(bttnTrsansferToCustomer, "bttnTrsansferToCustomer");
+            bttnTrsansferToCustomer.BackColor = Color.White;
             bttnTrsansferToCustomer.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             bttnTrsansferToCustomer.Depth = 0;
-            bttnTrsansferToCustomer.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            bttnTrsansferToCustomer.ForeColor = SystemColors.ActiveCaption;
             bttnTrsansferToCustomer.HighEmphasis = true;
-            bttnTrsansferToCustomer.Icon = null;
-            bttnTrsansferToCustomer.Location = new Point(253, 78);
-            bttnTrsansferToCustomer.Margin = new Padding(4, 6, 4, 6);
+            bttnTrsansferToCustomer.Icon = Properties.Resources._2343805;
             bttnTrsansferToCustomer.MouseState = MaterialSkin.MouseState.HOVER;
             bttnTrsansferToCustomer.Name = "bttnTrsansferToCustomer";
             bttnTrsansferToCustomer.NoAccentTextColor = Color.Empty;
-            bttnTrsansferToCustomer.Size = new Size(192, 36);
-            bttnTrsansferToCustomer.TabIndex = 14;
-            bttnTrsansferToCustomer.Text = "Transfer Customer";
-            bttnTrsansferToCustomer.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            bttnTrsansferToCustomer.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             bttnTrsansferToCustomer.UseAccentColor = false;
-            bttnTrsansferToCustomer.UseVisualStyleBackColor = true;
+            bttnTrsansferToCustomer.UseVisualStyleBackColor = false;
             bttnTrsansferToCustomer.Click += bttnTrsansferToCustomer_Click;
             // 
             // gboxQuickBooks
             // 
+            resources.ApplyResources(gboxQuickBooks, "gboxQuickBooks");
             gboxQuickBooks.Controls.Add(bttnTransferToItems);
-            gboxQuickBooks.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            gboxQuickBooks.Location = new Point(37, 45);
             gboxQuickBooks.Name = "gboxQuickBooks";
-            gboxQuickBooks.Size = new Size(664, 149);
-            gboxQuickBooks.TabIndex = 21;
             gboxQuickBooks.TabStop = false;
-            gboxQuickBooks.Text = "QuickBooks To SalesArt";
             // 
             // gboxSalesArt
             // 
+            resources.ApplyResources(gboxSalesArt, "gboxSalesArt");
             gboxSalesArt.Controls.Add(bttnTransferCollection);
             gboxSalesArt.Controls.Add(bttnTransferInvoice);
-            gboxSalesArt.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            gboxSalesArt.Location = new Point(37, 267);
             gboxSalesArt.Name = "gboxSalesArt";
-            gboxSalesArt.Size = new Size(664, 156);
-            gboxSalesArt.TabIndex = 22;
             gboxSalesArt.TabStop = false;
-            gboxSalesArt.Text = "SalesArt To QuickBooks";
             // 
             // menuSArtIntegration
             // 
-            menuSArtIntegration.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            resources.ApplyResources(menuSArtIntegration, "menuSArtIntegration");
             menuSArtIntegration.ImageScalingSize = new Size(20, 20);
             menuSArtIntegration.Items.AddRange(new ToolStripItem[] { menüToolStripMenuItem });
-            menuSArtIntegration.Location = new Point(0, 0);
             menuSArtIntegration.Name = "menuSArtIntegration";
-            menuSArtIntegration.Size = new Size(737, 24);
-            menuSArtIntegration.TabIndex = 23;
-            menuSArtIntegration.Text = "menuStrip1";
             // 
             // menüToolStripMenuItem
             // 
+            resources.ApplyResources(menüToolStripMenuItem, "menüToolStripMenuItem");
             menüToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { geriDönToolStripMenuItem, çıkışToolStripMenuItem });
             menüToolStripMenuItem.Name = "menüToolStripMenuItem";
-            menüToolStripMenuItem.Size = new Size(50, 20);
-            menüToolStripMenuItem.Text = "Menu";
             // 
             // geriDönToolStripMenuItem
             // 
+            resources.ApplyResources(geriDönToolStripMenuItem, "geriDönToolStripMenuItem");
             geriDönToolStripMenuItem.Name = "geriDönToolStripMenuItem";
-            geriDönToolStripMenuItem.Size = new Size(180, 22);
-            geriDönToolStripMenuItem.Text = "Back Return";
             // 
             // çıkışToolStripMenuItem
             // 
+            resources.ApplyResources(çıkışToolStripMenuItem, "çıkışToolStripMenuItem");
             çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
-            çıkışToolStripMenuItem.Size = new Size(180, 22);
-            çıkışToolStripMenuItem.Text = "Exit";
             çıkışToolStripMenuItem.Click += çıkışToolStripMenuItem_Click;
             // 
             // mainScreen
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(737, 450);
             Controls.Add(bttnTrsansferToCustomer);
             Controls.Add(gboxQuickBooks);
             Controls.Add(gboxSalesArt);
             Controls.Add(menuSArtIntegration);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuSArtIntegration;
+            MaximizeBox = false;
             Name = "mainScreen";
-            Text = "SArtIntegration.qb";
             gboxQuickBooks.ResumeLayout(false);
             gboxSalesArt.ResumeLayout(false);
             menuSArtIntegration.ResumeLayout(false);
