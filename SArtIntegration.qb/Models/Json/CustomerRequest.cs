@@ -2,7 +2,9 @@
 {
     public  class CustomerRequest
     {
+
         public CustomerModelJson[] importCustomerFromQuickbooks { get; set; }
+        public string requestSource { get; set; } // QB_DESKTOP
         public class CustomerModelJson
         {
             public string id { get; set; }

@@ -76,7 +76,7 @@ namespace SArtIntegration.qb.Manager.Item
 
             ProductRequest productRequest = new ProductRequest();
             productRequest.importProductFromQuickbooks = productList.ToArray();
-
+            productRequest.requestSource = Configuration.getRequestSource();
             var response1 = await ApiManager.PostAsync<ProductRequest, ProductResponse>(Configuration.GetUrl() + "management/quick-books/products?lang=tr", productRequest);
 
             //string jsonResult = JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
